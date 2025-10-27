@@ -334,6 +334,49 @@ const PrinterTest = () => {
 
   if (showInstructions) {
     return (
+      <div 
+        onClick={handleClick}
+        className="min-h-screen bg-[#202124] flex items-center justify-center px-6"
+        style={{ cursor: 'pointer' }}
+      >
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-50 text-center">
+          <div className="bg-[#303134] backdrop-blur-sm rounded-lg shadow-2xl p-8 max-w-md border border-[#5f6368]">
+            <div className="mb-6 flex flex-col items-center">
+              <img 
+                src="https://customer-assets.emergentagent.com/job_053c424a-d7ee-4a13-a916-f7596c34862b/artifacts/qy7ga8qf_2025_Logo_127.png" 
+                alt="127 Logo" 
+                className="w-32 h-auto mb-4 brightness-110"
+              />
+              <h2 className="text-2xl font-bold text-[#e8eaed] mb-2">Printer Tester</h2>
+              <p className="text-[#9aa0a6]">Klik om te starten</p>
+              <p className="text-xs text-[#9aa0a6] mt-2">Build {BUILD_VERSION}</p>
+            </div>
+            <div className="bg-[#202124] border border-[#5f6368] rounded-lg p-4 text-left">
+              <h3 className="font-semibold text-[#8ab4f8] mb-2">Instructies:</h3>
+              <ul className="text-sm text-[#9aa0a6] space-y-1">
+                <li>• Klik om de configuratie te openen</li>
+                <li>• Kies het aantal pagina's (1-10)</li>
+                <li>• Selecteer de gewenste testen</li>
+                <li>• Klik op "Genereer en Print"</li>
+                <li>• Controleer de afdruk op kwaliteit</li>
+              </ul>
+            </div>
+            <div className="mt-6">
+              <Link to="/" onClick={(e) => e.stopPropagation()}>
+                <button className="w-full px-4 py-3 bg-[#8ab4f8] hover:bg-[#aac8f9] text-[#202124] rounded-lg font-medium transition-colors flex items-center justify-center gap-2">
+                  <ArrowLeft className="w-4 h-4" />
+                  Bekijk ook andere tools
+                </button>
+              </Link>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  if (showConfig) {
+    return (
       <div className="min-h-screen bg-[#202124] flex items-center justify-center px-6">
         <div className="w-full max-w-2xl">
           <div className="bg-[#303134] backdrop-blur-sm rounded-lg shadow-2xl p-8 border border-[#5f6368]">
