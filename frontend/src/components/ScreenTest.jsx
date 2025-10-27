@@ -192,7 +192,8 @@ const ScreenTest = () => {
             </div>
             <div className="text-right">
               <div className="text-3xl font-bold text-[#8ab4f8]">{fps} FPS</div>
-              <p className="text-xs text-[#9aa0a6]">Huidige Refresh Rate</p>
+              <p className="text-xs text-[#9aa0a6]">Browser Refresh Rate</p>
+              <p className="text-xs text-[#8ab4f8] mt-1">Snelheid: {speed}%</p>
             </div>
           </div>
 
