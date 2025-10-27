@@ -209,8 +209,44 @@ const PixelTest = () => {
           cursor: isFullscreen ? 'none' : 'pointer'
         }}
       >
+        {/* GPU Info Modal */}
+        {showGPUModal && (
+          <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black bg-opacity-75">
+            <div className="bg-[#303134] rounded-lg shadow-2xl p-8 max-w-lg border border-[#5f6368] mx-4">
+              <div className="mb-6 flex flex-col items-center">
+                <Monitor className="w-16 h-16 text-[#8ab4f8] mb-4" />
+                <h2 className="text-2xl font-bold text-[#e8eaed] mb-2">GPU Informatie</h2>
+                <p className="text-[#9aa0a6] text-center">Je test op de volgende GPU</p>
+              </div>
+              
+              <div className="bg-[#202124] border border-[#5f6368] rounded-lg p-6 mb-6">
+                <div className="space-y-3">
+                  <div>
+                    <p className="text-sm text-[#9aa0a6]">GPU Vendor:</p>
+                    <p className="text-base font-medium text-[#e8eaed] break-words">{gpuInfo.vendor}</p>
+                  </div>
+                  <div className="border-t border-[#5f6368] pt-3">
+                    <p className="text-sm text-[#9aa0a6]">GPU Renderer:</p>
+                    <p className="text-base font-medium text-[#e8eaed] break-words">{gpuInfo.renderer}</p>
+                  </div>
+                </div>
+              </div>
+
+              <button 
+                onClick={(e) => {
+                  e.stopPropagation();
+                  handleGPUModalOk();
+                }}
+                className="w-full px-6 py-3 bg-[#8ab4f8] hover:bg-[#aac8f9] text-[#202124] rounded-lg font-medium transition-colors"
+              >
+                Ok, Start Test
+              </button>
+            </div>
+          </div>
+        )}
+
         {/* Instructions when not in fullscreen */}
-        {!isFullscreen && (
+        {!isFullscreen && !showGPUModal && (
         <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-50 text-center">
           <div className="bg-[#303134] backdrop-blur-sm rounded-lg shadow-2xl p-8 max-w-md border border-[#5f6368]">
             <div className="mb-6 flex flex-col items-center">
