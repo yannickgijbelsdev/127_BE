@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Search, Monitor, Printer, Activity } from 'lucide-react';
+import { Search, Monitor, Printer, Activity, Zap } from 'lucide-react';
 
 // Build version - Update this with each change
-const BUILD_VERSION = '1.2.7';
+const BUILD_VERSION = '1.2.9';
 
 const LandingPage = () => {
   const [searchQuery, setSearchQuery] = useState('');
@@ -34,6 +34,14 @@ const LandingPage = () => {
       keywords: ['screen', 'refresh', 'rate', 'fps', 'verversing', 'scherm', 'snelheid', 'hz'],
       path: '/sscreen',
       icon: Activity,
+    },
+    {
+      id: 'benchmark',
+      name: 'GPU Benchmark',
+      description: 'Test de prestaties van uw grafische kaart met 3D rendering',
+      keywords: ['gpu', 'benchmark', 'prestaties', 'graphics', '3d', 'render', 'videokaart', 'grafisch'],
+      path: '/benchmark',
+      icon: Zap,
     },
   ];
 
