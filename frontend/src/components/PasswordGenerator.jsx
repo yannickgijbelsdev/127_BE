@@ -366,7 +366,7 @@ const PasswordGenerator = () => {
           <Link to="/">
             <button className="px-6 py-3 bg-[#8ab4f8] hover:bg-[#aac8f9] text-[#202124] rounded-lg font-medium transition-colors flex items-center justify-center gap-2 mx-auto">
               <ArrowLeft className="w-4 h-4" />
-              Terug naar overzicht
+              Bekijk ook andere tools
             </button>
           </Link>
         </div>
