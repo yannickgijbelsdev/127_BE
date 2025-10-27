@@ -224,17 +224,17 @@ const PasswordGenerator = () => {
     <div 
       className="min-h-screen py-8 px-4 transition-all duration-700"
       style={{ 
-        backgroundColor: (isAutosoftPassword || showMemorableForm) ? '#3d0000' : '#202124',
+        backgroundColor: (isAutosoftPassword || showMemorableForm) ? '#330000' : '#202124',
         animation: (isAutosoftPassword || showMemorableForm) ? 'redPulse 2s ease-in-out infinite' : 'none'
       }}
     >
       <style>{`
         @keyframes redPulse {
           0%, 100% {
-            background-color: #3d0000;
+            background-color: #330000;
           }
           50% {
-            background-color: #4d0000;
+            background-color: #440000;
           }
         }
       `}</style>
