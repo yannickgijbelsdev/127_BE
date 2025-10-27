@@ -131,22 +131,22 @@ const PixelTest = () => {
 
   if (isLoading) {
     return (
-      <div className="min-h-screen bg-white flex flex-col items-center justify-center p-8">
+      <div className="min-h-screen bg-[#202124] flex flex-col items-center justify-center p-8">
         <div className="w-full max-w-md space-y-8">
           <div className="flex justify-center">
             <img 
               src="https://customer-assets.emergentagent.com/job_053c424a-d7ee-4a13-a916-f7596c34862b/artifacts/qy7ga8qf_2025_Logo_127.png" 
               alt="127 Logo" 
-              className="w-48 h-auto"
+              className="w-48 h-auto brightness-110"
             />
           </div>
           <div className="space-y-4">
             <div className="text-center">
-              <h2 className="text-2xl font-bold text-gray-800 mb-2">Dead Pixel Detector</h2>
-              <p className="text-gray-600">127.be</p>
+              <h2 className="text-2xl font-bold text-[#e8eaed] mb-2">Dead Pixel Detector</h2>
+              <p className="text-[#9aa0a6]">127.be</p>
             </div>
-            <Progress value={loadingProgress} className="h-3" />
-            <p className="text-center text-sm text-gray-500">{Math.round(loadingProgress)}%</p>
+            <Progress value={loadingProgress} className="h-3 bg-[#303134]" />
+            <p className="text-center text-sm text-[#9aa0a6]">{Math.round(loadingProgress)}%</p>
           </div>
         </div>
       </div>
