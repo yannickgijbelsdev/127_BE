@@ -161,7 +161,7 @@ const PixelTest = () => {
   return (
     <div 
       onClick={handleClick}
-      className="relative min-h-screen transition-colors duration-300"
+      className="relative min-h-screen"
       style={{ 
         backgroundColor: currentColorObj.hex,
         cursor: isFullscreen ? 'none' : 'pointer'
