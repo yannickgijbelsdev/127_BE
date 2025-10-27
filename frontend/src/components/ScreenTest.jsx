@@ -93,25 +93,15 @@ const ScreenTest = () => {
     }
   };
 
-  // FPS counter
+  // FPS counter removed - animation continues
   useEffect(() => {
     if (!isRunning) return;
 
-    const updateFPS = () => {
-      fpsCounterRef.current++;
-      const now = Date.now();
-      const elapsed = now - fpsLastUpdateRef.current;
-
-      if (elapsed >= 1000) {
-        setFps(Math.round((fpsCounterRef.current * 1000) / elapsed));
-        fpsCounterRef.current = 0;
-        fpsLastUpdateRef.current = now;
-      }
-
-      animationFrameRef.current = requestAnimationFrame(updateFPS);
+    const animate = () => {
+      animationFrameRef.current = requestAnimationFrame(animate);
     };
 
-    updateFPS();
+    animate();
 
     return () => {
       if (animationFrameRef.current) {
