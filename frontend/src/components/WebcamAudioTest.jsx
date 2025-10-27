@@ -6,7 +6,7 @@ import { Button } from './ui/button';
 import HalloweenDecoration from './HalloweenDecoration';
 
 // Build version - Update this with each change
-const BUILD_VERSION = '1.3.2';
+const BUILD_VERSION = '1.3.3';
 
 const WebcamAudioTest = () => {
   const [isLoading, setIsLoading] = useState(true);
