@@ -174,7 +174,7 @@ const PixelTest = () => {
                 className="w-32 h-auto mb-4"
               />
               <h2 className="text-2xl font-bold text-gray-900 mb-2">Dead Pixel Detector</h2>
-              <p className="text-gray-600">Klik overal om te starten</p>
+              <p className="text-gray-600">Klik om te starten</p>
               <p className="text-xs text-gray-400 mt-2">Build {BUILD_VERSION}</p>
             </div>
             <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 text-left">
