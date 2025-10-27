@@ -21,9 +21,9 @@ const PixelTest = () => {
     { name: 'Geel', value: 'yellow', hex: '#FFFF00' },
   ];
 
-  // Loading animation (3 seconds)
+  // Loading animation (2 seconds)
   useEffect(() => {
-    const duration = 3000;
+    const duration = 2000;
     const interval = 30;
     const steps = duration / interval;
     let step = 0;
