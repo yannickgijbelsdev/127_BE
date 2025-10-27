@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { Search, Monitor } from 'lucide-react';
 
 // Build version - Update this with each change
-const BUILD_VERSION = '1.1.7';
+const BUILD_VERSION = '1.1.8';
 
 const LandingPage = () => {
   const [searchQuery, setSearchQuery] = useState('');
