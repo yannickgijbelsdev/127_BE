@@ -54,8 +54,8 @@ const LandingPage = () => {
           }`}
         >
           <div className="relative group">
-            {/* Gradient border on hover */}
-            <div className="absolute -inset-0.5 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 rounded-full opacity-0 group-hover:opacity-75 blur-sm transition-opacity duration-300"></div>
+            {/* Animated gradient border on hover */}
+            <div className="absolute -inset-0.5 bg-gradient-to-r from-blue-500 via-cyan-500 to-green-500 rounded-full opacity-0 group-hover:opacity-75 blur-sm transition-opacity duration-300 animate-gradient-rotate"></div>
             
             <div className="relative">
               <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5 z-10" />
