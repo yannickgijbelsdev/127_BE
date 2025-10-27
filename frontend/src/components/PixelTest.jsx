@@ -194,6 +194,14 @@ const PixelTest = () => {
                 Huidige kleur: <span className="font-bold text-[#e8eaed]">{currentColorObj.name}</span>
               </p>
             </div>
+            <div className="mt-6">
+              <Link to="/">
+                <button className="w-full px-4 py-3 bg-[#8ab4f8] hover:bg-[#aac8f9] text-[#202124] rounded-lg font-medium transition-colors flex items-center justify-center gap-2">
+                  <ArrowLeft className="w-4 h-4" />
+                  Bekijk ook andere tools
+                </button>
+              </Link>
+            </div>
           </div>
         </div>
       )}
