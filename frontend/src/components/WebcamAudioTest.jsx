@@ -244,6 +244,71 @@ const WebcamAudioTest = () => {
     );
   }
 
+  if (showPermissionRequest) {
+    return (
+      <div className="min-h-screen bg-[#202124] flex items-center justify-center px-6">
+        <div className="w-full max-w-md">
+          <div className="bg-[#303134] backdrop-blur-sm rounded-lg shadow-2xl p-8 border border-[#5f6368]">
+            <div className="mb-6 flex flex-col items-center">
+              <img 
+                src="https://customer-assets.emergentagent.com/job_053c424a-d7ee-4a13-a916-f7596c34862b/artifacts/qy7ga8qf_2025_Logo_127.png" 
+                alt="127 Logo" 
+                className="w-32 h-auto mb-4 brightness-110"
+              />
+              <h2 className="text-2xl font-bold text-[#e8eaed] mb-2">Toestemming Vereist</h2>
+              <p className="text-[#9aa0a6] text-center">We hebben toegang nodig tot uw camera en microfoon</p>
+            </div>
+
+            <div className="bg-[#202124] border border-[#5f6368] rounded-lg p-4 mb-4">
+              <div className="flex items-start gap-3 mb-3">
+                <Video className="w-5 h-5 text-[#8ab4f8] mt-0.5" />
+                <div>
+                  <p className="text-[#e8eaed] font-medium text-sm">Camera</p>
+                  <p className="text-[#9aa0a6] text-xs">Voor video preview en opname</p>
+                </div>
+              </div>
+              <div className="flex items-start gap-3">
+                <Mic className="w-5 h-5 text-[#8ab4f8] mt-0.5" />
+                <div>
+                  <p className="text-[#e8eaed] font-medium text-sm">Microfoon</p>
+                  <p className="text-[#9aa0a6] text-xs">Voor audio opname</p>
+                </div>
+              </div>
+            </div>
+
+            {permissionError && (
+              <div className="bg-red-900/30 border border-red-600 rounded-lg p-4 mb-4">
+                <p className="text-red-300 text-sm">{permissionError}</p>
+              </div>
+            )}
+
+            <div className="space-y-3">
+              <Button 
+                onClick={requestPermissions}
+                className="w-full bg-[#8ab4f8] hover:bg-[#aac8f9] text-[#202124] font-medium"
+              >
+                Geef Toestemming
+              </Button>
+              <Link to="/" onClick={(e) => e.stopPropagation()}>
+                <Button 
+                  variant="outline"
+                  className="w-full border-[#5f6368] text-[#e8eaed] hover:bg-[#3c4043]"
+                >
+                  <ArrowLeft className="w-4 h-4 mr-2" />
+                  Annuleren
+                </Button>
+              </Link>
+            </div>
+
+            <p className="text-xs text-[#9aa0a6] mt-4 text-center">
+              Uw privacy is belangrijk. Deze tool bewaart geen opnames op onze servers.
+            </p>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="min-h-screen bg-[#202124] flex flex-col">
       {/* Control Panel */}
