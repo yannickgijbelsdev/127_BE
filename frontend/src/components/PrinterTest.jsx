@@ -6,9 +6,10 @@ import { Button } from './ui/button';
 import { Label } from './ui/label';
 import { Input } from './ui/input';
 import { Checkbox } from './ui/checkbox';
+import HalloweenDecoration from './HalloweenDecoration';
 
 // Build version - Update this with each change
-const BUILD_VERSION = '1.3.1';
+const BUILD_VERSION = '1.3.2';
 
 const PrinterTest = () => {
   const [isLoading, setIsLoading] = useState(true);
