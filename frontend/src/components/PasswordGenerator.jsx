@@ -57,6 +57,16 @@ const PasswordGenerator = () => {
   // Calculate password strength
   useEffect(() => {
     if (customPassword) {
+      // Check for Autosoft01 password
+      if (customPassword === 'Autosoft01') {
+        setIsAutosoftPassword(true);
+        setStrength({ score: 0, label: 'Test Wachtwoord', color: '#FF0000' });
+        setShowConfetti(false);
+        return;
+      } else {
+        setIsAutosoftPassword(false);
+      }
+
       const result = calculateStrength(customPassword);
       setStrength(result);
       
@@ -67,6 +77,7 @@ const PasswordGenerator = () => {
     } else {
       setStrength({ score: 0, label: '', color: '' });
       setShowConfetti(false);
+      setIsAutosoftPassword(false);
     }
   }, [customPassword]);
 
