@@ -2,6 +2,9 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Search, Monitor } from 'lucide-react';
 
+// Build version - Update this with each change
+const BUILD_VERSION = '1.1.4';
+
 const LandingPage = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [isFocused, setIsFocused] = useState(false);
