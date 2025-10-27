@@ -143,7 +143,6 @@ const PixelTest = () => {
           <div className="space-y-4">
             <div className="text-center">
               <h2 className="text-2xl font-bold text-[#e8eaed] mb-2">Dead Pixel Detector</h2>
-              <p className="text-[#9aa0a6]">127.be</p>
             </div>
             <Progress value={loadingProgress} className="h-3 bg-[#303134]" />
             <p className="text-center text-sm text-[#9aa0a6]">{Math.round(loadingProgress)}%</p>
