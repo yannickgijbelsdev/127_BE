@@ -5,7 +5,7 @@ import { ArrowLeft } from 'lucide-react';
 import HalloweenDecoration from './HalloweenDecoration';
 
 // Build version - Update this with each change
-const BUILD_VERSION = '1.3.2';
+const BUILD_VERSION = '1.3.3';
 
 const PixelTest = () => {
   const [isLoading, setIsLoading] = useState(true);
