@@ -102,6 +102,7 @@ const ScreenTest = () => {
   if (isLoading) {
     return (
       <div className="min-h-screen bg-[#202124] flex flex-col items-center justify-center p-8">
+        <HalloweenDecoration />
         <div className="w-full max-w-md space-y-8">
           <div className="flex justify-center">
             <img 
