@@ -151,6 +151,43 @@ const PasswordGenerator = () => {
     return { score, label, color };
   };
 
+  const generateSuggestion = () => {
+    // Generate a strong alternative password
+    const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()_+-=';
+    let suggestion = '';
+    for (let i = 0; i < 18; i++) {
+      suggestion += chars.charAt(Math.floor(Math.random() * chars.length));
+    }
+    return suggestion;
+  };
+
+  const generateMemorablePassword = () => {
+    const { interest, year, favorite } = memorableInputs;
+    if (!interest || !year || !favorite) {
+      return '';
+    }
+
+    // Create a memorable but strong password
+    const symbols = ['!', '@', '#', '$', '%', '&', '*'];
+    const symbol1 = symbols[Math.floor(Math.random() * symbols.length)];
+    const symbol2 = symbols[Math.floor(Math.random() * symbols.length)];
+    
+    // Capitalize first letter of interest and favorite
+    const interestCap = interest.charAt(0).toUpperCase() + interest.slice(1).toLowerCase();
+    const favoriteCap = favorite.charAt(0).toUpperCase() + favorite.slice(1).toLowerCase();
+    
+    return `${interestCap}${symbol1}${favoriteCap}${year}${symbol2}`;
+  };
+
+  const handleMemorableSubmit = () => {
+    const memorable = generateMemorablePassword();
+    if (memorable) {
+      setPassword(memorable);
+      setShowMemorableForm(false);
+      setMemorableInputs({ interest: '', year: '', favorite: '' });
+    }
+  };
+
   const copyToClipboard = (text) => {
     navigator.clipboard.writeText(text);
     setCopied(true);
