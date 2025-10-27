@@ -104,6 +104,12 @@ const PixelTest = () => {
     }
   };
 
+  const handleClick = () => {
+    if (!isLoading && !isFullscreen) {
+      enterFullscreen();
+    }
+  };
+
   const handleColorChange = (colorValue) => {
     setCurrentColor(colorValue);
   };
