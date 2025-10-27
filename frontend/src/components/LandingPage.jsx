@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Search, Monitor, Printer } from 'lucide-react';
+import { Search, Monitor, Printer, Activity } from 'lucide-react';
 
 // Build version - Update this with each change
-const BUILD_VERSION = '1.2.3';
+const BUILD_VERSION = '1.2.4';
 
 const LandingPage = () => {
   const [searchQuery, setSearchQuery] = useState('');
@@ -26,6 +26,14 @@ const LandingPage = () => {
       keywords: ['printer', 'test', 'print', 'kwaliteit', 'kleuren', 'lijnen', 'afdrukken'],
       path: '/printer',
       icon: Printer,
+    },
+    {
+      id: 'sscreen',
+      name: 'Screen Refresh Tester',
+      description: 'Test de verversingssnelheid en vloeiendheid van uw scherm',
+      keywords: ['screen', 'refresh', 'rate', 'fps', 'verversing', 'scherm', 'snelheid', 'hz'],
+      path: '/sscreen',
+      icon: Activity,
     },
   ];
 
