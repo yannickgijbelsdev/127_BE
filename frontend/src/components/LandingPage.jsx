@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Search, Monitor } from 'lucide-react';
+import { Search, Monitor, Printer } from 'lucide-react';
 
 // Build version - Update this with each change
-const BUILD_VERSION = '1.1.8';
+const BUILD_VERSION = '1.1.9';
 
 const LandingPage = () => {
   const [searchQuery, setSearchQuery] = useState('');
@@ -18,6 +18,14 @@ const LandingPage = () => {
       keywords: ['pixel', 'dead', 'detector', 'scherm', 'test', 'dode'],
       path: '/dpd',
       icon: Monitor,
+    },
+    {
+      id: 'printer',
+      name: 'Printer Tester',
+      description: 'Test uw printer op kwaliteit, kleuren, lijnen en uitlijning',
+      keywords: ['printer', 'test', 'print', 'kwaliteit', 'kleuren', 'lijnen', 'afdrukken'],
+      path: '/printer',
+      icon: Printer,
     },
   ];
 
