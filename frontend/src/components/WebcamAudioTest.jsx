@@ -3,9 +3,10 @@ import { Link } from 'react-router-dom';
 import { Progress } from './ui/progress';
 import { ArrowLeft, Video, Mic, Download, Circle, Square } from 'lucide-react';
 import { Button } from './ui/button';
+import HalloweenDecoration from './HalloweenDecoration';
 
 // Build version - Update this with each change
-const BUILD_VERSION = '1.3.1';
+const BUILD_VERSION = '1.3.2';
 
 const WebcamAudioTest = () => {
   const [isLoading, setIsLoading] = useState(true);
