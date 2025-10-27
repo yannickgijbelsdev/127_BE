@@ -160,15 +160,6 @@ const PixelTest = () => {
         cursor: isFullscreen ? 'none' : 'pointer'
       }}
     >
-      {/* Fullscreen mode indicator */}
-      {isFullscreen && (
-        <div className="absolute top-4 left-1/2 transform -translate-x-1/2 z-50">
-          <div className="bg-black/70 text-white px-6 py-3 rounded-full text-sm font-medium backdrop-blur-sm animate-fade-in">
-            {currentColorObj.name} - Gebruik ← → om te wisselen | ESC om te sluiten
-          </div>
-        </div>
-      )}
-
       {/* Instructions when not in fullscreen */}
       {!isFullscreen && (
         <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-50 text-center">
