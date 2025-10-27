@@ -167,20 +167,20 @@ const PixelTest = () => {
       {/* Instructions when not in fullscreen */}
       {!isFullscreen && (
         <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-50 text-center">
-          <div className="bg-white/95 backdrop-blur-sm rounded-lg shadow-2xl p-8 max-w-md">
+          <div className="bg-[#303134] backdrop-blur-sm rounded-lg shadow-2xl p-8 max-w-md border border-[#5f6368]">
             <div className="mb-6 flex flex-col items-center">
               <img 
                 src="https://customer-assets.emergentagent.com/job_053c424a-d7ee-4a13-a916-f7596c34862b/artifacts/qy7ga8qf_2025_Logo_127.png" 
                 alt="127 Logo" 
-                className="w-32 h-auto mb-4"
+                className="w-32 h-auto mb-4 brightness-110"
               />
-              <h2 className="text-2xl font-bold text-gray-900 mb-2">Dead Pixel Detector</h2>
-              <p className="text-gray-600">Klik om te starten</p>
-              <p className="text-xs text-gray-400 mt-2">Build {BUILD_VERSION}</p>
+              <h2 className="text-2xl font-bold text-[#e8eaed] mb-2">Dead Pixel Detector</h2>
+              <p className="text-[#9aa0a6]">Klik om te starten</p>
+              <p className="text-xs text-[#9aa0a6] mt-2">Build {BUILD_VERSION}</p>
             </div>
-            <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 text-left">
-              <h3 className="font-semibold text-blue-900 mb-2">Instructies:</h3>
-              <ul className="text-sm text-blue-800 space-y-1">
+            <div className="bg-[#202124] border border-[#5f6368] rounded-lg p-4 text-left">
+              <h3 className="font-semibold text-[#8ab4f8] mb-2">Instructies:</h3>
+              <ul className="text-sm text-[#9aa0a6] space-y-1">
                 <li>• Klik overal op het scherm om fullscreen te gaan</li>
                 <li>• Gebruik pijltjestoetsen (← →) om van kleur te wisselen</li>
                 <li>• De muis verdwijnt automatisch in fullscreen</li>
@@ -189,8 +189,8 @@ const PixelTest = () => {
               </ul>
             </div>
             <div className="mt-6">
-              <p className="text-sm text-gray-600">
-                Huidige kleur: <span className="font-bold">{currentColorObj.name}</span>
+              <p className="text-sm text-[#9aa0a6]">
+                Huidige kleur: <span className="font-bold text-[#e8eaed]">{currentColorObj.name}</span>
               </p>
             </div>
           </div>
