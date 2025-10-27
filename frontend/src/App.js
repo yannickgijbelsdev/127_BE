@@ -5,7 +5,7 @@ import LandingPage from './components/LandingPage';
 import PixelTest from './components/PixelTest';
 import PrinterTest from './components/PrinterTest';
 import ScreenTest from './components/ScreenTest';
-import BenchmarkTest from './components/BenchmarkTest';
+import WebcamAudioTest from './components/WebcamAudioTest';
 
 function App() {
   return (
@@ -16,7 +16,7 @@ function App() {
           <Route path="/dpd" element={<PixelTest />} />
           <Route path="/printer" element={<PrinterTest />} />
           <Route path="/sscreen" element={<ScreenTest />} />
-          <Route path="/benchmark" element={<BenchmarkTest />} />
+          <Route path="/wea" element={<WebcamAudioTest />} />
         </Routes>
       </BrowserRouter>
     </div>
