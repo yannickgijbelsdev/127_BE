@@ -165,8 +165,6 @@ const PasswordGenerator = () => {
 
   return (
     <div className="min-h-screen bg-[#202124] py-8 px-4">
-      <HalloweenDecoration />
-      
       {/* Confetti Effect */}
       {showConfetti && (
         <div className="fixed inset-0 pointer-events-none z-50">
