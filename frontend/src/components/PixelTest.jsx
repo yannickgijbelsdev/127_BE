@@ -47,6 +47,30 @@ const PixelTest = () => {
     return () => clearInterval(timer);
   }, []);
 
+  // Get GPU info on mount
+  useEffect(() => {
+    const getGPUInfo = () => {
+      try {
+        const canvas = document.createElement('canvas');
+        const gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
+        if (gl) {
+          const debugInfo = gl.getExtension('WEBGL_debug_renderer_info');
+          if (debugInfo) {
+            return {
+              vendor: gl.getParameter(debugInfo.UNMASKED_VENDOR_WEBGL),
+              renderer: gl.getParameter(debugInfo.UNMASKED_RENDERER_WEBGL),
+            };
+          }
+        }
+      } catch (e) {
+        console.error('Unable to get GPU info:', e);
+      }
+      return { vendor: 'Unknown', renderer: 'Unknown' };
+    };
+
+    setGpuInfo(getGPUInfo());
+  }, []);
+
   // Handle keyboard navigation
   useEffect(() => {
     const handleKeyPress = (e) => {
