@@ -120,11 +120,9 @@ const ToolEditor = () => {
               {message}
             </p>
           </div>
-        </div>
-      )}
+        )}
 
-      {/* Code Editor */}
-      <div className="max-w-7xl mx-auto px-6 py-6">
+        {/* Code Editor */}
         <div className="bg-[#1e1e1e] rounded-lg border border-[#5f6368] overflow-hidden" style={{ height: 'calc(100vh - 240px)' }}>
           <Editor
             height="100%"
