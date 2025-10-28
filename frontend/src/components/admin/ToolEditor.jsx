@@ -81,9 +81,10 @@ const ToolEditor = () => {
 
   return (
     <div className="min-h-screen bg-[#202124]">
-      {/* Header */}
-      <div className="bg-[#303134] border-b border-[#5f6368] px-6 py-4">
-        <div className="flex items-center justify-between max-w-7xl mx-auto">
+      {/* Main Content with padding for global nav */}
+      <div className="max-w-7xl mx-auto px-6 py-8 pt-24">
+        {/* Header */}
+        <div className="flex items-center justify-between mb-6">
           <div className="flex items-center gap-4">
             <Link to="/localhost/dashboard">
               <ArrowLeft className="w-6 h-6 text-[#9aa0a6] hover:text-[#e8eaed] cursor-pointer" />
