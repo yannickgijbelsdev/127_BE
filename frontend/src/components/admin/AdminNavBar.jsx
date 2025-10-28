@@ -59,8 +59,8 @@ const AdminNavBar = () => {
     return username.substring(0, 2).toUpperCase();
   };
 
-  // Don't render if not logged in or on admin pages
-  if (!user) return null;
+  // Don't render if not logged in
+  if (!user || !isVisible) return null;
 
   return (
     <div className="fixed top-4 right-4 z-[100]">
