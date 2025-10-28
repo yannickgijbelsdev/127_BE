@@ -34,11 +34,11 @@ function AppContent() {
   };
 
   // Don't show admin nav on login page
-  const showAdminNav = isAdminLoggedIn && location.pathname !== '/localhost';
+  const isLoginPage = location.pathname === '/localhost';
 
   return (
     <>
-      {showAdminNav && <AdminNavBar />}
+      {!isLoginPage && <AdminNavBar />}
       <Routes>
         <Route path="/" element={<LandingPage />} />
         <Route path="/dpd" element={<PixelTest />} />
