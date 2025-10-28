@@ -105,11 +105,9 @@ const ToolEditor = () => {
             {saving ? 'Opslaan...' : 'Opslaan'}
           </button>
         </div>
-      </div>
 
-      {/* Message */}
-      {message && (
-        <div className="max-w-7xl mx-auto px-6 py-4">
+        {/* Message */}
+        {message && (
           <div className={`flex items-center gap-3 p-4 rounded-lg ${
             message.includes('Error') 
               ? 'bg-red-500 bg-opacity-20 border border-red-500' 
