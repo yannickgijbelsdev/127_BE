@@ -38,6 +38,51 @@ api_router = APIRouter(prefix="/api")
 
 
 # Define Models
+class User(BaseModel):
+    model_config = ConfigDict(extra="ignore")
+    
+    id: str = Field(default_factory=lambda: str(uuid.uuid4()))
+    email: EmailStr
+    username: str
+    password_hash: str
+    role: str = "user"  # "admin" or "user"
+    is2FAEnabled: bool = False
+    twofa_secret: Optional[str] = None
+    created_at: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
+
+class UserCreate(BaseModel):
+    email: EmailStr
+    username: str
+    password: str
+    role: str = "user"
+
+class UserUpdate(BaseModel):
+    email: Optional[EmailStr] = None
+    username: Optional[str] = None
+    password: Optional[str] = None
+    is2FAEnabled: Optional[bool] = None
+
+class UserLogin(BaseModel):
+    email: EmailStr
+    password: str
+    totp_code: Optional[str] = None
+
+class Token(BaseModel):
+    access_token: str
+    token_type: str
+    user: dict
+
+class ToolConfig(BaseModel):
+    model_config = ConfigDict(extra="ignore")
+    
+    id: str
+    name: str
+    path: str
+    enabled: bool = True
+    file_path: str
+    code: str
+    updated_at: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
+
 class StatusCheck(BaseModel):
     model_config = ConfigDict(extra="ignore")  # Ignore MongoDB's _id field
     
