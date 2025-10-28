@@ -37,16 +37,16 @@ const AdminNavBar = () => {
   if (!user) return null;
 
   return (
-    <div className="fixed top-0 right-0 z-50 p-4">
-      <div className="flex items-center gap-3 bg-[#303134] px-4 py-2 rounded-lg border border-[#5f6368] shadow-2xl">
-        <div className="w-10 h-10 bg-[#8ab4f8] rounded-full flex items-center justify-center text-[#202124] font-bold">
+    <div className="fixed top-4 right-4 z-[100]">
+      <div className="flex items-center gap-3 bg-[#303134] px-4 py-3 rounded-lg border-2 border-[#8ab4f8] shadow-2xl backdrop-blur-sm">
+        <div className="w-10 h-10 bg-[#8ab4f8] rounded-full flex items-center justify-center text-[#202124] font-bold text-sm">
           {getInitials(user.username)}
         </div>
-        <span className="text-[#e8eaed] font-medium">{user.username}</span>
+        <span className="text-[#e8eaed] font-semibold text-sm">{user.username}</span>
         
         <button
           onClick={handleDashboard}
-          className="p-2 bg-[#5f6368] hover:bg-[#7a8086] rounded-lg transition-colors"
+          className="p-2 bg-[#5f6368] hover:bg-[#7a8086] rounded-lg transition-colors ml-2"
           title="Dashboard"
         >
           <Settings className="w-5 h-5 text-[#e8eaed]" />
