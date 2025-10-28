@@ -86,6 +86,24 @@ class ToolConfig(BaseModel):
     code: str
     updated_at: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
 
+class AnalyticsEvent(BaseModel):
+    model_config = ConfigDict(extra="ignore")
+    
+    id: str = Field(default_factory=lambda: str(uuid.uuid4()))
+    tool_id: str
+    tool_name: str
+    event_type: str  # "visit", "click", "action", etc.
+    event_data: dict = {}  # Flexible data storage
+    user_agent: Optional[str] = None
+    ip_address: Optional[str] = None
+    timestamp: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
+
+class AnalyticsEventCreate(BaseModel):
+    tool_id: str
+    tool_name: str
+    event_type: str
+    event_data: dict = {}
+
 class StatusCheck(BaseModel):
     model_config = ConfigDict(extra="ignore")  # Ignore MongoDB's _id field
     
