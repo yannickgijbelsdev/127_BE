@@ -312,6 +312,21 @@ const UserManagement = () => {
           </div>
         </div>
       )}
+
+      {/* 2FA Setup Modal */}
+      {show2FAModal && selected2FAUser && (
+        <TwoFactorSetup
+          userId={selected2FAUser.id}
+          userEmail={selected2FAUser.email}
+          onClose={() => {
+            setShow2FAModal(false);
+            setSelected2FAUser(null);
+          }}
+          onSuccess={() => {
+            fetchUsers();
+          }}
+        />
+      )}
     </div>
   );
 };
