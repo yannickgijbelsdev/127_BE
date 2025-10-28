@@ -270,6 +270,95 @@ async def delete_user(user_id: str, current_admin: User = Depends(get_current_ad
         raise HTTPException(status_code=404, detail="User not found")
     return {"message": "User deleted successfully"}
 
+# ==================== 2FA MANAGEMENT ====================
+
+@api_router.post("/admin/users/{user_id}/enable-2fa")
+async def enable_2fa(user_id: str, current_admin: User = Depends(get_current_admin)):
+    # Generate new 2FA secret
+    secret = pyotp.random_base32()
+    
+    # Update user with secret and enable 2FA
+    result = await db.users.update_one(
+        {"id": user_id},
+        {"$set": {
+            "twofa_secret": secret,
+            "is2FAEnabled": True
+        }}
+    )
+    
+    if result.modified_count == 0:
+        raise HTTPException(status_code=404, detail="User not found")
+    
+    # Get user info for QR code
+    user = await db.users.find_one({"id": user_id}, {"_id": 0})
+    
+    # Generate OTP Auth URL
+    totp = pyotp.TOTP(secret)
+    provisioning_uri = totp.provisioning_uri(
+        name=user['email'],
+        issuer_name="127.be Admin"
+    )
+    
+    return {
+        "secret": secret,
+        "qr_code_url": provisioning_uri,
+        "message": "2FA enabled. Scan QR code with Google Authenticator"
+    }
+
+@api_router.get("/admin/users/{user_id}/2fa-qrcode")
+async def get_2fa_qrcode(user_id: str, current_admin: User = Depends(get_current_admin)):
+    user = await db.users.find_one({"id": user_id}, {"_id": 0})
+    if not user or not user.get('twofa_secret'):
+        raise HTTPException(status_code=404, detail="2FA not enabled for this user")
+    
+    # Generate QR code
+    totp = pyotp.TOTP(user['twofa_secret'])
+    provisioning_uri = totp.provisioning_uri(
+        name=user['email'],
+        issuer_name="127.be Admin"
+    )
+    
+    # Create QR code image
+    qr = qrcode.QRCode(version=1, box_size=10, border=5)
+    qr.add_data(provisioning_uri)
+    qr.make(fit=True)
+    
+    img = qr.make_image(fill_color="black", back_color="white")
+    
+    # Convert to bytes
+    img_byte_arr = io.BytesIO()
+    img.save(img_byte_arr, format='PNG')
+    img_byte_arr.seek(0)
+    
+    return StreamingResponse(img_byte_arr, media_type="image/png")
+
+@api_router.post("/admin/users/{user_id}/disable-2fa")
+async def disable_2fa(user_id: str, current_admin: User = Depends(get_current_admin)):
+    result = await db.users.update_one(
+        {"id": user_id},
+        {"$set": {
+            "is2FAEnabled": False,
+            "twofa_secret": None
+        }}
+    )
+    
+    if result.modified_count == 0:
+        raise HTTPException(status_code=404, detail="User not found")
+    
+    return {"message": "2FA disabled successfully"}
+
+@api_router.post("/admin/users/{user_id}/verify-2fa")
+async def verify_2fa_code(user_id: str, totp_code: str, current_admin: User = Depends(get_current_admin)):
+    user = await db.users.find_one({"id": user_id}, {"_id": 0})
+    if not user or not user.get('twofa_secret'):
+        raise HTTPException(status_code=404, detail="2FA not enabled")
+    
+    totp = pyotp.TOTP(user['twofa_secret'])
+    if totp.verify(totp_code):
+        return {"message": "2FA code verified successfully", "valid": True}
+    else:
+        return {"message": "Invalid 2FA code", "valid": False}
+
 # ==================== ADMIN TOOL MANAGEMENT ====================
 
 @api_router.get("/admin/tools", response_model=List[ToolConfig])
