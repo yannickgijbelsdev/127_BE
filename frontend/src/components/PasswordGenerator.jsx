@@ -28,6 +28,11 @@ const PasswordGenerator = () => {
     favorite: '',
   });
 
+  // Log page visit on mount
+  useEffect(() => {
+    logPageVisit('password', 'Password Generator');
+  }, []);
+
   // Loading animation (1 second)
   useEffect(() => {
     const duration = 1000;
