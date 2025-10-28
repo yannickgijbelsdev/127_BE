@@ -4,16 +4,42 @@ import { LogOut, Settings } from 'lucide-react';
 
 const AdminNavBar = () => {
   const [user, setUser] = useState(null);
+  const [isVisible, setIsVisible] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
-    // Check if user is logged in
-    const userData = localStorage.getItem('admin_user');
-    const token = localStorage.getItem('admin_token');
+    // Check if user is logged in on mount and when storage changes
+    const checkAuth = () => {
+      const userData = localStorage.getItem('admin_user');
+      const token = localStorage.getItem('admin_token');
+      
+      if (userData && token) {
+        try {
+          const parsedUser = JSON.parse(userData);
+          setUser(parsedUser);
+          setIsVisible(true);
+        } catch (err) {
+          console.error('Failed to parse user data:', err);
+          setIsVisible(false);
+        }
+      } else {
+        setUser(null);
+        setIsVisible(false);
+      }
+    };
+
+    checkAuth();
+
+    // Listen for storage changes (for multi-tab sync)
+    window.addEventListener('storage', checkAuth);
     
-    if (userData && token) {
-      setUser(JSON.parse(userData));
-    }
+    // Custom event for same-tab updates
+    window.addEventListener('auth-change', checkAuth);
+
+    return () => {
+      window.removeEventListener('storage', checkAuth);
+      window.removeEventListener('auth-change', checkAuth);
+    };
   }, []);
 
   const handleLogout = () => {
