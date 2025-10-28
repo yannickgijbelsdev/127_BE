@@ -290,16 +290,6 @@ const UserManagement = () => {
                 </select>
               </div>
 
-              <div className="flex items-center gap-2">
-                <input
-                  type="checkbox"
-                  checked={formData.is2FAEnabled}
-                  onChange={(e) => setFormData({ ...formData, is2FAEnabled: e.target.checked })}
-                  className="w-4 h-4 accent-[#8ab4f8]"
-                />
-                <label className="text-sm text-[#e8eaed]">2FA inschakelen</label>
-              </div>
-
               <div className="flex gap-3 mt-6">
                 <button
                   type="button"
