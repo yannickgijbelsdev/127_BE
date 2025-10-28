@@ -408,6 +408,66 @@ async def update_tool(tool_id: str, tool_data: dict, current_admin: User = Depen
     
     return {"message": "Tool updated successfully"}
 
+# ==================== ANALYTICS ENDPOINTS ====================
+
+@api_router.post("/analytics/event")
+async def log_analytics_event(event: AnalyticsEventCreate):
+    """Log an analytics event (publicly accessible)"""
+    analytics_event = AnalyticsEvent(
+        tool_id=event.tool_id,
+        tool_name=event.tool_name,
+        event_type=event.event_type,
+        event_data=event.event_data
+    )
+    
+    doc = analytics_event.model_dump()
+    doc['timestamp'] = doc['timestamp'].isoformat()
+    await db.analytics.insert_one(doc)
+    
+    return {"message": "Event logged successfully", "id": analytics_event.id}
+
+@api_router.get("/admin/analytics/events", response_model=List[dict])
+async def get_all_analytics(current_admin: User = Depends(get_current_admin)):
+    """Get all analytics events"""
+    events = await db.analytics.find({}, {"_id": 0}).sort("timestamp", -1).limit(1000).to_list(1000)
+    return events
+
+@api_router.get("/admin/analytics/tool/{tool_id}", response_model=List[dict])
+async def get_tool_analytics(tool_id: str, current_admin: User = Depends(get_current_admin)):
+    """Get analytics for a specific tool"""
+    events = await db.analytics.find({"tool_id": tool_id}, {"_id": 0}).sort("timestamp", -1).limit(500).to_list(500)
+    return events
+
+@api_router.get("/admin/analytics/stats")
+async def get_analytics_stats(current_admin: User = Depends(get_current_admin)):
+    """Get aggregated analytics statistics"""
+    # Total events
+    total_events = await db.analytics.count_documents({})
+    
+    # Events by tool
+    pipeline = [
+        {"$group": {"_id": "$tool_id", "count": {"$sum": 1}, "tool_name": {"$first": "$tool_name"}}},
+        {"$sort": {"count": -1}}
+    ]
+    events_by_tool = await db.analytics.aggregate(pipeline).to_list(None)
+    
+    # Events by type
+    pipeline_type = [
+        {"$group": {"_id": "$event_type", "count": {"$sum": 1}}},
+        {"$sort": {"count": -1}}
+    ]
+    events_by_type = await db.analytics.aggregate(pipeline_type).to_list(None)
+    
+    # Unique visitors (approximation based on unique sessions)
+    unique_visitors = await db.analytics.distinct("event_data.session_id")
+    
+    return {
+        "total_events": total_events,
+        "events_by_tool": events_by_tool,
+        "events_by_type": events_by_type,
+        "unique_visitors": len(unique_visitors) if unique_visitors else 0
+    }
+
 # Include the router in the main app
 app.include_router(api_router)
 
