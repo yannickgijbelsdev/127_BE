@@ -27,9 +27,9 @@ const PixelTest = () => {
     { name: 'Grijs', value: 'gray', hex: '#808080' },
   ];
 
-  // Loading animation (2 seconds)
+  // Loading animation (1 second)
   useEffect(() => {
-    const duration = 2000;
+    const duration = 1000;
     const interval = 30;
     const steps = duration / interval;
     let step = 0;
