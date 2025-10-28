@@ -93,6 +93,58 @@ class StatusCheck(BaseModel):
 class StatusCheckCreate(BaseModel):
     client_name: str
 
+# Helper Functions
+def hash_password(password: str) -> str:
+    return bcrypt.hashpw(password.encode('utf-8'), bcrypt.gensalt()).decode('utf-8')
+
+def verify_password(password: str, hashed: str) -> bool:
+    return bcrypt.checkpw(password.encode('utf-8'), hashed.encode('utf-8'))
+
+def create_access_token(data: dict):
+    to_encode = data.copy()
+    expire = datetime.now(timezone.utc) + timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES)
+    to_encode.update({"exp": expire})
+    encoded_jwt = jwt.encode(to_encode, SECRET_KEY, algorithm=ALGORITHM)
+    return encoded_jwt
+
+async def get_current_user(credentials: HTTPAuthorizationCredentials = Depends(security)):
+    try:
+        token = credentials.credentials
+        payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
+        user_id: str = payload.get("sub")
+        if user_id is None:
+            raise HTTPException(status_code=401, detail="Invalid authentication credentials")
+    except jwt.ExpiredSignatureError:
+        raise HTTPException(status_code=401, detail="Token has expired")
+    except jwt.JWTError:
+        raise HTTPException(status_code=401, detail="Invalid token")
+    
+    user = await db.users.find_one({"id": user_id}, {"_id": 0})
+    if user is None:
+        raise HTTPException(status_code=401, detail="User not found")
+    return User(**user)
+
+async def get_current_admin(current_user: User = Depends(get_current_user)):
+    if current_user.role != "admin":
+        raise HTTPException(status_code=403, detail="Not authorized")
+    return current_user
+
+# Initialize default admin on startup
+async def create_default_admin():
+    existing_admin = await db.users.find_one({"email": "admin@127.be"})
+    if not existing_admin:
+        admin_user = User(
+            email="admin@127.be",
+            username="admin",
+            password_hash=hash_password("Admin123!"),
+            role="admin",
+            is2FAEnabled=False
+        )
+        doc = admin_user.model_dump()
+        doc['created_at'] = doc['created_at'].isoformat()
+        await db.users.insert_one(doc)
+        logger.info("Default admin created: admin@127.be / Admin123!")
+
 # Add your routes to the router instead of directly to app
 @api_router.get("/")
 async def root():
