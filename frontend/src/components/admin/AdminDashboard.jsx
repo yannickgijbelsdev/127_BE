@@ -59,7 +59,7 @@ const AdminDashboard = () => {
   return (
     <div className="min-h-screen bg-[#202124]">
       {/* Main Content */}
-      <div className="max-w-7xl mx-auto px-6 py-8 pt-24">{/* Extra padding for global nav */}
+      <div className="max-w-7xl mx-auto px-6 py-8">
         {/* Page Title */}
         <h1 className="text-3xl font-bold text-[#e8eaed] mb-8">Admin Dashboard</h1>
         
