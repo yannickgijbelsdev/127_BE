@@ -82,7 +82,7 @@ const ToolEditor = () => {
   return (
     <div className="min-h-screen bg-[#202124]">
       {/* Main Content with padding for global nav */}
-      <div className="max-w-7xl mx-auto px-6 py-8 pt-24">
+      <div className="max-w-7xl mx-auto px-6 py-8">
         {/* Header */}
         <div className="flex items-center justify-between mb-6">
           <div className="flex items-center gap-4">
