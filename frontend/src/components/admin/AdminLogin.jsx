@@ -45,7 +45,7 @@ const AdminLogin = ({ onLogin }) => {
       localStorage.setItem('admin_user', JSON.stringify(data.user));
       
       onLogin(data.user);
-      navigate('/admin/dashboard');
+      navigate('/localhost/dashboard');
     } catch (err) {
       setError('Er is iets misgegaan. Probeer opnieuw.');
     } finally {
