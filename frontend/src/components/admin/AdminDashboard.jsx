@@ -51,7 +51,7 @@ const AdminDashboard = () => {
   const handleLogout = () => {
     localStorage.removeItem('admin_token');
     localStorage.removeItem('admin_user');
-    navigate('/admin/login');
+    navigate('/localhost');
   };
 
   const getInitials = (username) => {
