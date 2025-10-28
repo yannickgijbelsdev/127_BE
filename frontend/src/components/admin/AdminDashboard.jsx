@@ -68,42 +68,8 @@ const AdminDashboard = () => {
 
   return (
     <div className="min-h-screen bg-[#202124]">
-      {/* Top Navigation */}
-      <div className="bg-[#303134] border-b border-[#5f6368] px-6 py-4">
-        <div className="flex items-center justify-between max-w-7xl mx-auto">
-          <h1 className="text-2xl font-bold text-[#e8eaed]">Admin Dashboard</h1>
-          
-          {user && (
-            <div className="flex items-center gap-4">
-              <div className="flex items-center gap-3 bg-[#202124] px-4 py-2 rounded-lg border border-[#5f6368]">
-                <div className="w-10 h-10 bg-[#8ab4f8] rounded-full flex items-center justify-center text-[#202124] font-bold">
-                  {getInitials(user.username)}
-                </div>
-                <span className="text-[#e8eaed] font-medium">{user.username}</span>
-              </div>
-              
-              <Link
-                to="/localhost/dashboard"
-                className="p-2 bg-[#5f6368] hover:bg-[#7a8086] rounded-lg transition-colors"
-                title="Dashboard"
-              >
-                <Settings className="w-5 h-5 text-[#e8eaed]" />
-              </Link>
-              
-              <button
-                onClick={handleLogout}
-                className="p-2 bg-red-600 hover:bg-red-700 rounded-lg transition-colors"
-                title="Uitloggen"
-              >
-                <LogOut className="w-5 h-5 text-white" />
-              </button>
-            </div>
-          )}
-        </div>
-      </div>
-
       {/* Main Content */}
-      <div className="max-w-7xl mx-auto px-6 py-8">
+      <div className="max-w-7xl mx-auto px-6 py-8 pt-24">{/* Extra padding for global nav */}
         {/* Quick Stats */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
           <div className="bg-[#303134] rounded-lg p-6 border border-[#5f6368]">
