@@ -6,6 +6,8 @@ import { Button } from './ui/button';
 import { Label } from './ui/label';
 import { Slider } from './ui/slider';
 import HalloweenDecoration from './HalloweenDecoration';
+import FloatingFeedbackButton from './FloatingFeedbackButton';
+import ChangelogModal from './ChangelogModal';
 import { logPageVisit, logAction, logButtonClick } from '../utils/analytics';
 
 // Build version - Update this with each change
@@ -18,6 +20,7 @@ const ScreenTest = () => {
   const [isRunning, setIsRunning] = useState(false);
   const [speed, setSpeed] = useState(50);
   const [displayInfo, setDisplayInfo] = useState({});
+  const [showChangelog, setShowChangelog] = useState(false);
   const animationFrameRef = useRef(null);
   const lastTimeRef = useRef(Date.now());
 
