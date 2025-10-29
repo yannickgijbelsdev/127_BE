@@ -89,6 +89,8 @@ const Analytics = () => {
         return <MousePointer className="w-4 h-4" />;
       case 'action':
         return <Activity className="w-4 h-4" />;
+      case 'error':
+        return <AlertCircle className="w-4 h-4" />;
       default:
         return <Activity className="w-4 h-4" />;
     }
@@ -98,6 +100,16 @@ const Analytics = () => {
     switch (type) {
       case 'page_visit':
         return 'bg-blue-500';
+      case 'button_click':
+        return 'bg-green-500';
+      case 'action':
+        return 'bg-purple-500';
+      case 'error':
+        return 'bg-red-500';
+      default:
+        return 'bg-gray-500';
+    }
+  };
       case 'button_click':
         return 'bg-green-500';
       case 'action':
