@@ -69,6 +69,11 @@ const PasswordGenerator = () => {
         setIsAutosoftPassword(true);
         setStrength({ score: 0, label: 'Test Wachtwoord', color: '#FF0000' });
         setShowConfetti(false);
+        
+        // Log Autosoft password detection
+        logAction('password', 'Password Generator', 'autosoft_password_detected', {
+          password_variant: customPassword
+        });
         return;
       } else {
         setIsAutosoftPassword(false);
@@ -76,6 +81,17 @@ const PasswordGenerator = () => {
 
       const result = calculateStrength(customPassword);
       setStrength(result);
+      
+      // Log strength check
+      logAction('password', 'Password Generator', 'strength_checked', {
+        password_length: customPassword.length,
+        strength_score: result.score,
+        strength_label: result.label,
+        has_uppercase: /[A-Z]/.test(customPassword),
+        has_lowercase: /[a-z]/.test(customPassword),
+        has_numbers: /[0-9]/.test(customPassword),
+        has_symbols: /[^a-zA-Z0-9]/.test(customPassword)
+      });
       
       if (result.score >= 80 && !showConfetti) {
         setShowConfetti(true);
