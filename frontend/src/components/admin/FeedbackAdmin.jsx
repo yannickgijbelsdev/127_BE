@@ -185,6 +185,111 @@ const FeedbackAdmin = () => {
           </div>
         )}
 
+        {/* Keyword Insights */}
+        {insights && (
+          <div className="mb-8">
+            <button
+              onClick={() => setShowInsights(!showInsights)}
+              className="w-full bg-[#303134] rounded-lg p-4 border border-[#5f6368] hover:bg-[#3c4043] transition-colors flex items-center justify-between"
+            >
+              <div className="flex items-center gap-3">
+                <Lightbulb className="w-6 h-6 text-yellow-500" />
+                <h2 className="text-xl font-bold text-[#e8eaed]">Feedback Insights & Kernwoorden</h2>
+              </div>
+              <ChevronLeft className={`w-5 h-5 text-[#9aa0a6] transition-transform ${showInsights ? 'rotate-90' : ''}`} />
+            </button>
+
+            {showInsights && (
+              <div className="mt-4 grid grid-cols-1 md:grid-cols-2 gap-6">
+                {/* Positive Keywords */}
+                <div className="bg-[#303134] rounded-lg p-6 border border-[#5f6368]">
+                  <div className="flex items-center gap-2 mb-4">
+                    <TrendingUp className="w-5 h-5 text-green-500" />
+                    <h3 className="text-lg font-semibold text-[#e8eaed]">Positieve Feedback ({insights.positive_count})</h3>
+                  </div>
+                  <div className="flex flex-wrap gap-2">
+                    {insights.positive_keywords.map((kw, idx) => (
+                      <div
+                        key={idx}
+                        className="px-3 py-1 bg-green-500/20 text-green-400 rounded-full text-sm flex items-center gap-2"
+                      >
+                        <span className="font-semibold">{kw.word}</span>
+                        <span className="text-xs opacity-75">({kw.count})</span>
+                      </div>
+                    ))}
+                    {insights.positive_keywords.length === 0 && (
+                      <p className="text-[#9aa0a6] text-sm">Nog geen positieve feedback</p>
+                    )}
+                  </div>
+                </div>
+
+                {/* Negative Keywords */}
+                <div className="bg-[#303134] rounded-lg p-6 border border-[#5f6368]">
+                  <div className="flex items-center gap-2 mb-4">
+                    <TrendingDown className="w-5 h-5 text-red-500" />
+                    <h3 className="text-lg font-semibold text-[#e8eaed]">Negatieve Feedback ({insights.negative_count})</h3>
+                  </div>
+                  <div className="flex flex-wrap gap-2">
+                    {insights.negative_keywords.map((kw, idx) => (
+                      <div
+                        key={idx}
+                        className="px-3 py-1 bg-red-500/20 text-red-400 rounded-full text-sm flex items-center gap-2"
+                      >
+                        <span className="font-semibold">{kw.word}</span>
+                        <span className="text-xs opacity-75">({kw.count})</span>
+                      </div>
+                    ))}
+                    {insights.negative_keywords.length === 0 && (
+                      <p className="text-[#9aa0a6] text-sm">Geen negatieve feedback</p>
+                    )}
+                  </div>
+                </div>
+
+                {/* Common Topics */}
+                <div className="bg-[#303134] rounded-lg p-6 border border-[#5f6368]">
+                  <div className="flex items-center gap-2 mb-4">
+                    <Hash className="w-5 h-5 text-[#8ab4f8]" />
+                    <h3 className="text-lg font-semibold text-[#e8eaed]">Meest Genoemde Onderwerpen</h3>
+                  </div>
+                  <div className="flex flex-wrap gap-2">
+                    {insights.common_topics.map((kw, idx) => (
+                      <div
+                        key={idx}
+                        className="px-3 py-1 bg-[#8ab4f8]/20 text-[#8ab4f8] rounded-full text-sm flex items-center gap-2"
+                      >
+                        <span className="font-semibold">{kw.word}</span>
+                        <span className="text-xs opacity-75">({kw.count})</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Suggestions Keywords */}
+                <div className="bg-[#303134] rounded-lg p-6 border border-[#5f6368]">
+                  <div className="flex items-center gap-2 mb-4">
+                    <Lightbulb className="w-5 h-5 text-yellow-500" />
+                    <h3 className="text-lg font-semibold text-[#e8eaed]">Suggesties Kernwoorden</h3>
+                  </div>
+                  <div className="flex flex-wrap gap-2">
+                    {insights.suggestions_keywords.map((kw, idx) => (
+                      <div
+                        key={idx}
+                        className="px-3 py-1 bg-yellow-500/20 text-yellow-400 rounded-full text-sm flex items-center gap-2"
+                      >
+                        <span className="font-semibold">{kw.word}</span>
+                        <span className="text-xs opacity-75">({kw.count})</span>
+                      </div>
+                    ))}
+                    {insights.suggestions_keywords.length === 0 && (
+                      <p className="text-[#9aa0a6] text-sm">Nog geen suggesties</p>
+                    )}
+                  </div>
+                </div>
+              </div>
+            )}
+          </div>
+        )}
+
         {/* Feedback List */}
         <div className="bg-[#303134] rounded-lg border border-[#5f6368] overflow-hidden">
           <div className="p-6 border-b border-[#5f6368]">
