@@ -61,6 +61,17 @@ const LandingPage = () => {
     return shuffled.slice(0, 3);
   }, []); // Empty dependency array means this only runs once per component mount
 
+  // Log page visit
+  useEffect(() => {
+    logPageVisit('home', 'Landing Page');
+    
+    // Log which tools are displayed
+    logAction('home', 'Landing Page', 'tools_displayed', {
+      tool_ids: displayedTools.map(t => t.id),
+      tool_names: displayedTools.map(t => t.name)
+    });
+  }, []);
+
   // Filter tools based on search query (search all tools)
   const filteredTools = allTools.filter(tool => {
     if (!searchQuery.trim()) return false;
@@ -73,7 +84,31 @@ const LandingPage = () => {
     );
   });
 
+  // Log search activity
+  useEffect(() => {
+    if (searchQuery.trim().length > 0) {
+      const timer = setTimeout(() => {
+        logAction('home', 'Landing Page', 'search_query', {
+          query: searchQuery,
+          results_count: filteredTools.length,
+          matching_tools: filteredTools.map(t => t.id)
+        });
+      }, 1000); // Debounce for 1 second
+      
+      return () => clearTimeout(timer);
+    }
+  }, [searchQuery]);
+
   const showResults = searchQuery.trim().length > 0;
+  
+  const handleToolClick = (toolId, toolName) => {
+    logButtonClick('home', 'Landing Page', `tool_clicked_${toolId}`);
+    logAction('home', 'Landing Page', 'tool_navigation', {
+      tool_id: toolId,
+      tool_name: toolName,
+      from_search: showResults
+    });
+  };
 
   return (
     <div className="min-h-screen bg-[#202124] flex flex-col items-center justify-center px-6">
