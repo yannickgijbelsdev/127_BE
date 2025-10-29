@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import { X, Star, Send } from 'lucide-react';
 
 const ExitFeedback = () => {
+  const location = useLocation();
   const [showModal, setShowModal] = useState(false);
   const [hasShown, setHasShown] = useState(false);
   const [rating, setRating] = useState(0);
