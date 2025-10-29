@@ -490,7 +490,8 @@ const WebcamAudioTest = () => {
       onClose={() => setShowChangelog(false)}
       currentVersion={BUILD_VERSION}
     />
-  </>;
+  </>
+  );
 };
 
 export default WebcamAudioTest;
