@@ -110,14 +110,6 @@ const Analytics = () => {
         return 'bg-gray-500';
     }
   };
-      case 'button_click':
-        return 'bg-green-500';
-      case 'action':
-        return 'bg-purple-500';
-      default:
-        return 'bg-gray-500';
-    }
-  };
 
   if (loading) {
     return (
