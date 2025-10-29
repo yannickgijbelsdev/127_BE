@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 import { ArrowLeft, Copy, RefreshCw, Lock, CheckCircle, AlertTriangle, Lightbulb } from 'lucide-react';
 import { Progress } from './ui/progress';
 import HalloweenDecoration from './HalloweenDecoration';
+import FloatingFeedbackButton from './FloatingFeedbackButton';
+import ChangelogModal from './ChangelogModal';
 import { logPageVisit, logAction, logButtonClick } from '../utils/analytics';
 
 const BUILD_VERSION = '1.5.0';
@@ -18,6 +20,7 @@ const PasswordGenerator = () => {
   const [includeSymbols, setIncludeSymbols] = useState(true);
   const [customPassword, setCustomPassword] = useState('');
   const [strength, setStrength] = useState({ score: 0, label: '', color: '' });
+  const [showChangelog, setShowChangelog] = useState(false);
   const [copied, setCopied] = useState(false);
   const [showConfetti, setShowConfetti] = useState(false);
   const [isAutosoftPassword, setIsAutosoftPassword] = useState(false);
