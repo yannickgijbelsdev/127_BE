@@ -184,6 +184,9 @@ const PixelTest = () => {
       gpu_renderer: gpuInfo.renderer
     });
     setShowGPUModal(false);
+    logAction('dpd', 'Dead Pixel Detector', 'fullscreen_entered', {
+      trigger: 'gpu_modal_ok_button'
+    });
     enterFullscreen();
   };
 
