@@ -53,6 +53,7 @@ const WebcamAudioTest = () => {
 
   const handleClick = async () => {
     if (showInstructions) {
+      logButtonClick('wea', 'Webcam & Audio Test', 'start_instructions');
       setShowInstructions(false);
       setShowPermissionRequest(true);
     }
