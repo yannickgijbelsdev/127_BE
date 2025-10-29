@@ -107,10 +107,16 @@ const WebcamAudioTest = () => {
         errorMessage = 'Camera of microfoon wordt al gebruikt door een ander programma.';
       }
       
-      // Log permission error
+      // Log permission error as both action and error
       logAction('wea', 'Webcam & Audio Test', 'permission_denied', {
         error_name: error.name,
         error_message: errorMessage
+      });
+      
+      logError('wea', 'Webcam & Audio Test', 'media_access_failed', {
+        error_name: error.name,
+        error_message: error.message,
+        user_message: errorMessage
       });
       
       setPermissionError(errorMessage);
