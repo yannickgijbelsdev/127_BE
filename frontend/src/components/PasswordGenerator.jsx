@@ -265,6 +265,7 @@ const PasswordGenerator = () => {
   }
 
   return (
+    <>
     <div 
       className="min-h-screen py-8 px-4 transition-all duration-700"
       style={{ 
