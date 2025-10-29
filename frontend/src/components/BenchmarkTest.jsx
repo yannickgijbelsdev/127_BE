@@ -3,9 +3,11 @@ import { Link } from 'react-router-dom';
 import { Progress } from './ui/progress';
 import { ArrowLeft, Zap, Play, Square } from 'lucide-react';
 import { Button } from './ui/button';
+import FloatingFeedbackButton from './FloatingFeedbackButton';
+import ChangelogModal from './ChangelogModal';
 
 // Build version - Update this with each change
-const BUILD_VERSION = '1.2.9';
+const BUILD_VERSION = '1.5.0';
 
 const BenchmarkTest = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -17,6 +19,7 @@ const BenchmarkTest = () => {
   const [testProgress, setTestProgress] = useState(0);
   const [results, setResults] = useState(null);
   const [fps, setFps] = useState(0);
+  const [showChangelog, setShowChangelog] = useState(false);
   const canvasRef = useRef(null);
   const glRef = useRef(null);
   const animationFrameRef = useRef(null);
