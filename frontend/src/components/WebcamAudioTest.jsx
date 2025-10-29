@@ -4,10 +4,12 @@ import { Progress } from './ui/progress';
 import { ArrowLeft, Video, Mic, Download, Circle, Square } from 'lucide-react';
 import { Button } from './ui/button';
 import HalloweenDecoration from './HalloweenDecoration';
+import FloatingFeedbackButton from './FloatingFeedbackButton';
+import ChangelogModal from './ChangelogModal';
 import { logPageVisit, logButtonClick, logAction, logError } from '../utils/analytics';
 
 // Build version - Update this with each change
-const BUILD_VERSION = '1.4.0';
+const BUILD_VERSION = '1.5.0';
 
 const WebcamAudioTest = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -18,6 +20,7 @@ const WebcamAudioTest = () => {
   const [stream, setStream] = useState(null);
   const [devices, setDevices] = useState({ camera: 'Unknown', microphone: 'Unknown' });
   const [isRecording, setIsRecording] = useState(false);
+  const [showChangelog, setShowChangelog] = useState(false);
   const [recordedChunks, setRecordedChunks] = useState([]);
   const [recordingTime, setRecordingTime] = useState(0);
   const [permissionError, setPermissionError] = useState('');
