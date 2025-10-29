@@ -5,14 +5,10 @@ export const CHANGELOG = {
       date: "2025-01-29",
       features: [
         "Uitgebreide analytics tracking voor alle tools",
-        "IP adres, browser en GPU/CPU informatie bij analytics",
         "Exit-intent feedback systeem met rating",
-        "Admin feedback dashboard met keyword analyse",
-        "Pagination in analytics en feedback",
-        "Error tracking voor alle tools",
-        "2FA QR code fix (base64 encoding)",
-        "Admin menu standaard ingeklapt",
-        "Floating feedback button op alle pagina's"
+        "Floating feedback button op alle pagina's",
+        "Clickable build versie met changelog historie",
+        "Tweetalige changelog (Nederlands/Engels)"
       ]
     },
     en: {
@@ -20,37 +16,23 @@ export const CHANGELOG = {
       date: "2025-01-29",
       features: [
         "Comprehensive analytics tracking for all tools",
-        "IP address, browser and GPU/CPU information in analytics",
         "Exit-intent feedback system with rating",
-        "Admin feedback dashboard with keyword analysis",
-        "Pagination in analytics and feedback",
-        "Error tracking for all tools",
-        "2FA QR code fix (base64 encoding)",
-        "Admin menu collapsed by default",
-        "Floating feedback button on all pages"
+        "Floating feedback button on all pages",
+        "Clickable build version with changelog history",
+        "Bilingual changelog (Dutch/English)"
       ]
     }
   },
   "1.4.0": {
     nl: {
-      title: "WebcamAudioTest & AdminNavBar Fix",
+      title: "Geen informatie bekend over deze versie",
       date: "2025-01-28",
-      features: [
-        "Analytics tracking toegevoegd aan WebcamAudioTest",
-        "AdminNavBar alleen zichtbaar wanneer ingelogd",
-        "Opname functionaliteit volledig geïmplementeerd",
-        "Video en audio afzonderlijk downloadbaar"
-      ]
+      features: []
     },
     en: {
-      title: "WebcamAudioTest & AdminNavBar Fix",
+      title: "No information available for this version",
       date: "2025-01-28",
-      features: [
-        "Analytics tracking added to WebcamAudioTest",
-        "AdminNavBar only visible when logged in",
-        "Recording functionality fully implemented",
-        "Video and audio separately downloadable"
-      ]
+      features: []
     }
   },
   "1.3.7": {
@@ -77,26 +59,14 @@ export const CHANGELOG = {
   },
   "1.3.6": {
     nl: {
-      title: "Admin Panel & User Management",
+      title: "Geen informatie bekend over deze versie",
       date: "2025-01-26",
-      features: [
-        "Volledig admin dashboard systeem",
-        "User management met 2FA setup",
-        "Tool editor met Monaco code editor",
-        "Analytics dashboard",
-        "Admin sidebar navigatie"
-      ]
+      features: []
     },
     en: {
-      title: "Admin Panel & User Management",
+      title: "No information available for this version",
       date: "2025-01-26",
-      features: [
-        "Complete admin dashboard system",
-        "User management with 2FA setup",
-        "Tool editor with Monaco code editor",
-        "Analytics dashboard",
-        "Admin sidebar navigation"
-      ]
+      features: []
     }
   },
   "1.3.4": {
