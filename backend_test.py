@@ -13,13 +13,14 @@ import time
 # Configuration
 BACKEND_URL = "https://devtools127.preview.emergentagent.com/api"
 
-# Try multiple possible admin credentials
+# Try multiple possible admin credentials (found actual admin email in database)
 ADMIN_CREDENTIALS = [
-    {"email": "admin@127.be", "password": "admin123", "username": "admin"},
-    {"email": "admin@test.com", "password": "TestAdmin123!", "username": "testadmin"},
-    {"email": "admin@example.com", "password": "admin", "username": "admin"},
-    {"email": "test@admin.com", "password": "password123", "username": "admin"},
-    {"email": "yannick@127.be", "password": "admin123", "username": "yannick"}
+    {"email": "yannick@radiogroep.be", "password": "admin", "username": "yannickgijbels"},
+    {"email": "yannick@radiogroep.be", "password": "admin123", "username": "yannickgijbels"},
+    {"email": "yannick@radiogroep.be", "password": "password", "username": "yannickgijbels"},
+    {"email": "yannick@radiogroep.be", "password": "123456", "username": "yannickgijbels"},
+    {"email": "yannick@radiogroep.be", "password": "yannick123", "username": "yannickgijbels"},
+    {"email": "yannick@radiogroep.be", "password": "radiogroep", "username": "yannickgijbels"}
 ]
 
 class BackendTester:
