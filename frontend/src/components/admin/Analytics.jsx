@@ -244,11 +244,23 @@ const Analytics = () => {
                       </div>
                     </td>
                     <td className="px-6 py-4">
+                      {event.ip_address && (
+                        <span className="text-sm text-[#9aa0a6]">{event.ip_address}</span>
+                      )}
+                    </td>
+                    <td className="px-6 py-4">
+                      {event.event_data?.browser_name && (
+                        <span className="text-sm text-[#9aa0a6]">
+                          {event.event_data.browser_name} {event.event_data.browser_version}
+                        </span>
+                      )}
+                    </td>
+                    <td className="px-6 py-4">
                       <details className="cursor-pointer">
                         <summary className="text-sm text-[#8ab4f8] hover:text-[#aac8f9]">
                           View Data
                         </summary>
-                        <pre className="mt-2 text-xs text-[#9aa0a6] bg-[#202124] p-2 rounded overflow-x-auto">
+                        <pre className="mt-2 text-xs text-[#9aa0a6] bg-[#202124] p-2 rounded overflow-x-auto max-h-96">
                           {JSON.stringify(event.event_data, null, 2)}
                         </pre>
                       </details>
@@ -258,6 +270,63 @@ const Analytics = () => {
               </tbody>
             </table>
           </div>
+
+          {/* Pagination */}
+          {selectedTool === 'all' && totalPages > 1 && (
+            <div className="mt-6 flex items-center justify-between bg-[#303134] px-6 py-4 rounded-lg border border-[#5f6368]">
+              <div className="text-sm text-[#9aa0a6]">
+                Showing {((currentPage - 1) * limit) + 1} to {Math.min(currentPage * limit, total)} of {total} events
+              </div>
+              <div className="flex items-center gap-2">
+                <button
+                  onClick={() => setCurrentPage(prev => Math.max(1, prev - 1))}
+                  disabled={currentPage === 1}
+                  className="px-4 py-2 bg-[#202124] text-[#e8eaed] rounded-lg border border-[#5f6368] hover:bg-[#3c4043] disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2"
+                >
+                  <ChevronLeft className="w-4 h-4" />
+                  Previous
+                </button>
+                
+                <div className="flex items-center gap-1">
+                  {[...Array(Math.min(5, totalPages))].map((_, i) => {
+                    let pageNum;
+                    if (totalPages <= 5) {
+                      pageNum = i + 1;
+                    } else if (currentPage <= 3) {
+                      pageNum = i + 1;
+                    } else if (currentPage >= totalPages - 2) {
+                      pageNum = totalPages - 4 + i;
+                    } else {
+                      pageNum = currentPage - 2 + i;
+                    }
+                    
+                    return (
+                      <button
+                        key={pageNum}
+                        onClick={() => setCurrentPage(pageNum)}
+                        className={`px-3 py-2 rounded-lg border ${
+                          currentPage === pageNum
+                            ? 'bg-[#8ab4f8] text-[#202124] border-[#8ab4f8]'
+                            : 'bg-[#202124] text-[#e8eaed] border-[#5f6368] hover:bg-[#3c4043]'
+                        }`}
+                      >
+                        {pageNum}
+                      </button>
+                    );
+                  })}
+                </div>
+
+                <button
+                  onClick={() => setCurrentPage(prev => Math.min(totalPages, prev + 1))}
+                  disabled={currentPage === totalPages}
+                  className="px-4 py-2 bg-[#202124] text-[#e8eaed] rounded-lg border border-[#5f6368] hover:bg-[#3c4043] disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2"
+                >
+                  Next
+                  <ChevronRight className="w-4 h-4" />
+                </button>
+              </div>
+            </div>
+          )}
         </div>
       </div>
     </div>
