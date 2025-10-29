@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
+import { useLocation } from 'react-router-dom';
 import { MessageSquare, X } from 'lucide-react';
 
 const FloatingFeedbackButton = ({ hideOnFullscreen = false }) => {
+  const location = useLocation();
   const [showForm, setShowForm] = useState(false);
   const [rating, setRating] = useState(0);
   const [hoverRating, setHoverRating] = useState(0);
