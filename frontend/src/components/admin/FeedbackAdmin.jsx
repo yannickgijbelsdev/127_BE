@@ -179,6 +179,42 @@ const FeedbackAdmin = () => {
                   </div>
                 )}
 
+                {/* System Info */}
+                <div className="bg-[#202124] rounded-lg p-4 mb-4 border border-[#5f6368]">
+                  <h3 className="text-sm font-semibold text-[#8ab4f8] mb-3">Systeem Informatie</h3>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
+                    <div>
+                      <p className="text-[#9aa0a6] text-xs mb-1">IP Adres</p>
+                      <p className="text-[#e8eaed] font-mono">{item.ip_address || 'N/A'}</p>
+                    </div>
+                    <div>
+                      <p className="text-[#9aa0a6] text-xs mb-1">Browser</p>
+                      <p className="text-[#e8eaed]">
+                        {item.browser_name} {item.browser_version}
+                      </p>
+                    </div>
+                    <div>
+                      <p className="text-[#9aa0a6] text-xs mb-1">Besturingssysteem</p>
+                      <p className="text-[#e8eaed]">{item.operating_system || 'N/A'}</p>
+                    </div>
+                    <div>
+                      <p className="text-[#9aa0a6] text-xs mb-1">Scherm Resolutie</p>
+                      <p className="text-[#e8eaed] font-mono">{item.screen_resolution || 'N/A'}</p>
+                    </div>
+                    <div className="md:col-span-2">
+                      <p className="text-[#9aa0a6] text-xs mb-1">GPU</p>
+                      <div className="text-[#e8eaed]">
+                        <p className="font-semibold">{item.gpu_vendor || 'Unknown'}</p>
+                        <p className="text-xs text-[#9aa0a6] break-all">{item.gpu_renderer || 'N/A'}</p>
+                      </div>
+                    </div>
+                    <div className="md:col-span-2">
+                      <p className="text-[#9aa0a6] text-xs mb-1">CPU</p>
+                      <p className="text-[#e8eaed]">{item.cpu_info || 'N/A'}</p>
+                    </div>
+                  </div>
+                </div>
+
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm">
                   <div>
                     <p className="text-[#9aa0a6] text-xs">IP Adres</p>
