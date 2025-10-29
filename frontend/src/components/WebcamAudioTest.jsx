@@ -4,9 +4,10 @@ import { Progress } from './ui/progress';
 import { ArrowLeft, Video, Mic, Download, Circle, Square } from 'lucide-react';
 import { Button } from './ui/button';
 import HalloweenDecoration from './HalloweenDecoration';
+import { logPageVisit, logButtonClick, logAction } from '../utils/analytics';
 
 // Build version - Update this with each change
-const BUILD_VERSION = '1.3.3';
+const BUILD_VERSION = '1.4.0';
 
 const WebcamAudioTest = () => {
   const [isLoading, setIsLoading] = useState(true);
