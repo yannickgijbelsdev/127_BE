@@ -87,6 +87,12 @@ const WebcamAudioTest = () => {
         microphone: audioDevice?.label || 'Default Microphone',
       });
 
+      // Log successful permission grant
+      logAction('wea', 'Webcam & Audio Test', 'permission_granted', {
+        camera: videoDevice?.label || 'Default Camera',
+        microphone: audioDevice?.label || 'Default Microphone'
+      });
+
       setShowPermissionRequest(false);
       setIsRunning(true);
     } catch (error) {
@@ -100,6 +106,12 @@ const WebcamAudioTest = () => {
       } else if (error.name === 'NotReadableError' || error.name === 'TrackStartError') {
         errorMessage = 'Camera of microfoon wordt al gebruikt door een ander programma.';
       }
+      
+      // Log permission error
+      logAction('wea', 'Webcam & Audio Test', 'permission_denied', {
+        error_name: error.name,
+        error_message: errorMessage
+      });
       
       setPermissionError(errorMessage);
     }
