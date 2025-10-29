@@ -5,15 +5,18 @@ import { ArrowLeft, MessageSquare, Star, ChevronLeft, ChevronRight, TrendingUp, 
 const FeedbackAdmin = () => {
   const [feedback, setFeedback] = useState([]);
   const [stats, setStats] = useState(null);
+  const [insights, setInsights] = useState(null);
   const [loading, setLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
   const [total, setTotal] = useState(0);
   const [limit] = useState(20);
+  const [showInsights, setShowInsights] = useState(false);
 
   useEffect(() => {
     fetchStats();
     fetchFeedback();
+    fetchInsights();
   }, [currentPage]);
 
   const fetchStats = async () => {
