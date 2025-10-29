@@ -5,7 +5,7 @@ import { Progress } from './ui/progress';
 import HalloweenDecoration from './HalloweenDecoration';
 import { logPageVisit, logAction, logButtonClick } from '../utils/analytics';
 
-const BUILD_VERSION = '1.3.7';
+const BUILD_VERSION = '1.5.0';
 
 const PasswordGenerator = () => {
   const [isLoading, setIsLoading] = useState(true);
