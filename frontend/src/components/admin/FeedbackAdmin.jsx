@@ -50,6 +50,46 @@ const FeedbackAdmin = () => {
     }
   };
 
+  const fetchInsights = async () => {
+    try {
+      const token = localStorage.getItem('admin_token');
+      const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/admin/feedback/insights/keywords`, {
+        headers: { 'Authorization': `Bearer ${token}` }
+      });
+      const data = await response.json();
+      setInsights(data);
+    } catch (err) {
+      console.error('Failed to fetch insights:', err);
+    }
+  };
+
+  const handleDelete = async (feedbackId) => {
+    if (!window.confirm('Weet je zeker dat je deze feedback wilt verwijderen?')) {
+      return;
+    }
+
+    try {
+      const token = localStorage.getItem('admin_token');
+      const response = await fetch(
+        `${process.env.REACT_APP_BACKEND_URL}/api/admin/feedback/${feedbackId}`,
+        {
+          method: 'DELETE',
+          headers: { 'Authorization': `Bearer ${token}` }
+        }
+      );
+
+      if (response.ok) {
+        // Refresh feedback list
+        fetchFeedback();
+        fetchStats();
+        fetchInsights();
+      }
+    } catch (err) {
+      console.error('Failed to delete feedback:', err);
+      alert('Er ging iets mis bij het verwijderen.');
+    }
+  };
+
   const formatTimestamp = (timestamp) => {
     const date = new Date(timestamp);
     return date.toLocaleString('nl-NL', {
