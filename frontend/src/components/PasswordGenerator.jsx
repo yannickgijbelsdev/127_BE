@@ -216,6 +216,9 @@ const PasswordGenerator = () => {
     navigator.clipboard.writeText(text);
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
+    
+    // Log copy action
+    logButtonClick('password', 'Password Generator', 'copy_password');
   };
 
   if (isLoading) {
