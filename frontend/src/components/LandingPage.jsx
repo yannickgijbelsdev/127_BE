@@ -2,9 +2,10 @@ import React, { useState, useEffect, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import { Search, Monitor, Printer, Activity, Video, Lock } from 'lucide-react';
 import HalloweenDecoration from './HalloweenDecoration';
+import { logPageVisit, logAction, logButtonClick } from '../utils/analytics';
 
 // Build version - Update this with each change
-const BUILD_VERSION = '1.3.6';
+const BUILD_VERSION = '1.4.0';
 
 const LandingPage = () => {
   const [searchQuery, setSearchQuery] = useState('');
