@@ -21,6 +21,11 @@ const ScreenTest = () => {
   const animationFrameRef = useRef(null);
   const lastTimeRef = useRef(Date.now());
 
+  // Log page visit
+  useEffect(() => {
+    logPageVisit('sscreen', 'Screen Refresh Tester');
+  }, []);
+
   // Get display info
   useEffect(() => {
     // Get GPU info
