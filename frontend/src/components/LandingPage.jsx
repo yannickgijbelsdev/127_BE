@@ -162,6 +162,7 @@ const LandingPage = () => {
                       <Link 
                         key={tool.id} 
                         to={tool.path}
+                        onClick={() => handleToolClick(tool.id, tool.name)}
                         className="block"
                       >
                         <div className="px-6 py-4 hover:bg-[#3c4043] transition-colors cursor-pointer">
