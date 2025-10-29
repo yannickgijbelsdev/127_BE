@@ -209,6 +209,12 @@ const ScreenTest = () => {
               <div>
                 <h1 className="text-2xl font-bold text-[#e8eaed]">Screen Refresh Tester</h1>
                 <p className="text-sm text-[#9aa0a6]">Test de verversingssnelheid van uw scherm</p>
+                <button 
+                  onClick={() => setShowChangelog(true)}
+                  className="text-xs text-[#8ab4f8] hover:text-[#aac8f9] cursor-pointer underline"
+                >
+                  Build {BUILD_VERSION}
+                </button>
               </div>
             </div>
           </div>
