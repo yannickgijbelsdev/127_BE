@@ -598,6 +598,8 @@ async def submit_feedback(feedback: FeedbackCreate, request: Request):
         operating_system=feedback.operating_system,
         gpu_vendor=feedback.gpu_vendor,
         gpu_renderer=feedback.gpu_renderer,
+        cpu_cores=feedback.cpu_cores,
+        cpu_info=feedback.cpu_info,
         user_agent=feedback.user_agent,
         screen_resolution=feedback.screen_resolution,
         ip_address=client_ip
