@@ -123,8 +123,9 @@ function AppContent() {
     return isAdminLoggedIn ? children : <Navigate to="/localhost" />;
   };
 
-  // Don't show admin nav on login page
+  // Don't show admin nav on login page or when not logged in
   const isLoginPage = location.pathname === '/localhost';
+  const showAdminNav = isAdminLoggedIn && !isLoginPage;
 
   if (checkingSetup) {
     return <div className="min-h-screen bg-[#202124] flex items-center justify-center">
@@ -134,7 +135,7 @@ function AppContent() {
 
   return (
     <>
-      {!isLoginPage && <AdminNavBar />}
+      {showAdminNav && <AdminNavBar />}
       <Routes>
         <Route path="/" element={<LandingPage />} />
         <Route path="/dpd" element={<PixelTest />} />
