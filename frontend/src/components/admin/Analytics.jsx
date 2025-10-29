@@ -223,6 +223,8 @@ const Analytics = () => {
                   <th className="px-6 py-4 text-left text-sm font-medium text-[#9aa0a6]">Timestamp</th>
                   <th className="px-6 py-4 text-left text-sm font-medium text-[#9aa0a6]">Tool</th>
                   <th className="px-6 py-4 text-left text-sm font-medium text-[#9aa0a6]">Event Type</th>
+                  <th className="px-6 py-4 text-left text-sm font-medium text-[#9aa0a6]">IP Address</th>
+                  <th className="px-6 py-4 text-left text-sm font-medium text-[#9aa0a6]">Browser</th>
                   <th className="px-6 py-4 text-left text-sm font-medium text-[#9aa0a6]">Details</th>
                 </tr>
               </thead>
