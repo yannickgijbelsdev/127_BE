@@ -58,10 +58,12 @@ class BackendTester:
                 
                 # 2. Create admin if needed
                 if needs_setup:
+                    # Use first credential set for creation
+                    admin_creds = ADMIN_CREDENTIALS[0]
                     admin_data = {
-                        "email": ADMIN_EMAIL,
-                        "username": ADMIN_USERNAME,
-                        "password": ADMIN_PASSWORD,
+                        "email": admin_creds["email"],
+                        "username": admin_creds["username"],
+                        "password": admin_creds["password"],
                         "role": "admin"
                     }
                     
@@ -82,29 +84,32 @@ class BackendTester:
             self.log_result("Admin Setup Check", False, f"Exception: {str(e)}")
             return False
         
-        # 3. Login as admin
-        try:
-            login_data = {
-                "email": ADMIN_EMAIL,
-                "password": ADMIN_PASSWORD
-            }
-            
-            login_response = self.session.post(f"{BACKEND_URL}/admin/login", json=login_data)
-            if login_response.status_code == 200:
-                token_data = login_response.json()
-                self.admin_token = token_data.get("access_token")
-                self.log_result("Admin Login", True, "Successfully logged in as admin", {"user": token_data.get("user")})
+        # 3. Try to login with different credential sets
+        for i, creds in enumerate(ADMIN_CREDENTIALS):
+            try:
+                login_data = {
+                    "email": creds["email"],
+                    "password": creds["password"]
+                }
                 
-                # Set authorization header for future requests
-                self.session.headers.update({"Authorization": f"Bearer {self.admin_token}"})
-                return True
-            else:
-                self.log_result("Admin Login", False, f"Login failed: {login_response.status_code}", login_response.text)
-                return False
-                
-        except Exception as e:
-            self.log_result("Admin Login", False, f"Exception during login: {str(e)}")
-            return False
+                login_response = self.session.post(f"{BACKEND_URL}/admin/login", json=login_data)
+                if login_response.status_code == 200:
+                    token_data = login_response.json()
+                    self.admin_token = token_data.get("access_token")
+                    self.log_result("Admin Login", True, f"Successfully logged in as admin with credentials {i+1}: {creds['email']}", {"user": token_data.get("user")})
+                    
+                    # Set authorization header for future requests
+                    self.session.headers.update({"Authorization": f"Bearer {self.admin_token}"})
+                    return True
+                else:
+                    self.log_result(f"Admin Login Attempt {i+1}", False, f"Login failed for {creds['email']}: {login_response.status_code}", login_response.text)
+                    
+            except Exception as e:
+                self.log_result(f"Admin Login Attempt {i+1}", False, f"Exception during login with {creds['email']}: {str(e)}")
+        
+        # If we get here, all login attempts failed
+        self.log_result("Admin Login", False, "All admin login attempts failed")
+        return False
     
     def test_analytics_event_logging(self):
         """Test analytics event logging (public endpoint)"""
