@@ -112,7 +112,6 @@ const TwoFactorSetup = ({ userId, userEmail, onClose, onSuccess }) => {
                     src={qrCodeUrl} 
                     alt="2FA QR Code"
                     className="w-64 h-64"
-                    crossOrigin="anonymous"
                   />
                 </div>
               )}
