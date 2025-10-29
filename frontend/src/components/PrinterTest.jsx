@@ -7,6 +7,7 @@ import { Label } from './ui/label';
 import { Input } from './ui/input';
 import { Checkbox } from './ui/checkbox';
 import HalloweenDecoration from './HalloweenDecoration';
+import { logPageVisit, logAction, logButtonClick } from '../utils/analytics';
 
 // Build version - Update this with each change
 const BUILD_VERSION = '1.3.3';
