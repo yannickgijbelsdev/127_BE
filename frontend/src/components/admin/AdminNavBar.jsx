@@ -5,7 +5,7 @@ import { LogOut, Settings, Users, Code, Home, ChevronLeft, ChevronRight, BarChar
 const AdminNavBar = () => {
   const [user, setUser] = useState(null);
   const [isVisible, setIsVisible] = useState(false);
-  const [isCollapsed, setIsCollapsed] = useState(false);
+  const [isCollapsed, setIsCollapsed] = useState(true); // Standaard ingeklapt
   const navigate = useNavigate();
 
   useEffect(() => {
