@@ -449,13 +449,20 @@ async def update_tool(tool_id: str, tool_data: dict, current_admin: User = Depen
 # ==================== ANALYTICS ENDPOINTS ====================
 
 @api_router.post("/analytics/event")
-async def log_analytics_event(event: AnalyticsEventCreate):
+async def log_analytics_event(event: AnalyticsEventCreate, request: Request):
     """Log an analytics event (publicly accessible)"""
+    # Get IP address from request
+    client_ip = request.client.host
+    forwarded_for = request.headers.get("x-forwarded-for")
+    if forwarded_for:
+        client_ip = forwarded_for.split(",")[0].strip()
+    
     analytics_event = AnalyticsEvent(
         tool_id=event.tool_id,
         tool_name=event.tool_name,
         event_type=event.event_type,
-        event_data=event.event_data
+        event_data=event.event_data,
+        ip_address=client_ip
     )
     
     doc = analytics_event.model_dump()
