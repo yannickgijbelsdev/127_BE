@@ -201,7 +201,7 @@ const LandingPage = () => {
           <div className="mt-8 text-center animate-fade-in">
             <div className="flex gap-3 justify-center flex-wrap">
               {displayedTools.map((tool) => (
-                <Link key={tool.id} to={tool.path}>
+                <Link key={tool.id} to={tool.path} onClick={() => handleToolClick(tool.id, tool.name)}>
                   <button 
                     className="px-5 py-2.5 bg-[#303134] hover:bg-[#3c4043] text-[#e8eaed] rounded-full text-sm transition-colors border border-[#5f6368]"
                   >
