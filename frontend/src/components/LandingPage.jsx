@@ -185,39 +185,93 @@ const LandingPage = () => {
             {showResults && (
               <div className="absolute w-full mt-2 bg-[#303134] rounded-lg border border-[#5f6368] shadow-2xl overflow-hidden animate-fade-in z-20">
                 {filteredTools.length > 0 ? (
-                  <div className="divide-y divide-[#5f6368]">
-                  {filteredTools.map((tool) => {
-                    const Icon = tool.icon;
-                    return (
-                      <Link 
-                        key={tool.id} 
-                        to={tool.path}
-                        onClick={() => handleToolClick(tool.id, tool.name)}
-                        className="block"
-                      >
-                        <div className="px-6 py-4 hover:bg-[#3c4043] transition-colors cursor-pointer">
-                          <div className="flex items-center gap-4">
-                            <div className="bg-[#3c4043] p-2 rounded-full">
-                              <Icon className="w-5 h-5 text-[#8ab4f8]" />
-                            </div>
-                            <div className="flex-1">
-                              <div className="text-base font-medium text-[#e8eaed]">
-                                {tool.name}
+                  <>
+                    <div className="divide-y divide-[#5f6368]">
+                    {filteredTools.map((tool) => {
+                      const Icon = tool.icon;
+                      return (
+                        <Link 
+                          key={tool.id} 
+                          to={tool.path}
+                          onClick={() => handleToolClick(tool.id, tool.name)}
+                          className="block"
+                        >
+                          <div className="px-6 py-4 hover:bg-[#3c4043] transition-colors cursor-pointer">
+                            <div className="flex items-center gap-4">
+                              <div className="bg-[#3c4043] p-2 rounded-full">
+                                <Icon className="w-5 h-5 text-[#8ab4f8]" />
                               </div>
-                              <div className="text-sm text-[#9aa0a6] mt-0.5">
-                                {tool.description}
+                              <div className="flex-1">
+                                <div className="text-base font-medium text-[#e8eaed]">
+                                  {tool.name}
+                                </div>
+                                <div className="text-sm text-[#9aa0a6] mt-0.5">
+                                  {tool.description}
+                                </div>
                               </div>
                             </div>
                           </div>
+                        </Link>
+                      );
+                    })}
+                    </div>
+                    
+                    {/* Tool suggestion section */}
+                    <div className="border-t border-[#5f6368] bg-[#202124]">
+                      <button
+                        onClick={() => {
+                          setShowToolSuggestion(true);
+                          logButtonClick('home', 'Landing Page', 'suggest_tool_from_search');
+                        }}
+                        className="w-full px-6 py-4 hover:bg-[#3c4043] transition-colors text-left"
+                      >
+                        <div className="flex items-center gap-4">
+                          <div className="bg-[#8ab4f8] p-2 rounded-full">
+                            <Plus className="w-5 h-5 text-[#202124]" />
+                          </div>
+                          <div className="flex-1">
+                            <div className="text-base font-medium text-[#8ab4f8]">
+                              Mis je nog een tool?
+                            </div>
+                            <div className="text-sm text-[#9aa0a6] mt-0.5">
+                              Laat het ons weten en we kijken wat we kunnen doen!
+                            </div>
+                          </div>
                         </div>
-                      </Link>
-                    );
-                  })}
-                  </div>
+                      </button>
+                    </div>
+                  </>
                 ) : (
-                  <div className="px-6 py-8 text-center text-[#9aa0a6]">
-                    Geen tools gevonden
-                  </div>
+                  <>
+                    <div className="px-6 py-8 text-center text-[#9aa0a6]">
+                      Geen tools gevonden
+                    </div>
+                    
+                    {/* Tool suggestion for no results */}
+                    <div className="border-t border-[#5f6368] bg-[#202124]">
+                      <button
+                        onClick={() => {
+                          setShowToolSuggestion(true);
+                          logButtonClick('home', 'Landing Page', 'suggest_tool_no_results');
+                        }}
+                        className="w-full px-6 py-4 hover:bg-[#3c4043] transition-colors text-left"
+                      >
+                        <div className="flex items-center gap-4">
+                          <div className="bg-[#8ab4f8] p-2 rounded-full">
+                            <Plus className="w-5 h-5 text-[#202124]" />
+                          </div>
+                          <div className="flex-1">
+                            <div className="text-base font-medium text-[#8ab4f8]">
+                              Mis je nog een tool?
+                            </div>
+                            <div className="text-sm text-[#9aa0a6] mt-0.5">
+                              Laat het ons weten en we kijken wat we kunnen doen!
+                            </div>
+                          </div>
+                        </div>
+                      </button>
+                    </div>
+                  </>
                 )}
               </div>
             )}
