@@ -1,4 +1,28 @@
 export const CHANGELOG = {
+  "1.6.0": {
+    nl: {
+      title: "Tool Beheer & Logo Update",
+      date: "2025-01-31",
+      features: [
+        "Admin kan tools in-/uitschakelen via dashboard",
+        "Uitgeschakelde tools worden verborgen op de landingspagina",
+        "Offline bericht bij directe toegang tot uitgeschakelde tools",
+        "Nieuw 2025 Official Logo overal toegepast",
+        "Real-time status updates voor tool beschikbaarheid"
+      ]
+    },
+    en: {
+      title: "Tool Management & Logo Update",
+      date: "2025-01-31",
+      features: [
+        "Admin can enable/disable tools via dashboard",
+        "Disabled tools are hidden from landing page",
+        "Offline message when accessing disabled tools directly",
+        "New 2025 Official Logo applied everywhere",
+        "Real-time status updates for tool availability"
+      ]
+    }
+  },
   "1.5.0": {
     nl: {
       title: "Analytics & Feedback Systeem",
