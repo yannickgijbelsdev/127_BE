@@ -41,22 +41,18 @@ export const CHANGELOG = {
   },
   "1.5.0": {
     nl: {
-      title: "Analytics & Feedback Systeem",
+      title: "Feedback Systeem",
       date: "2025-01-29",
       features: [
-        "Uitgebreide analytics tracking voor alle tools",
-        "Exit-intent feedback systeem met rating",
         "Floating feedback button op alle pagina's",
         "Clickable build versie met changelog historie",
         "Tweetalige changelog (Nederlands/Engels)"
       ]
     },
     en: {
-      title: "Analytics & Feedback System",
+      title: "Feedback System",
       date: "2025-01-29",
       features: [
-        "Comprehensive analytics tracking for all tools",
-        "Exit-intent feedback system with rating",
         "Floating feedback button on all pages",
         "Clickable build version with changelog history",
         "Bilingual changelog (Dutch/English)"
