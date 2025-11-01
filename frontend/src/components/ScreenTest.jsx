@@ -381,4 +381,10 @@ const AnimatedBox = ({ speed, index }) => {
   );
 };
 
-export default ScreenTest;
+export default function WrappedScreenTest() {
+  return (
+    <ToolStatusWrapper toolId="sscreen">
+      <ScreenTest />
+    </ToolStatusWrapper>
+  );
+}
