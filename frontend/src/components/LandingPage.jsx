@@ -12,9 +12,20 @@ const BUILD_VERSION = '1.5.0';
 const LandingPage = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [showChangelog, setShowChangelog] = useState(false);
+  const [enabledToolIds, setEnabledToolIds] = useState([]);
+  const [loadingTools, setLoadingTools] = useState(true);
 
-  // All available tools
-  const allTools = [
+  // Icon mapping for tools
+  const iconMap = {
+    'dpd': Monitor,
+    'printer': Printer,
+    'sscreen': Activity,
+    'wea': Video,
+    'password': Lock
+  };
+
+  // All available tools metadata
+  const allToolsMetadata = [
     {
       id: 'dpd',
       name: 'Dead Pixel Detector',
@@ -57,11 +68,39 @@ const LandingPage = () => {
     },
   ];
 
+  // Fetch enabled tools from backend
+  useEffect(() => {
+    const fetchEnabledTools = async () => {
+      try {
+        const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/tools`);
+        if (response.ok) {
+          const enabledTools = await response.json();
+          setEnabledToolIds(enabledTools.map(t => t.id));
+        } else {
+          // If backend fails, show all tools
+          setEnabledToolIds(allToolsMetadata.map(t => t.id));
+        }
+      } catch (error) {
+        console.error('Error fetching enabled tools:', error);
+        // If backend fails, show all tools
+        setEnabledToolIds(allToolsMetadata.map(t => t.id));
+      } finally {
+        setLoadingTools(false);
+      }
+    };
+
+    fetchEnabledTools();
+  }, []);
+
+  // Filter tools based on enabled status
+  const allTools = allToolsMetadata.filter(tool => enabledToolIds.includes(tool.id));
+
   // Randomly select 3 tools to display - changes on each page load
   const displayedTools = useMemo(() => {
+    if (allTools.length === 0) return [];
     const shuffled = [...allTools].sort(() => Math.random() - 0.5);
-    return shuffled.slice(0, 3);
-  }, []); // Empty dependency array means this only runs once per component mount
+    return shuffled.slice(0, Math.min(3, allTools.length));
+  }, [allTools.length])
 
   // Log page visit
   useEffect(() => {
