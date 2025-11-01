@@ -100,18 +100,21 @@ const LandingPage = () => {
     if (allTools.length === 0) return [];
     const shuffled = [...allTools].sort(() => Math.random() - 0.5);
     return shuffled.slice(0, Math.min(3, allTools.length));
-  }, [allTools.length])
+  }, [allTools.length]);
 
   // Log page visit
   useEffect(() => {
-    logPageVisit('home', 'Landing Page');
-    
-    // Log which tools are displayed
-    logAction('home', 'Landing Page', 'tools_displayed', {
-      tool_ids: displayedTools.map(t => t.id),
-      tool_names: displayedTools.map(t => t.name)
-    });
-  }, []);
+    if (!loadingTools) {
+      logPageVisit('home', 'Landing Page');
+      
+      // Log which tools are displayed
+      logAction('home', 'Landing Page', 'tools_displayed', {
+        tool_ids: displayedTools.map(t => t.id),
+        tool_names: displayedTools.map(t => t.name),
+        enabled_tools_count: allTools.length
+      });
+    }
+  }, [loadingTools, displayedTools.length]);
 
   // Filter tools based on search query (search all tools)
   const filteredTools = allTools.filter(tool => {
