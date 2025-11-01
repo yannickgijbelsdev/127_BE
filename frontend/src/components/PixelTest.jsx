@@ -178,23 +178,18 @@ const PixelTest = () => {
   };
 
   const handleClick = () => {
-    if (!isLoading && !isFullscreen && !showGPUModal) {
-      // Show GPU modal first
+    if (!isLoading && !isFullscreen) {
+      // Log GPU info and start test directly
       logButtonClick('dpd', 'Dead Pixel Detector', 'start_test');
-      setShowGPUModal(true);
+      logAction('dpd', 'Dead Pixel Detector', 'gpu_info_displayed', {
+        gpu_vendor: gpuInfo.vendor,
+        gpu_renderer: gpuInfo.renderer
+      });
+      logAction('dpd', 'Dead Pixel Detector', 'fullscreen_entered', {
+        trigger: 'click_to_start'
+      });
+      enterFullscreen();
     }
-  };
-
-  const handleGPUModalOk = () => {
-    logAction('dpd', 'Dead Pixel Detector', 'gpu_info_viewed', {
-      gpu_vendor: gpuInfo.vendor,
-      gpu_renderer: gpuInfo.renderer
-    });
-    setShowGPUModal(false);
-    logAction('dpd', 'Dead Pixel Detector', 'fullscreen_entered', {
-      trigger: 'gpu_modal_ok_button'
-    });
-    enterFullscreen();
   };
 
   const handleColorChange = (colorValue) => {
