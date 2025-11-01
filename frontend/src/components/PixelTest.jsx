@@ -282,6 +282,19 @@ const PixelTest = () => {
                 <li>• Zoek naar pixels die niet mee veranderen</li>
               </ul>
             </div>
+            <div className="bg-[#202124] border border-[#5f6368] rounded-lg p-4 text-left mt-4">
+              <h3 className="font-semibold text-[#8ab4f8] mb-2">GPU Informatie:</h3>
+              <div className="text-sm text-[#9aa0a6] space-y-2">
+                <div>
+                  <span className="text-[#9aa0a6]">Vendor:</span>
+                  <span className="ml-2 text-[#e8eaed] font-medium break-words">{gpuInfo.vendor}</span>
+                </div>
+                <div>
+                  <span className="text-[#9aa0a6]">Renderer:</span>
+                  <span className="ml-2 text-[#e8eaed] font-medium break-words">{gpuInfo.renderer}</span>
+                </div>
+              </div>
+            </div>
             <div className="mt-6">
               <p className="text-sm text-[#9aa0a6]">
                 Huidige kleur: <span className="font-bold text-[#e8eaed]">{currentColorObj.name}</span>
