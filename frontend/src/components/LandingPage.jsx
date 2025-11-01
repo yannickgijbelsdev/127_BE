@@ -225,7 +225,7 @@ const LandingPage = () => {
 
         {!showResults && (
           <div className="mt-8 text-center animate-fade-in">
-            <div className="flex gap-3 justify-center flex-wrap">
+            <div className="flex gap-3 justify-center flex-wrap items-center">
               {displayedTools.map((tool) => (
                 <Link key={tool.id} to={tool.path} onClick={() => handleToolClick(tool.id, tool.name)}>
                   <button 
@@ -235,6 +235,19 @@ const LandingPage = () => {
                   </button>
                 </Link>
               ))}
+              
+              {/* Plus button for tool suggestions */}
+              <button
+                onClick={() => {
+                  setShowToolSuggestion(true);
+                  logButtonClick('home', 'Landing Page', 'suggest_tool_button');
+                }}
+                className="px-4 py-2.5 bg-[#8ab4f8] hover:bg-[#aac8f9] text-[#202124] rounded-full text-sm transition-colors border border-[#8ab4f8] flex items-center gap-2 font-medium"
+                title="Stel een tool voor"
+              >
+                <Plus className="w-4 h-4" />
+                Tool Voorstellen
+              </button>
             </div>
           </div>
         )}
