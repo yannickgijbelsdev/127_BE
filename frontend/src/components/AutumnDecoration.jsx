@@ -47,8 +47,8 @@ const AutumnDecoration = () => {
       <style>{`
         @keyframes leafSway {
           0%, 100% { transform: translateX(0px) rotate(0deg); }
-          25% { transform: translateX(10px) rotate(5deg); }
-          75% { transform: translateX(-10px) rotate(-5deg); }
+          25% { transform: translateX(5px) rotate(3deg); }
+          75% { transform: translateX(-5px) rotate(-3deg); }
         }
       `}</style>
 
@@ -61,8 +61,8 @@ const AutumnDecoration = () => {
             left: `${leaf.x}%`,
             top: `${leaf.y}%`,
             transform: `rotate(${leaf.rotation}deg)`,
-            transition: 'all 0.05s linear',
-            opacity: 0.8,
+            transition: 'all 0.06s linear',
+            opacity: 0.85,
           }}
         >
           {/* Blad vorm (maple leaf) */}
