@@ -16,8 +16,8 @@ const AutumnDecoration = () => {
     const animateLeaves = () => {
       setLeaves(prev => prev.map(leaf => {
         let newY = leaf.y + leaf.speed;
-        let newX = leaf.x + Math.sin(newY / 20) * 0.5; // Zwevende beweging
-        let newRotation = leaf.rotation + 3;
+        let newX = leaf.x + Math.sin(newY / 30) * 0.3; // Zachter zweven
+        let newRotation = leaf.rotation + 1; // Langzamere rotatie
         
         // Reset als blad onderkant bereikt
         if (newY > 110) {
@@ -38,7 +38,7 @@ const AutumnDecoration = () => {
       }));
     };
 
-    const interval = setInterval(animateLeaves, 50);
+    const interval = setInterval(animateLeaves, 60); // Iets langzamer interval
     return () => clearInterval(interval);
   }, []);
 
