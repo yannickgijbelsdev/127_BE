@@ -161,7 +161,7 @@ const LandingPage = () => {
         <div className="w-full max-w-2xl text-center space-y-8 relative z-10">
           {/* Logo */}
           <img 
-            src="https://customer-assets.emergentagent.com/job_053c424a-d7ee-4a13-a916-f7596c34862b/artifacts/qy7ga8qf_2025_Logo_127.png" 
+            src="https://customer-assets.emergentagent.com/job_tool-metrics/artifacts/w5126i9x_127_2025_Official_Logo.png" 
             alt="127 Logo" 
             className="w-48 h-auto mx-auto mb-4 brightness-110"
           />
