@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import { Search, Monitor, Printer, Activity, Video, Lock } from 'lucide-react';
-import HalloweenDecoration from './HalloweenDecoration';
+import AutumnDecoration from './AutumnDecoration';
 import FloatingFeedbackButton from './FloatingFeedbackButton';
 import ChangelogModal from './ChangelogModal';
 import { logPageVisit, logAction, logButtonClick } from '../utils/analytics';
@@ -114,7 +114,7 @@ const LandingPage = () => {
 
   return (
     <>
-      <HalloweenDecoration />
+      <AutumnDecoration />
       <div className="min-h-screen bg-gradient-to-br from-[#202124] to-[#292a2d] flex flex-col items-center justify-center p-4 relative overflow-hidden">
         <div className="w-full max-w-2xl text-center space-y-8 relative z-10">
           {/* Logo */}

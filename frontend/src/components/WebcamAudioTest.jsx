@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { Progress } from './ui/progress';
 import { ArrowLeft, Video, Mic, Download, Circle, Square } from 'lucide-react';
 import { Button } from './ui/button';
-import HalloweenDecoration from './HalloweenDecoration';
+import AutumnDecoration from './AutumnDecoration';
 import FloatingFeedbackButton from './FloatingFeedbackButton';
 import ChangelogModal from './ChangelogModal';
 import { logPageVisit, logButtonClick, logAction, logError } from '../utils/analytics';
@@ -233,7 +233,7 @@ const WebcamAudioTest = () => {
   if (isLoading) {
     return (
       <div className="min-h-screen bg-[#202124] flex flex-col items-center justify-center p-8">
-        <HalloweenDecoration />
+        <AutumnDecoration />
         <div className="w-full max-w-md space-y-8">
           <div className="flex justify-center">
             <img 

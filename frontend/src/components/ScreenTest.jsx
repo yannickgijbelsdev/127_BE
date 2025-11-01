@@ -5,7 +5,7 @@ import { ArrowLeft, Monitor } from 'lucide-react';
 import { Button } from './ui/button';
 import { Label } from './ui/label';
 import { Slider } from './ui/slider';
-import HalloweenDecoration from './HalloweenDecoration';
+import AutumnDecoration from './AutumnDecoration';
 import FloatingFeedbackButton from './FloatingFeedbackButton';
 import ChangelogModal from './ChangelogModal';
 import { logPageVisit, logAction, logButtonClick } from '../utils/analytics';
@@ -126,7 +126,7 @@ const ScreenTest = () => {
   if (isLoading) {
     return (
       <div className="min-h-screen bg-[#202124] flex flex-col items-center justify-center p-8">
-        <HalloweenDecoration />
+        <AutumnDecoration />
         <div className="w-full max-w-md space-y-8">
           <div className="flex justify-center">
             <img 
