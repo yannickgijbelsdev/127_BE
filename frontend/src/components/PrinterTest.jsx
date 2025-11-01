@@ -556,4 +556,10 @@ const PrinterTest = () => {
   );
 };
 
-export default PrinterTest;
+export default function WrappedPrinterTest() {
+  return (
+    <ToolStatusWrapper toolId="printer">
+      <PrinterTest />
+    </ToolStatusWrapper>
+  );
+}
