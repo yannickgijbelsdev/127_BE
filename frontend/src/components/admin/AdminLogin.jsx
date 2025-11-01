@@ -27,9 +27,8 @@ const AdminLogin = ({ onLogin }) => {
         })
       });
 
-      const data = await response.json();
-
       if (!response.ok) {
+        const data = await response.json();
         if (data.detail === '2FA code required') {
           setNeeds2FA(true);
           setError('Voer je 2FA code in');
@@ -40,18 +39,43 @@ const AdminLogin = ({ onLogin }) => {
         return;
       }
 
-      // Store token
-      localStorage.setItem('admin_token', data.access_token);
-      localStorage.setItem('admin_user', JSON.stringify(data.user));
+      const data = await response.json();
+
+      // Store token and user data
+      try {
+        localStorage.setItem('admin_token', data.access_token);
+        localStorage.setItem('admin_user', JSON.stringify(data.user));
+      } catch (storageErr) {
+        console.error('LocalStorage error:', storageErr);
+        setError('Kon inloggegevens niet opslaan');
+        setLoading(false);
+        return;
+      }
       
       // Dispatch custom event for AdminNavBar
-      window.dispatchEvent(new Event('auth-change'));
+      try {
+        window.dispatchEvent(new Event('auth-change'));
+      } catch (eventErr) {
+        console.error('Event dispatch error:', eventErr);
+        // Continue anyway, this is not critical
+      }
       
-      onLogin(data.user);
+      // Call onLogin callback
+      try {
+        if (onLogin && typeof onLogin === 'function') {
+          onLogin(data.user);
+        }
+      } catch (callbackErr) {
+        console.error('onLogin callback error:', callbackErr);
+        // Continue anyway, navigation is more important
+      }
+      
+      // Navigate to dashboard
+      setLoading(false);
       navigate('/localhost/dashboard');
     } catch (err) {
-      setError('Er is iets misgegaan. Probeer opnieuw.');
-    } finally {
+      console.error('Login error:', err);
+      setError('Netwerkfout. Controleer je verbinding en probeer opnieuw.');
       setLoading(false);
     }
   };
