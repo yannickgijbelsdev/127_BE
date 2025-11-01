@@ -494,6 +494,22 @@ async def update_tool(tool_id: str, tool_data: dict, current_admin: User = Depen
     
     return {"message": "Tool updated successfully"}
 
+# ==================== PUBLIC TOOL STATUS ENDPOINTS ====================
+
+@api_router.get("/tools")
+async def get_enabled_tools():
+    """Get all enabled tools (publicly accessible)"""
+    tools = await db.tools.find({"enabled": True}, {"_id": 0, "code": 0, "file_path": 0}).to_list(1000)
+    return tools
+
+@api_router.get("/tools/{tool_id}/status")
+async def get_tool_status(tool_id: str):
+    """Check if a specific tool is enabled (publicly accessible)"""
+    tool = await db.tools.find_one({"id": tool_id}, {"_id": 0, "enabled": 1, "name": 1})
+    if not tool:
+        raise HTTPException(status_code=404, detail="Tool not found")
+    return {"id": tool_id, "enabled": tool.get("enabled", True), "name": tool.get("name", "")}
+
 # ==================== ANALYTICS ENDPOINTS ====================
 
 @api_router.post("/analytics/event")
