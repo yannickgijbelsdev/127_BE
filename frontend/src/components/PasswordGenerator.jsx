@@ -422,31 +422,39 @@ const PasswordGenerator = () => {
         </div>
       )}
 
-      <div className="max-w-4xl mx-auto">
-        {/* Header */}
-        <div className="text-center mb-8">
-          <img 
-            src="https://customer-assets.emergentagent.com/job_tool-metrics/artifacts/w5126i9x_127_2025_Official_Logo.png" 
-            alt="127 Logo" 
-            className="w-24 h-auto mx-auto mb-4 brightness-110"
-           draggable="false"/>
-          <h1 className="text-3xl font-bold text-[#e8eaed] mb-2">Wachtwoord Generator</h1>
-          <p className="text-[#9aa0a6]">Maak veilige wachtwoorden en test de sterkte</p>
-          <button 
-            onClick={() => setShowChangelog(true)}
-            className="text-xs text-[#8ab4f8] hover:text-[#aac8f9] mt-2 cursor-pointer underline"
-          >
-            Build {BUILD_VERSION}
-          </button>
-        </div>
+      <div className="relative z-10 min-h-screen py-8 px-4">
+        <div className="max-w-4xl mx-auto">
+          {/* Header */}
+          <div className="text-center mb-8">
+            <h1 className="text-3xl font-bold text-white mb-2">Wachtwoord Generator</h1>
+            <p className="text-white text-opacity-70">Maak veilige wachtwoorden en test de sterkte</p>
+            <button 
+              onClick={() => setShowChangelog(true)}
+              className="text-xs cursor-pointer hover:opacity-100 transition-opacity mt-2"
+              style={{
+                color: '#8fa8ff',
+                opacity: 0.8
+              }}
+            >
+              Build {BUILD_VERSION}
+            </button>
+          </div>
 
-        <div className="grid md:grid-cols-2 gap-6">
-          {/* Generator Section */}
-          <div className="bg-[#303134] rounded-lg p-6 border border-[#5f6368]">
-            <div className="flex items-center gap-2 mb-4">
-              <Lock className="w-5 h-5 text-[#8ab4f8]" />
-              <h2 className="text-xl font-semibold text-[#e8eaed]">Genereer Wachtwoord</h2>
-            </div>
+          <div className="grid md:grid-cols-2 gap-6">
+            {/* Generator Section */}
+            <div 
+              className="rounded-3xl p-8 border"
+              style={{
+                background: 'rgba(0, 0, 0, 0.5)',
+                backdropFilter: 'blur(20px)',
+                WebkitBackdropFilter: 'blur(20px)',
+                borderColor: 'rgba(255, 255, 255, 0.05)'
+              }}
+            >
+              <div className="flex items-center gap-2 mb-6">
+                <Lock className="w-5 h-5 text-white text-opacity-80" />
+                <h2 className="text-xl font-semibold text-white">Genereer Wachtwoord</h2>
+              </div>
 
             {/* Generated Password Display */}
             <div className="mb-6">
