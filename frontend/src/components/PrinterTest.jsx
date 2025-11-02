@@ -599,7 +599,7 @@ const PrinterTest = () => {
 
               {/* Number of pages */}
               <div>
-                <Label htmlFor="pages" className="text-white mb-2 block text-lg">Aantal pagina's</Label>
+                <Label htmlFor="pages" className="text-white mb-2 block text-lg">{t('Aantal pagina\'s', 'Number of pages')}</Label>
                 <Input
                   id="pages"
                   type="number"
