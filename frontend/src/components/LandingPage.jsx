@@ -367,10 +367,10 @@ const LandingPage = () => {
                               </div>
                               <div className="flex-1">
                                 <div className="text-base font-medium text-white">
-                                  Mis je nog een tool?
+                                  {t('Mis je nog een tool?', 'Missing a tool?')}
                                 </div>
                                 <div className="text-sm text-white text-opacity-70 mt-0.5">
-                                  Laat het ons weten en we kijken wat we kunnen doen!
+                                  {t('Laat het ons weten en we kijken wat we kunnen doen!', 'Let us know and we\'ll see what we can do!')}
                                 </div>
                               </div>
                             </div>
@@ -401,10 +401,10 @@ const LandingPage = () => {
                               </div>
                               <div className="flex-1">
                                 <div className="text-base font-medium text-white">
-                                  Mis je nog een tool?
+                                  {t('Mis je nog een tool?', 'Missing a tool?')}
                                 </div>
                                 <div className="text-sm text-white text-opacity-70 mt-0.5">
-                                  Laat het ons weten en we kijken wat we kunnen doen!
+                                  {t('Laat het ons weten en we kijken wat we kunnen doen!', 'Let us know and we\'ll see what we can do!')}
                                 </div>
                               </div>
                             </div>
