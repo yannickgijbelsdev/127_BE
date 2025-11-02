@@ -28,6 +28,7 @@ const WebcamAudioTest = () => {
   const [permissionError, setPermissionError] = useState('');
   const [audioLevel, setAudioLevel] = useState(0);
   const [recordedMimeType, setRecordedMimeType] = useState('video/webm');
+  const [backgroundImage, setBackgroundImage] = useState('');
   
   const videoRef = useRef(null);
   const mediaRecorderRef = useRef(null);
@@ -39,6 +40,32 @@ const WebcamAudioTest = () => {
   const analyserRef = useRef(null);
   const animationFrameRef = useRef(null);
   const canvasRef = useRef(null);
+
+  // Fetch random background image from Unsplash
+  useEffect(() => {
+    const fetchBackgroundImage = async () => {
+      try {
+        const response = await fetch(
+          'https://api.unsplash.com/photos/random?query=abstract,technology,minimal&orientation=landscape',
+          {
+            headers: {
+              Authorization: 'Client-ID rS3f7X0URqQ1BDPKC3tZ3kSEo_P7S9KR_gm6_S8h-T0'
+            }
+          }
+        );
+        
+        if (response.ok) {
+          const data = await response.json();
+          setBackgroundImage(data.urls.regular);
+        }
+      } catch (error) {
+        console.error('Error fetching Unsplash image:', error);
+        setBackgroundImage('');
+      }
+    };
+
+    fetchBackgroundImage();
+  }, []);
 
   // Loading animation (1 second)
   useEffect(() => {
