@@ -209,11 +209,11 @@ function AppContent() {
 
 function App() {
   return (
-    <div className="App">
+    <LanguageProvider>
       <BrowserRouter>
         <AppContent />
       </BrowserRouter>
-    </div>
+    </LanguageProvider>
   );
 }
 
