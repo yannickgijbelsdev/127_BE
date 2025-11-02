@@ -408,13 +408,13 @@ const LandingPage = () => {
                       background: 'rgba(150, 180, 255, 0.25)',
                       backdropFilter: 'blur(8px)',
                       WebkitBackdropFilter: 'blur(8px)',
-                      border: '1px solid rgba(150, 180, 255, 0.4)',
+                      border: '1px solid rgba(150, 180, 255, 0.15)',
                       color: '#cfe1ff',
                       fontFamily: 'Inter, sans-serif'
                     }}
                     onMouseEnter={(e) => {
                       e.currentTarget.style.background = 'rgba(150, 180, 255, 0.35)';
-                      e.currentTarget.style.boxShadow = '0 0 20px rgba(150, 180, 255, 0.3)';
+                      e.currentTarget.style.boxShadow = '';
                     }}
                     onMouseLeave={(e) => {
                       e.currentTarget.style.background = 'rgba(150, 180, 255, 0.25)';
