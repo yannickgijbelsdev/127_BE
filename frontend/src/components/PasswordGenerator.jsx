@@ -551,7 +551,11 @@ const PasswordGenerator = () => {
                 value={customPassword}
                 onChange={(e) => setCustomPassword(e.target.value)}
                 placeholder="Voer je wachtwoord in..."
-                className="w-full bg-[#202124] text-[#e8eaed] px-4 py-3 rounded-lg border border-[#5f6368] font-mono text-sm placeholder-[#5f6368]"
+                className="w-full text-white px-4 py-3 rounded-lg font-mono text-sm placeholder-white placeholder-opacity-40"
+                style={{
+                  background: 'rgba(255, 255, 255, 0.05)',
+                  border: '1px solid rgba(255, 255, 255, 0.1)'
+                }}
               />
             </div>
 
@@ -560,7 +564,7 @@ const PasswordGenerator = () => {
               <div className="space-y-4">
                 <div>
                   <div className="flex justify-between items-center mb-2">
-                    <span className="text-sm text-[#9aa0a6]">Sterkte</span>
+                    <span className="text-sm text-white text-opacity-70">Sterkte</span>
                     <span 
                       className="text-sm font-semibold"
                       style={{ color: strength.color }}
@@ -568,7 +572,10 @@ const PasswordGenerator = () => {
                       {strength.label}
                     </span>
                   </div>
-                  <div className="w-full h-3 bg-[#202124] rounded-full overflow-hidden">
+                  <div 
+                    className="w-full h-3 rounded-full overflow-hidden"
+                    style={{ background: 'rgba(255, 255, 255, 0.1)' }}
+                  >
                     <div
                       className="h-full transition-all duration-500"
                       style={{
@@ -577,7 +584,7 @@ const PasswordGenerator = () => {
                       }}
                     />
                   </div>
-                  <p className="text-xs text-[#9aa0a6] mt-1 text-right">{strength.score}/100</p>
+                  <p className="text-xs text-white text-opacity-60 mt-1 text-right">{strength.score}/100</p>
                 </div>
 
                 {/* Autosoft01 Warning */}
