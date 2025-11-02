@@ -380,7 +380,7 @@ const LandingPage = () => {
                     ) : (
                       <>
                         <div className="px-6 py-8 text-center text-white text-opacity-70">
-                          Geen tools gevonden
+                          {t('Geen tools gevonden', 'No tools found')}
                         </div>
                         
                         {/* Tool suggestion for no results */}
