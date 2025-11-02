@@ -86,47 +86,47 @@ const LandingPage = () => {
     'password': Lock
   };
 
-  // All available tools metadata
+  // All available tools metadata with translations
   const allToolsMetadata = [
     {
       id: 'dpd',
-      name: 'Dead Pixel Detector',
-      description: 'Test je scherm op dode pixels',
+      name: t('Dead Pixel Detector', 'Dead Pixel Detector'),
+      description: t('Test je scherm op dode pixels', 'Test your screen for dead pixels'),
       icon: Monitor,
       path: '/dpd',
-      keywords: ['pixel', 'scherm', 'test', 'dead', 'monitor', 'display']
+      keywords: ['pixel', 'scherm', 'test', 'dead', 'monitor', 'display', 'screen']
     },
     {
       id: 'printer',
-      name: 'Printer Tester',
-      description: 'Test je printer met verschillende patronen',
+      name: t('Printer Tester', 'Printer Tester'),
+      description: t('Test je printer met verschillende patronen', 'Test your printer with different patterns'),
       icon: Printer,
       path: '/printer',
-      keywords: ['print', 'printer', 'test', 'papier', 'kleur', 'pattern']
+      keywords: ['print', 'printer', 'test', 'papier', 'paper', 'kleur', 'color', 'pattern']
     },
     {
       id: 'sscreen',
-      name: 'Screen Refresh Tester',
-      description: 'Meet de refresh rate van je scherm',
+      name: t('Screen Refresh Tester', 'Screen Refresh Tester'),
+      description: t('Meet de refresh rate van je scherm', 'Measure your screen refresh rate'),
       icon: Activity,
       path: '/sscreen',
-      keywords: ['refresh', 'rate', 'fps', 'hz', 'scherm', 'speed']
+      keywords: ['refresh', 'rate', 'fps', 'hz', 'scherm', 'screen', 'speed']
     },
     {
       id: 'wea',
-      name: 'Webcam & Audio Tester',
-      description: 'Test je webcam en microfoon',
+      name: t('Webcam & Audio Tester', 'Webcam & Audio Tester'),
+      description: t('Test je webcam en microfoon', 'Test your webcam and microphone'),
       icon: Video,
       path: '/wea',
       keywords: ['webcam', 'camera', 'audio', 'microfoon', 'microphone', 'test']
     },
     {
       id: 'password',
-      name: 'Password Generator',
-      description: 'Genereer veilige wachtwoorden',
+      name: t('Wachtwoord Generator', 'Password Generator'),
+      description: t('Genereer veilige wachtwoorden', 'Generate secure passwords'),
       icon: Lock,
       path: '/password',
-      keywords: ['password', 'wachtwoord', 'generator', 'veilig', 'security']
+      keywords: ['password', 'wachtwoord', 'generator', 'veilig', 'security', 'secure']
     },
   ];
 
