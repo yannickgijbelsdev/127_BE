@@ -131,8 +131,8 @@ const ToolSuggestionModal = ({ isOpen, onClose }) => {
               <div className="flex items-center gap-3">
                 <Lightbulb className="w-8 h-8 text-white text-opacity-90" />
                 <div>
-                  <h2 className="text-xl font-bold text-white">Stel een tool voor</h2>
-                  <p className="text-sm text-white text-opacity-70">Mis je een tool? Laat het ons weten!</p>
+                  <h2 className="text-xl font-bold text-white">{t('Stel een tool voor', 'Suggest a tool')}</h2>
+                  <p className="text-sm text-white text-opacity-70">{t('Mis je een tool? Laat het ons weten!', 'Missing a tool? Let us know!')}</p>
                 </div>
               </div>
             </div>
