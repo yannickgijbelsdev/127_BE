@@ -190,8 +190,8 @@ const FloatingFeedbackButton = ({ hideOnFullscreen = false }) => {
                     <MessageSquare className="w-8 h-8 text-green-400" />
                   </div>
                 </div>
-                <h3 className="text-2xl font-bold text-white mb-2">Bedankt!</h3>
-                <p className="text-white text-opacity-70">Je feedback is verzonden.</p>
+                <h3 className="text-2xl font-bold text-white mb-2">{t('Bedankt!', 'Thank you!')}</h3>
+                <p className="text-white text-opacity-70">{t('Je feedback is verzonden.', 'Your feedback has been sent.')}</p>
               </div>
             ) : (
               <>
