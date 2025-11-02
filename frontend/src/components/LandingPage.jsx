@@ -471,7 +471,7 @@ const LandingPage = () => {
                     }}
                   >
                     <Plus className="w-4 h-4" />
-                    Tool Voorstellen
+                    {t('Tool Voorstellen', 'Suggest Tool')}
                   </button>
                 </div>
               )}
