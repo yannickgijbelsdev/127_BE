@@ -547,32 +547,66 @@ const PrinterTest = () => {
 
   if (showConfig) {
     return (
-      <div className="min-h-screen bg-[#202124] flex items-center justify-center px-6">
-        <div className="w-full max-w-2xl">
-          <div className="bg-[#303134] backdrop-blur-sm rounded-lg shadow-2xl p-8 border border-[#5f6368]">
-            <div className="mb-6 flex flex-col items-center">
-              <img 
-                src="https://customer-assets.emergentagent.com/job_tool-metrics/artifacts/w5126i9x_127_2025_Official_Logo.png" 
-                alt="127 Logo" 
-                className="w-32 h-auto mb-4 brightness-110"
-               draggable="false"/>
-              <h2 className="text-2xl font-bold text-[#e8eaed] mb-2">Printer Tester</h2>
-              <p className="text-[#9aa0a6]">Test uw printer op kwaliteit</p>
-              <button 
-                onClick={(e) => {
-                  e.stopPropagation();
-                  setShowChangelog(true);
-                }}
-                className="text-xs text-[#8ab4f8] hover:text-[#aac8f9] mt-2 cursor-pointer underline"
-              >
-                Build {BUILD_VERSION}
-              </button>
-            </div>
+      <div className="min-h-screen relative overflow-hidden">
+        {/* Unsplash Background */}
+        <div className="absolute inset-0 z-0 overflow-hidden">
+          {backgroundImage ? (
+            <div
+              className="w-full h-full bg-cover bg-center"
+              style={{
+                backgroundImage: `url(${backgroundImage})`,
+                filter: 'blur(1.5px) brightness(0.5)',
+                transform: 'scale(1.05)',
+                width: '105%',
+                height: '105%',
+                marginLeft: '-2.5%',
+                marginTop: '-2.5%'
+              }}
+            />
+          ) : (
+            <div
+              className="w-full h-full"
+              style={{
+                background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+                filter: 'blur(1.5px) brightness(0.5)',
+                transform: 'scale(1.05)'
+              }}
+            />
+          )}
+          <div className="absolute inset-0 bg-black bg-opacity-60"></div>
+        </div>
 
-            <div className="space-y-6">
+        {/* 127 Logo Top Left */}
+        <div className="absolute top-8 left-8 z-30">
+          <Link to="/">
+            <img 
+              src="https://customer-assets.emergentagent.com/job_tool-metrics/artifacts/w5126i9x_127_2025_Official_Logo.png" 
+              alt="127 Logo" 
+              className="h-12 w-auto brightness-110 cursor-pointer hover:brightness-125 transition-all"
+              draggable="false"
+            />
+          </Link>
+        </div>
+
+        {/* Config Content */}
+        <div className="relative z-10 min-h-screen flex items-center justify-center p-4">
+          <div 
+            className="w-full max-w-2xl p-12 rounded-3xl"
+            style={{
+              background: 'rgba(0, 0, 0, 0.5)',
+              backdropFilter: 'blur(20px)',
+              WebkitBackdropFilter: 'blur(20px)'
+            }}
+          >
+            <div className="space-y-8">
+              <div className="text-center">
+                <h2 className="text-3xl font-bold text-white mb-2">Printer Tester</h2>
+                <p className="text-white text-opacity-70">Test uw printer op kwaliteit</p>
+              </div>
+
               {/* Number of pages */}
               <div>
-                <Label htmlFor="pages" className="text-[#e8eaed] mb-2 block">Aantal pagina's</Label>
+                <Label htmlFor="pages" className="text-white mb-2 block text-lg">Aantal pagina's</Label>
                 <Input
                   id="pages"
                   type="number"
@@ -580,15 +614,25 @@ const PrinterTest = () => {
                   max="10"
                   value={numPages}
                   onChange={(e) => setNumPages(Math.min(10, Math.max(1, parseInt(e.target.value) || 1)))}
-                  className="bg-[#202124] border-[#5f6368] text-[#e8eaed]"
+                  className="bg-white bg-opacity-10 border-white border-opacity-20 text-white placeholder-white placeholder-opacity-50"
+                  style={{
+                    backdropFilter: 'blur(8px)',
+                    WebkitBackdropFilter: 'blur(8px)'
+                  }}
                 />
               </div>
 
               {/* Test options */}
-              <div className="bg-[#202124] border border-[#5f6368] rounded-lg p-4">
-                <h3 className="font-semibold text-[#8ab4f8] mb-3">Selecteer testen:</h3>
-                <div className="space-y-3">
-                  <div className="flex items-center space-x-2">
+              <div 
+                className="p-6 rounded-2xl"
+                style={{
+                  background: 'rgba(255, 255, 255, 0.05)',
+                  border: '1px solid rgba(255, 255, 255, 0.05)'
+                }}
+              >
+                <h3 className="font-semibold text-white text-lg mb-4">Selecteer testen:</h3>
+                <div className="space-y-4">
+                  <div className="flex items-center space-x-3">
                     <Checkbox 
                       id="text"
                       checked={includeText}
@@ -599,13 +643,13 @@ const PrinterTest = () => {
                           enabled: checked
                         });
                       }}
-                      className="border-[#5f6368]"
+                      className="border-white border-opacity-30"
                     />
-                    <label htmlFor="text" className="text-sm text-[#9aa0a6] cursor-pointer">
+                    <label htmlFor="text" className="text-white text-opacity-80 cursor-pointer">
                       Teksttest (verschillende groottes)
                     </label>
                   </div>
-                  <div className="flex items-center space-x-2">
+                  <div className="flex items-center space-x-3">
                     <Checkbox 
                       id="colors"
                       checked={includeColorBars}
@@ -616,13 +660,13 @@ const PrinterTest = () => {
                           enabled: checked
                         });
                       }}
-                      className="border-[#5f6368]"
+                      className="border-white border-opacity-30"
                     />
-                    <label htmlFor="colors" className="text-sm text-[#9aa0a6] cursor-pointer">
+                    <label htmlFor="colors" className="text-white text-opacity-80 cursor-pointer">
                       Kleurenbalken (RGB, CMY, gradiënt)
                     </label>
                   </div>
-                  <div className="flex items-center space-x-2">
+                  <div className="flex items-center space-x-3">
                     <Checkbox 
                       id="lines"
                       checked={includeLines}
@@ -633,13 +677,13 @@ const PrinterTest = () => {
                           enabled: checked
                         });
                       }}
-                      className="border-[#5f6368]"
+                      className="border-white border-opacity-30"
                     />
-                    <label htmlFor="lines" className="text-sm text-[#9aa0a6] cursor-pointer">
+                    <label htmlFor="lines" className="text-white text-opacity-80 cursor-pointer">
                       Lijntest (rechtheid en dikte)
                     </label>
                   </div>
-                  <div className="flex items-center space-x-2">
+                  <div className="flex items-center space-x-3">
                     <Checkbox 
                       id="alignment"
                       checked={includeAlignment}
@@ -650,9 +694,9 @@ const PrinterTest = () => {
                           enabled: checked
                         });
                       }}
-                      className="border-[#5f6368]"
+                      className="border-white border-opacity-30"
                     />
-                    <label htmlFor="alignment" className="text-sm text-[#9aa0a6] cursor-pointer">
+                    <label htmlFor="alignment" className="text-white text-opacity-80 cursor-pointer">
                       Uitlijningsraster (marges en centering)
                     </label>
                   </div>
@@ -661,23 +705,61 @@ const PrinterTest = () => {
 
               {/* Action buttons */}
               <div className="space-y-3">
-                <Button 
+                <button 
                   onClick={handlePrint}
-                  className="w-full bg-[#8ab4f8] hover:bg-[#aac8f9] text-[#202124] font-medium"
+                  className="w-full px-6 py-4 rounded-full font-medium transition-all flex items-center justify-center gap-2"
+                  style={{
+                    background: 'rgba(150, 180, 255, 0.25)',
+                    backdropFilter: 'blur(8px)',
+                    WebkitBackdropFilter: 'blur(8px)',
+                    border: '1px solid rgba(150, 180, 255, 0.15)',
+                    color: '#cfe1ff'
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.background = 'rgba(150, 180, 255, 0.35)';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.background = 'rgba(150, 180, 255, 0.25)';
+                  }}
                 >
-                  <Printer className="w-4 h-4 mr-2" />
+                  <Printer className="w-4 h-4" />
                   Genereer en Print
-                </Button>
+                </button>
                 
-                <Link to="/" onClick={(e) => e.stopPropagation()}>
-                  <Button 
-                    variant="outline"
-                    className="w-full border-[#5f6368] text-[#e8eaed] hover:bg-[#3c4043]"
+                <Link to="/">
+                  <button 
+                    className="w-full px-6 py-4 rounded-full font-medium transition-all flex items-center justify-center gap-2"
+                    style={{
+                      background: 'rgba(255, 255, 255, 0.08)',
+                      backdropFilter: 'blur(8px)',
+                      WebkitBackdropFilter: 'blur(8px)',
+                      border: '1px solid rgba(255, 255, 255, 0.05)',
+                      color: '#ffffff'
+                    }}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.background = 'rgba(255, 255, 255, 0.15)';
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.background = 'rgba(255, 255, 255, 0.08)';
+                    }}
                   >
-                    <ArrowLeft className="w-4 h-4 mr-2" />
+                    <ArrowLeft className="w-4 h-4" />
                     Bekijk ook andere tools
-                  </Button>
+                  </button>
                 </Link>
+              </div>
+
+              <div className="text-center">
+                <button
+                  onClick={() => setShowChangelog(true)}
+                  className="text-xs cursor-pointer hover:opacity-100 transition-opacity"
+                  style={{
+                    color: '#8fa8ff',
+                    opacity: 0.8
+                  }}
+                >
+                  Build {BUILD_VERSION}
+                </button>
               </div>
             </div>
           </div>
