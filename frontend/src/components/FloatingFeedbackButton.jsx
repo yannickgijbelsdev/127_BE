@@ -160,7 +160,7 @@ const FloatingFeedbackButton = ({ hideOnFullscreen = false }) => {
             border: '1px solid rgba(150, 180, 255, 0.15)',
             color: '#cfe1ff'
           }}
-          title="Geef feedback"
+          title={t('Geef feedback', 'Give feedback')}
           onMouseEnter={(e) => e.currentTarget.style.background = 'rgba(150, 180, 255, 0.35)'}
           onMouseLeave={(e) => e.currentTarget.style.background = 'rgba(150, 180, 255, 0.25)'}
         >
