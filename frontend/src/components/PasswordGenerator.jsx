@@ -699,34 +699,50 @@ const PasswordGenerator = () => {
 
         {/* Memorable Password Form Modal */}
         {showMemorableForm && (
-          <div className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50 px-4">
-            <div className="bg-[#303134] rounded-lg p-6 max-w-md w-full border border-[#5f6368]">
-              <h2 className="text-xl font-bold text-[#e8eaed] mb-4">Maak een Memorabel Wachtwoord</h2>
-              <p className="text-sm text-[#9aa0a6] mb-4">
+          <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 px-4 backdrop-blur-sm">
+            <div 
+              className="rounded-3xl p-8 max-w-md w-full"
+              style={{
+                background: 'rgba(0, 0, 0, 0.7)',
+                backdropFilter: 'blur(20px)',
+                WebkitBackdropFilter: 'blur(20px)',
+                border: '1px solid rgba(255, 255, 255, 0.1)'
+              }}
+            >
+              <h2 className="text-xl font-bold text-white mb-4">Maak een Memorabel Wachtwoord</h2>
+              <p className="text-sm text-white text-opacity-70 mb-4">
                 Vul je favoriete dingen in om een sterk maar makkelijk te onthouden wachtwoord te maken
               </p>
               
               <div className="space-y-4">
                 <div>
-                  <label className="block text-sm text-[#9aa0a6] mb-1">Jouw interesse of hobby</label>
+                  <label className="block text-sm text-white text-opacity-70 mb-1">Jouw interesse of hobby</label>
                   <input
                     type="text"
                     value={memorableInputs.interest}
                     onChange={(e) => setMemorableInputs({...memorableInputs, interest: e.target.value})}
                     placeholder="bijv. Voetbal, Muziek, Reizen"
-                    className="w-full bg-[#202124] text-[#e8eaed] px-4 py-2 rounded-lg border border-[#5f6368] text-sm"
+                    className="w-full text-white px-4 py-2 rounded-lg text-sm placeholder-white placeholder-opacity-40"
+                    style={{
+                      background: 'rgba(255, 255, 255, 0.05)',
+                      border: '1px solid rgba(255, 255, 255, 0.1)'
+                    }}
                   />
                 </div>
                 
                 <div>
-                  <label className="block text-sm text-[#9aa0a6] mb-1">Belangrijk jaar</label>
+                  <label className="block text-sm text-white text-opacity-70 mb-1">Belangrijk jaar</label>
                   <input
                     type="text"
                     value={memorableInputs.year}
                     onChange={(e) => setMemorableInputs({...memorableInputs, year: e.target.value})}
                     placeholder="bijv. 1990, 2024"
                     maxLength="4"
-                    className="w-full bg-[#202124] text-[#e8eaed] px-4 py-2 rounded-lg border border-[#5f6368] text-sm"
+                    className="w-full text-white px-4 py-2 rounded-lg text-sm placeholder-white placeholder-opacity-40"
+                    style={{
+                      background: 'rgba(255, 255, 255, 0.05)',
+                      border: '1px solid rgba(255, 255, 255, 0.1)'
+                    }}
                   />
                 </div>
                 
