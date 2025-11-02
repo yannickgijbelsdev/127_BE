@@ -18,9 +18,20 @@ const LandingPage = () => {
   const [loadingTools, setLoadingTools] = useState(true);
   const [backgroundImage, setBackgroundImage] = useState('');
 
-  // Fetch random background video from Pexels for landing page
+  // Fetch random background video from Pexels for landing page - with caching
   useEffect(() => {
     const fetchBackgroundVideo = async () => {
+      // Check if we have a cached video URL (valid for 1 hour)
+      const cachedVideo = localStorage.getItem('landingPageVideo');
+      const cachedTime = localStorage.getItem('landingPageVideoTime');
+      const oneHour = 60 * 60 * 1000;
+      
+      if (cachedVideo && cachedTime && (Date.now() - parseInt(cachedTime)) < oneHour) {
+        setBackgroundImage(cachedVideo);
+        console.log('Using cached Pexels video');
+        return;
+      }
+
       try {
         // Random page between 1-5 for variety - tech/hacking/working theme
         const randomPage = Math.floor(Math.random() * 5) + 1;
@@ -41,7 +52,11 @@ const LandingPage = () => {
             // Use HD quality video file
             const videoFile = randomVideo.video_files.find(file => file.quality === 'hd') || randomVideo.video_files[0];
             setBackgroundImage(videoFile.link);
-            console.log('Pexels video loaded:', videoFile.link);
+            
+            // Cache the video URL
+            localStorage.setItem('landingPageVideo', videoFile.link);
+            localStorage.setItem('landingPageVideoTime', Date.now().toString());
+            console.log('Pexels video loaded and cached:', videoFile.link);
           }
         }
       } catch (error) {
@@ -51,7 +66,7 @@ const LandingPage = () => {
     };
 
     fetchBackgroundVideo();
-  }, []);
+  }, []); // Empty dependency array - only run once on mount
 
   // Icon mapping for tools
   const iconMap = {
