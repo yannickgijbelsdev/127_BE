@@ -4,6 +4,7 @@ import { Search, Monitor, Printer, Activity, Video, Lock, Plus } from 'lucide-re
 import FloatingFeedbackButton from './FloatingFeedbackButton';
 import ChangelogModal from './ChangelogModal';
 import ToolSuggestionModal from './ToolSuggestionModal';
+import LanguageToggle from './LanguageToggle';
 import { logPageVisit, logAction, logButtonClick } from '../utils/analytics';
 
 // Build version - Update this with each change
