@@ -232,6 +232,7 @@ const WebcamAudioTest = () => {
     }
     
     console.log('Using MIME type:', mimeType);
+    setRecordedMimeType(mimeType);
     
     const mediaRecorder = new MediaRecorder(stream, { mimeType });
 
