@@ -552,23 +552,43 @@ const WebcamAudioTest = () => {
         </div>
       </div>
 
-      {/* Video Display */}
-      <div className="flex-1 flex items-center justify-center p-8">
-        <div className="relative">
+      {/* Video and Audio Display */}
+      <div className="flex-1 flex flex-col items-center justify-center p-8 gap-6">
+        {/* Video Display - Large */}
+        <div className="relative w-full max-w-4xl">
           <video 
             ref={videoRef}
             autoPlay
             playsInline
             muted
-            className="border-4 border-[#5f6368] rounded-lg shadow-2xl max-w-full"
-            style={{ maxHeight: '70vh' }}
+            className="w-full border-4 border-[#5f6368] rounded-lg shadow-2xl bg-[#000]"
+            style={{ aspectRatio: '16/9' }}
           />
           {isRecording && (
-            <div className="absolute top-4 left-4 bg-red-600 text-white px-3 py-1 rounded-full flex items-center gap-2 animate-pulse">
-              <Circle className="w-3 h-3 fill-current" />
-              <span className="text-sm font-medium">OPNAME</span>
+            <div className="absolute top-4 left-4 bg-red-600 text-white px-4 py-2 rounded-full flex items-center gap-2 animate-pulse">
+              <Circle className="w-4 h-4 fill-current" />
+              <span className="font-medium">OPNAME {formatTime(recordingTime)}</span>
             </div>
           )}
+        </div>
+
+        {/* Audio Visualizer */}
+        <div className="w-full max-w-4xl">
+          <div className="bg-[#303134] p-6 rounded-lg border border-[#5f6368]">
+            <div className="flex items-center justify-between mb-3">
+              <div className="flex items-center gap-2">
+                <Mic className="w-5 h-5 text-[#8ab4f8]" />
+                <span className="text-[#e8eaed] font-medium">Audio Niveau</span>
+              </div>
+              <span className="text-[#8ab4f8] font-mono text-lg">{audioLevel}%</span>
+            </div>
+            <canvas 
+              ref={canvasRef}
+              width={800}
+              height={100}
+              className="w-full h-24 rounded border border-[#5f6368]"
+            />
+          </div>
         </div>
       </div>
     </div>
