@@ -86,6 +86,9 @@ const WebcamAudioTest = () => {
         videoRef.current.srcObject = mediaStream;
       }
 
+      // Setup audio visualizer
+      setupAudioVisualizer(mediaStream);
+
       // Get device info
       const devices = await navigator.mediaDevices.enumerateDevices();
       const videoDevice = devices.find(d => d.kind === 'videoinput');
@@ -130,6 +133,73 @@ const WebcamAudioTest = () => {
       
       setPermissionError(errorMessage);
     }
+  };
+
+  const setupAudioVisualizer = (mediaStream) => {
+    try {
+      const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+      const analyser = audioContext.createAnalyser();
+      const source = audioContext.createMediaStreamSource(mediaStream);
+      
+      analyser.fftSize = 256;
+      source.connect(analyser);
+      
+      audioContextRef.current = audioContext;
+      analyserRef.current = analyser;
+      
+      // Start visualization
+      visualizeAudio();
+    } catch (error) {
+      console.error('Error setting up audio visualizer:', error);
+    }
+  };
+
+  const visualizeAudio = () => {
+    if (!analyserRef.current || !canvasRef.current) return;
+    
+    const canvas = canvasRef.current;
+    const canvasContext = canvas.getContext('2d');
+    const analyser = analyserRef.current;
+    const bufferLength = analyser.frequencyBinCount;
+    const dataArray = new Uint8Array(bufferLength);
+    
+    const draw = () => {
+      animationFrameRef.current = requestAnimationFrame(draw);
+      
+      analyser.getByteFrequencyData(dataArray);
+      
+      // Clear canvas
+      canvasContext.fillStyle = '#202124';
+      canvasContext.fillRect(0, 0, canvas.width, canvas.height);
+      
+      const barWidth = (canvas.width / bufferLength) * 2.5;
+      let barHeight;
+      let x = 0;
+      
+      // Draw frequency bars
+      for (let i = 0; i < bufferLength; i++) {
+        barHeight = (dataArray[i] / 255) * canvas.height;
+        
+        // Create gradient from blue to green based on intensity
+        const intensity = dataArray[i] / 255;
+        if (intensity > 0.7) {
+          canvasContext.fillStyle = '#34d399'; // Green
+        } else if (intensity > 0.4) {
+          canvasContext.fillStyle = '#8ab4f8'; // Blue
+        } else {
+          canvasContext.fillStyle = '#5f6368'; // Gray
+        }
+        
+        canvasContext.fillRect(x, canvas.height - barHeight, barWidth, barHeight);
+        x += barWidth + 1;
+      }
+      
+      // Calculate average audio level
+      const average = dataArray.reduce((a, b) => a + b, 0) / bufferLength;
+      setAudioLevel(Math.round((average / 255) * 100));
+    };
+    
+    draw();
   };
 
   const startRecording = () => {
