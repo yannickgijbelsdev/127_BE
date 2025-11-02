@@ -594,7 +594,7 @@ const PrinterTest = () => {
             <div className="space-y-8">
               <div className="text-center">
                 <h2 className="text-3xl font-bold text-white mb-2">Printer Tester</h2>
-                <p className="text-white text-opacity-70">Test uw printer op kwaliteit</p>
+                <p className="text-white text-opacity-70">{t('Test uw printer op kwaliteit', 'Test your printer quality')}</p>
               </div>
 
               {/* Number of pages */}
