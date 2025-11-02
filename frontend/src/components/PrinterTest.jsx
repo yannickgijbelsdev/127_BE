@@ -552,35 +552,7 @@ const PrinterTest = () => {
 
   if (showConfig) {
     return (
-      <div className="min-h-screen relative overflow-hidden">
-        {/* Pexels Background */}
-        <div className="absolute inset-0 z-0 overflow-hidden">
-          {backgroundImage ? (
-            <div
-              className="w-full h-full bg-cover bg-center"
-              style={{
-                backgroundImage: `url(${backgroundImage})`,
-                filter: 'blur(1.5px) brightness(0.95)',
-                transform: 'scale(1.05)',
-                width: '105%',
-                height: '105%',
-                marginLeft: '-2.5%',
-                marginTop: '-2.5%'
-              }}
-            />
-          ) : (
-            <div
-              className="w-full h-full"
-              style={{
-                background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
-                filter: 'blur(1.5px) brightness(0.95)',
-                transform: 'scale(1.05)'
-              }}
-            />
-          )}
-          <div className="absolute inset-0 bg-black bg-opacity-10"></div>
-        </div>
-
+      <div className="min-h-screen bg-[#202124] py-8 px-4">
         {/* 127 Logo Top Left */}
         <div className="absolute top-8 left-8 z-30">
           <Link to="/">
@@ -594,13 +566,14 @@ const PrinterTest = () => {
         </div>
 
         {/* Config Content */}
-        <div className="relative z-10 min-h-screen flex items-center justify-center p-4">
+        <div className="flex items-center justify-center min-h-screen">
           <div 
             className="w-full max-w-2xl p-12 rounded-3xl"
             style={{
               background: 'rgba(0, 0, 0, 0.5)',
               backdropFilter: 'blur(20px)',
-              WebkitBackdropFilter: 'blur(20px)'
+              WebkitBackdropFilter: 'blur(20px)',
+              border: '1px solid rgba(255, 255, 255, 0.1)'
             }}
           >
             <div className="space-y-8">
