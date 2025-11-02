@@ -187,18 +187,25 @@ const LandingPage = () => {
   return (
     <>
       <div className="min-h-screen relative overflow-hidden">
-        {/* Video Background with Blur */}
+        {/* Image Background with Blur from Unsplash */}
         <div className="absolute inset-0 z-0">
-          <video
-            autoPlay
-            loop
-            muted
-            playsInline
-            className="w-full h-full object-cover"
-            style={{ filter: 'blur(10px) brightness(0.6)' }}
-          >
-            <source src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4" type="video/mp4" />
-          </video>
+          {backgroundImage ? (
+            <div
+              className="w-full h-full bg-cover bg-center"
+              style={{
+                backgroundImage: `url(${backgroundImage})`,
+                filter: 'blur(10px) brightness(0.6)'
+              }}
+            />
+          ) : (
+            <div
+              className="w-full h-full"
+              style={{
+                background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+                filter: 'blur(10px) brightness(0.6)'
+              }}
+            />
+          )}
           {/* Dark Overlay */}
           <div className="absolute inset-0 bg-black bg-opacity-50"></div>
         </div>
