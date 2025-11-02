@@ -77,13 +77,19 @@ const WebcamAudioTest = () => {
   const startCamera = async () => {
     try {
       const mediaStream = await navigator.mediaDevices.getUserMedia({ 
-        video: true, 
+        video: { width: 1920, height: 1080 }, 
         audio: true 
       });
       
       setStream(mediaStream);
       if (videoRef.current) {
         videoRef.current.srcObject = mediaStream;
+        // Force play to ensure video shows
+        try {
+          await videoRef.current.play();
+        } catch (playError) {
+          console.error('Error playing video:', playError);
+        }
       }
 
       // Setup audio visualizer
