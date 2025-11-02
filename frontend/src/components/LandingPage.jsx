@@ -5,6 +5,7 @@ import FloatingFeedbackButton from './FloatingFeedbackButton';
 import ChangelogModal from './ChangelogModal';
 import ToolSuggestionModal from './ToolSuggestionModal';
 import LanguageToggle from './LanguageToggle';
+import { useLanguage } from '../contexts/LanguageContext';
 import { logPageVisit, logAction, logButtonClick } from '../utils/analytics';
 
 // Build version - Update this with each change
