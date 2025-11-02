@@ -19,7 +19,7 @@ const LanguageToggle = () => {
         onMouseEnter={(e) => e.target.style.background = 'rgba(150, 180, 255, 0.35)'}
         onMouseLeave={(e) => e.target.style.background = 'rgba(150, 180, 255, 0.25)'}
       >
-        {language === 'nl' ? '🇳🇱 Nederlands' : '🇬🇧 English'}
+        {language === 'nl' ? 'English' : 'Nederlands'}
       </button>
     </div>
   );
