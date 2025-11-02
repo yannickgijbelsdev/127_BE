@@ -366,27 +366,41 @@ const PixelTest = () => {
                 <li>• Zoek naar pixels die niet mee veranderen</li>
               </ul>
             </div>
-            <div className="bg-[#202124] border border-[#5f6368] rounded-lg p-4 text-left mt-4">
-              <h3 className="font-semibold text-[#8ab4f8] mb-2">GPU Informatie:</h3>
-              <div className="text-sm text-[#9aa0a6] space-y-2">
+            <div 
+              className="rounded-2xl p-4 text-left mt-4"
+              style={{
+                background: 'rgba(255, 255, 255, 0.05)',
+                border: '1px solid rgba(255, 255, 255, 0.1)'
+              }}
+            >
+              <h3 className="font-semibold text-white text-lg mb-2">GPU Informatie:</h3>
+              <div className="text-sm text-white text-opacity-80 space-y-2">
                 <div>
-                  <span className="text-[#9aa0a6]">Vendor:</span>
-                  <span className="ml-2 text-[#e8eaed] font-medium break-words">{gpuInfo.vendor}</span>
+                  <span className="text-white text-opacity-60">Vendor:</span>
+                  <span className="ml-2 text-white font-medium break-words">{gpuInfo.vendor}</span>
                 </div>
                 <div>
-                  <span className="text-[#9aa0a6]">Renderer:</span>
-                  <span className="ml-2 text-[#e8eaed] font-medium break-words">{gpuInfo.renderer}</span>
+                  <span className="text-white text-opacity-60">Renderer:</span>
+                  <span className="ml-2 text-white font-medium break-words">{gpuInfo.renderer}</span>
                 </div>
               </div>
             </div>
             <div className="mt-6">
-              <p className="text-sm text-[#9aa0a6]">
-                Huidige kleur: <span className="font-bold text-[#e8eaed]">{currentColorObj.name}</span>
+              <p className="text-sm text-white text-opacity-70">
+                Huidige kleur: <span className="font-bold text-white">{currentColorObj.name}</span>
               </p>
             </div>
             <div className="mt-6">
               <Link to="/" onClick={(e) => e.stopPropagation()}>
-                <button className="w-full px-4 py-3 bg-[#8ab4f8] hover:bg-[#aac8f9] text-[#202124] rounded-lg font-medium transition-colors flex items-center justify-center gap-2">
+                <button 
+                  className="w-full px-4 py-3 rounded-lg font-medium transition-colors flex items-center justify-center gap-2"
+                  style={{
+                    background: 'rgba(150, 180, 255, 0.3)',
+                    color: '#cfe1ff'
+                  }}
+                  onMouseEnter={(e) => e.target.style.background = 'rgba(150, 180, 255, 0.4)'}
+                  onMouseLeave={(e) => e.target.style.background = 'rgba(150, 180, 255, 0.3)'}
+                >
                   <ArrowLeft className="w-4 h-4" />
                   Bekijk ook andere tools
                 </button>
