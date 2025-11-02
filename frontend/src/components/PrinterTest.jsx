@@ -370,7 +370,7 @@ const PrinterTest = () => {
               className="w-full h-full bg-cover bg-center"
               style={{
                 backgroundImage: `url(${backgroundImage})`,
-                filter: 'blur(1.5px) brightness(0.5)',
+                filter: 'blur(1.5px) brightness(0.7)',
                 transform: 'scale(1.05)',
                 width: '105%',
                 height: '105%',
@@ -383,7 +383,7 @@ const PrinterTest = () => {
               className="w-full h-full"
               style={{
                 background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
-                filter: 'blur(1.5px) brightness(0.5)',
+                filter: 'blur(1.5px) brightness(0.7)',
                 transform: 'scale(1.05)'
               }}
             />
@@ -436,7 +436,7 @@ const PrinterTest = () => {
               className="w-full h-full bg-cover bg-center"
               style={{
                 backgroundImage: `url(${backgroundImage})`,
-                filter: 'blur(1.5px) brightness(0.5)',
+                filter: 'blur(1.5px) brightness(0.7)',
                 transform: 'scale(1.05)',
                 width: '105%',
                 height: '105%',
@@ -449,7 +449,7 @@ const PrinterTest = () => {
               className="w-full h-full"
               style={{
                 background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
-                filter: 'blur(1.5px) brightness(0.5)',
+                filter: 'blur(1.5px) brightness(0.7)',
                 transform: 'scale(1.05)'
               }}
             />
@@ -560,7 +560,7 @@ const PrinterTest = () => {
               className="w-full h-full bg-cover bg-center"
               style={{
                 backgroundImage: `url(${backgroundImage})`,
-                filter: 'blur(1.5px) brightness(0.5)',
+                filter: 'blur(1.5px) brightness(0.7)',
                 transform: 'scale(1.05)',
                 width: '105%',
                 height: '105%',
@@ -573,7 +573,7 @@ const PrinterTest = () => {
               className="w-full h-full"
               style={{
                 background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
-                filter: 'blur(1.5px) brightness(0.5)',
+                filter: 'blur(1.5px) brightness(0.7)',
                 transform: 'scale(1.05)'
               }}
             />
