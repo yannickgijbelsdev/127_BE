@@ -97,39 +97,47 @@ const ToolSuggestionModal = ({ isOpen, onClose }) => {
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-75 p-4 animate-fade-in">
-      <div className="bg-[#303134] rounded-lg shadow-2xl max-w-md w-full border border-[#5f6368] relative">
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 p-4 animate-fade-in backdrop-blur-sm">
+      <div 
+        className="rounded-3xl shadow-2xl max-w-md w-full relative"
+        style={{
+          background: 'rgba(0, 0, 0, 0.7)',
+          backdropFilter: 'blur(20px)',
+          WebkitBackdropFilter: 'blur(20px)',
+          border: '1px solid rgba(255, 255, 255, 0.1)'
+        }}
+      >
         {/* Close button */}
         <button
           onClick={onClose}
-          className="absolute top-4 right-4 text-[#9aa0a6] hover:text-[#e8eaed] transition-colors"
+          className="absolute top-4 right-4 text-white text-opacity-70 hover:text-opacity-100 transition-colors"
         >
           <X className="w-6 h-6" />
         </button>
 
         {submitted ? (
           <div className="p-8 text-center">
-            <Lightbulb className="w-16 h-16 text-[#8ab4f8] mx-auto mb-4" />
-            <h2 className="text-2xl font-bold text-[#e8eaed] mb-2">Bedankt!</h2>
-            <p className="text-[#9aa0a6]">
+            <Lightbulb className="w-16 h-16 text-white text-opacity-90 mx-auto mb-4" />
+            <h2 className="text-2xl font-bold text-white mb-2">Bedankt!</h2>
+            <p className="text-white text-opacity-70">
               Je tool suggestie is ontvangen. We bekijken deze en nemen contact op indien nodig.
             </p>
           </div>
         ) : (
           <>
-            <div className="p-6 border-b border-[#5f6368]">
+            <div className="p-6" style={{ borderBottom: '1px solid rgba(255, 255, 255, 0.1)' }}>
               <div className="flex items-center gap-3">
-                <Lightbulb className="w-8 h-8 text-[#8ab4f8]" />
+                <Lightbulb className="w-8 h-8 text-white text-opacity-90" />
                 <div>
-                  <h2 className="text-xl font-bold text-[#e8eaed]">Stel een tool voor</h2>
-                  <p className="text-sm text-[#9aa0a6]">Mis je een tool? Laat het ons weten!</p>
+                  <h2 className="text-xl font-bold text-white">Stel een tool voor</h2>
+                  <p className="text-sm text-white text-opacity-70">Mis je een tool? Laat het ons weten!</p>
                 </div>
               </div>
             </div>
 
             <form onSubmit={handleSubmit} className="p-6 space-y-4">
               <div>
-                <label className="block text-sm font-medium text-[#9aa0a6] mb-2">
+                <label className="block text-sm font-medium text-white text-opacity-70 mb-2">
                   Tool Naam *
                 </label>
                 <input
@@ -138,12 +146,18 @@ const ToolSuggestionModal = ({ isOpen, onClose }) => {
                   onChange={(e) => setToolName(e.target.value)}
                   placeholder="Bijv. WiFi Speed Tester"
                   required
-                  className="w-full px-4 py-2 bg-[#202124] text-[#e8eaed] rounded-lg border border-[#5f6368] focus:border-[#8ab4f8] focus:outline-none placeholder-[#5f6368]"
+                  className="w-full px-4 py-2 text-white rounded-lg focus:outline-none placeholder-white placeholder-opacity-30"
+                  style={{
+                    background: 'rgba(255, 255, 255, 0.05)',
+                    border: '1px solid rgba(255, 255, 255, 0.1)'
+                  }}
+                  onFocus={(e) => e.target.style.border = '1px solid rgba(150, 180, 255, 0.4)'}
+                  onBlur={(e) => e.target.style.border = '1px solid rgba(255, 255, 255, 0.1)'}
                 />
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-[#9aa0a6] mb-2">
+                <label className="block text-sm font-medium text-white text-opacity-70 mb-2">
                   Beschrijving *
                 </label>
                 <textarea
@@ -152,12 +166,18 @@ const ToolSuggestionModal = ({ isOpen, onClose }) => {
                   placeholder="Wat moet deze tool doen?"
                   required
                   rows={3}
-                  className="w-full px-4 py-2 bg-[#202124] text-[#e8eaed] rounded-lg border border-[#5f6368] focus:border-[#8ab4f8] focus:outline-none resize-none placeholder-[#5f6368]"
+                  className="w-full px-4 py-2 text-white rounded-lg focus:outline-none resize-none placeholder-white placeholder-opacity-30"
+                  style={{
+                    background: 'rgba(255, 255, 255, 0.05)',
+                    border: '1px solid rgba(255, 255, 255, 0.1)'
+                  }}
+                  onFocus={(e) => e.target.style.border = '1px solid rgba(150, 180, 255, 0.4)'}
+                  onBlur={(e) => e.target.style.border = '1px solid rgba(255, 255, 255, 0.1)'}
                 />
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-[#9aa0a6] mb-2">
+                <label className="block text-sm font-medium text-white text-opacity-70 mb-2">
                   Use Case (optioneel)
                 </label>
                 <textarea
@@ -165,14 +185,26 @@ const ToolSuggestionModal = ({ isOpen, onClose }) => {
                   onChange={(e) => setUseCase(e.target.value)}
                   placeholder="Wanneer zou je deze tool gebruiken?"
                   rows={2}
-                  className="w-full px-4 py-2 bg-[#202124] text-[#e8eaed] rounded-lg border border-[#5f6368] focus:border-[#8ab4f8] focus:outline-none resize-none placeholder-[#5f6368]"
+                  className="w-full px-4 py-2 text-white rounded-lg focus:outline-none resize-none placeholder-white placeholder-opacity-30"
+                  style={{
+                    background: 'rgba(255, 255, 255, 0.05)',
+                    border: '1px solid rgba(255, 255, 255, 0.1)'
+                  }}
+                  onFocus={(e) => e.target.style.border = '1px solid rgba(150, 180, 255, 0.4)'}
+                  onBlur={(e) => e.target.style.border = '1px solid rgba(255, 255, 255, 0.1)'}
                 />
               </div>
 
               <button
                 type="submit"
                 disabled={isSubmitting || !toolName.trim() || !description.trim()}
-                className="w-full px-6 py-3 bg-[#8ab4f8] hover:bg-[#aac8f9] text-[#202124] rounded-lg font-medium transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                className="w-full px-6 py-3 rounded-lg font-medium transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                style={{
+                  background: 'rgba(150, 180, 255, 0.3)',
+                  color: '#cfe1ff'
+                }}
+                onMouseEnter={(e) => !isSubmitting && (e.target.style.background = 'rgba(150, 180, 255, 0.4)')}
+                onMouseLeave={(e) => e.target.style.background = 'rgba(150, 180, 255, 0.3)'}
               >
                 {isSubmitting ? (
                   <>
