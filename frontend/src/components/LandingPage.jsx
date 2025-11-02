@@ -194,13 +194,16 @@ const LandingPage = () => {
   return (
     <>
       <div className="min-h-screen relative overflow-hidden">
-        {/* Image Background from Pexels */}
+        {/* Video Background from Pexels */}
         <div className="absolute inset-0 z-0 overflow-hidden">
           {backgroundImage ? (
-            <div
-              className="w-full h-full bg-cover bg-center"
+            <video
+              autoPlay
+              loop
+              muted
+              playsInline
+              className="w-full h-full object-cover"
               style={{
-                backgroundImage: `url(${backgroundImage})`,
                 filter: 'blur(1.5px) brightness(0.5)',
                 transform: 'scale(1.05)',
                 width: '105%',
@@ -208,7 +211,9 @@ const LandingPage = () => {
                 marginLeft: '-2.5%',
                 marginTop: '-2.5%'
               }}
-            />
+            >
+              <source src={backgroundImage} type="video/mp4" />
+            </video>
           ) : (
             <div
               className="w-full h-full"
