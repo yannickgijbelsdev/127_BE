@@ -11,7 +11,7 @@ import { useLanguage } from '../contexts/LanguageContext';
 import { logPageVisit, logAction, logButtonClick, logError } from '../utils/analytics';
 
 // Build version - Update this with each change
-const BUILD_VERSION = '1.8.2';
+const BUILD_VERSION = '1.8.3';
 
 const PixelTest = () => {
   const { t } = useLanguage();

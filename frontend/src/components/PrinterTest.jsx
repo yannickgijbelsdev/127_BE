@@ -14,7 +14,7 @@ import LanguageToggle from './LanguageToggle';
 import { logPageVisit, logAction, logButtonClick } from '../utils/analytics';
 
 // Build version - Update this with each change
-const BUILD_VERSION = '1.8.2';
+const BUILD_VERSION = '1.8.3';
 
 const PrinterTest = () => {
   const [isLoading, setIsLoading] = useState(true);

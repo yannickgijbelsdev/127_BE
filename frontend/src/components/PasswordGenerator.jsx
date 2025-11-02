@@ -9,7 +9,7 @@ import ToolStatusWrapper from './ToolStatusWrapper';
 import LanguageToggle from './LanguageToggle';
 import { logPageVisit, logAction, logButtonClick } from '../utils/analytics';
 
-const BUILD_VERSION = '1.8.2';
+const BUILD_VERSION = '1.8.3';
 
 const PasswordGenerator = () => {
   const [isLoading, setIsLoading] = useState(true);
