@@ -18,6 +18,8 @@ const LandingPage = () => {
   const [enabledToolIds, setEnabledToolIds] = useState([]);
   const [loadingTools, setLoadingTools] = useState(true);
   const [backgroundImage, setBackgroundImage] = useState('');
+  const [videoPlaylist, setVideoPlaylist] = useState([]);
+  const [currentVideoIndex, setCurrentVideoIndex] = useState(0);
 
   // Fetch random background video from Pexels for landing page - with caching
   useEffect(() => {
