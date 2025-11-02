@@ -417,7 +417,7 @@ const PixelTest = () => {
                   onMouseLeave={(e) => e.target.style.background = 'rgba(150, 180, 255, 0.3)'}
                 >
                   <ArrowLeft className="w-4 h-4" />
-                  Bekijk ook andere tools
+                  {t('Bekijk ook andere tools', 'Check out other tools')}
                 </button>
               </Link>
             </div>
