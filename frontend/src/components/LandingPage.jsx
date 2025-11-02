@@ -187,14 +187,14 @@ const LandingPage = () => {
   return (
     <>
       <div className="min-h-screen relative overflow-hidden">
-        {/* Image Background with Less Blur from Unsplash */}
+        {/* Image Background from Unsplash */}
         <div className="absolute inset-0 z-0">
           {backgroundImage ? (
             <div
               className="w-full h-full bg-cover bg-center"
               style={{
                 backgroundImage: `url(${backgroundImage})`,
-                filter: 'blur(3px) brightness(0.5)'
+                filter: 'blur(1.5px) brightness(0.5)'
               }}
             />
           ) : (
@@ -202,7 +202,7 @@ const LandingPage = () => {
               className="w-full h-full"
               style={{
                 background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
-                filter: 'blur(3px) brightness(0.5)'
+                filter: 'blur(1.5px) brightness(0.5)'
               }}
             />
           )}
