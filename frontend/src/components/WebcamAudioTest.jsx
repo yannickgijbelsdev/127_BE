@@ -550,6 +550,7 @@ const WebcamAudioTest = () => {
 
   if (showInstructions) {
     return (
+      <>
       <div className="min-h-screen relative overflow-hidden">
         {/* Pexels Background */}
         <div className="absolute inset-0 z-0 overflow-hidden">
