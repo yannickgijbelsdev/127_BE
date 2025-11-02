@@ -216,27 +216,29 @@ const LandingPage = () => {
   return (
     <>
       <div className="min-h-screen relative overflow-hidden">
-        {/* Video Background from Pexels */}
+        {/* Video Background from Pexels - Playlist with transitions */}
         <div className="absolute inset-0 z-0 overflow-hidden" style={{
           background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)'
         }}>
-          {backgroundImage ? (
+          {videoPlaylist.length > 0 && videoPlaylist[currentVideoIndex] ? (
             <video
+              key={currentVideoIndex}
               autoPlay
-              loop
               muted
               playsInline
-              className="w-full h-full object-cover"
+              onEnded={handleVideoEnd}
+              className="w-full h-full object-cover transition-opacity duration-300"
               style={{
                 filter: 'blur(1.5px) brightness(0.95)',
                 transform: 'scale(1.05)',
                 width: '105%',
                 height: '105%',
                 marginLeft: '-2.5%',
-                marginTop: '-2.5%'
+                marginTop: '-2.5%',
+                opacity: isTransitioning ? 0.3 : 1
               }}
             >
-              <source src={backgroundImage} type="video/mp4" />
+              <source src={videoPlaylist[currentVideoIndex]} type="video/mp4" />
             </video>
           ) : (
             <div
