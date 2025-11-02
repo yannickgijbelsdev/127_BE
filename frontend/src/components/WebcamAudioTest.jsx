@@ -7,10 +7,11 @@ import AutumnDecoration from './AutumnDecoration';
 import FloatingFeedbackButton from './FloatingFeedbackButton';
 import ChangelogModal from './ChangelogModal';
 import ToolStatusWrapper from './ToolStatusWrapper';
+import LanguageToggle from './LanguageToggle';
 import { logPageVisit, logButtonClick, logAction, logError } from '../utils/analytics';
 
 // Build version - Update this with each change
-const BUILD_VERSION = '1.8.0';
+const BUILD_VERSION = '1.8.2';
 
 const WebcamAudioTest = () => {
   const [isLoading, setIsLoading] = useState(true);
