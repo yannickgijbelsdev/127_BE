@@ -120,9 +120,9 @@ const ToolSuggestionModal = ({ isOpen, onClose }) => {
         {submitted ? (
           <div className="p-8 text-center">
             <Lightbulb className="w-16 h-16 text-white text-opacity-90 mx-auto mb-4" />
-            <h2 className="text-2xl font-bold text-white mb-2">Bedankt!</h2>
+            <h2 className="text-2xl font-bold text-white mb-2">{t('Bedankt!', 'Thank you!')}</h2>
             <p className="text-white text-opacity-70">
-              Je tool suggestie is ontvangen. We bekijken deze en nemen contact op indien nodig.
+              {t('Je tool suggestie is ontvangen. We bekijken deze en nemen contact op indien nodig.', 'Your tool suggestion has been received. We will review it and contact you if needed.')}
             </p>
           </div>
         ) : (
