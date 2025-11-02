@@ -244,12 +244,12 @@ const FloatingFeedbackButton = ({ hideOnFullscreen = false }) => {
                 {/* Feedback */}
                 <div className="mb-4">
                   <label className="block text-sm font-medium text-white mb-2">
-                    Wat vind je van deze tool?
+                    {t('Wat vind je van deze tool?', 'What do you think of this tool?')}
                   </label>
                   <textarea
                     value={feedback}
                     onChange={(e) => setFeedback(e.target.value)}
-                    placeholder="Deel je ervaring..."
+                    placeholder={t('Deel je ervaring...', 'Share your experience...')}
                     rows="3"
                     className="w-full text-white px-4 py-3 rounded-lg focus:outline-none resize-none placeholder-white placeholder-opacity-40"
                     style={{
