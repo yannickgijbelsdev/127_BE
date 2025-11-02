@@ -80,12 +80,12 @@ const FloatingFeedbackButton = ({ hideOnFullscreen = false }) => {
 
   const handleSubmit = async () => {
     if (rating === 0) {
-      alert('Geef alsjeblieft een beoordeling');
+      alert(t('Geef alsjeblieft een beoordeling', 'Please give a rating'));
       return;
     }
 
     if (!feedback.trim()) {
-      alert('Geef alsjeblieft feedback');
+      alert(t('Geef alsjeblieft feedback', 'Please provide feedback'));
       return;
     }
 
