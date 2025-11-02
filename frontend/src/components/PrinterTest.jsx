@@ -37,7 +37,7 @@ const PrinterTest = () => {
         // Random page between 1-10 for variety - tech/working/networking theme
         const randomPage = Math.floor(Math.random() * 10) + 1;
         const response = await fetch(
-          `https://api.pexels.com/v1/search?query=technology+people+working+coding+networking&orientation=landscape&per_page=15&page=${randomPage}`,
+          `https://api.pexels.com/v1/search?query=colorful+nature+peaceful+calm+landscape&orientation=landscape&per_page=15&page=${randomPage}`,
           {
             headers: {
               Authorization: 'SBv6ZOHirhcApz4iLkxYd7c2RDXBWJPKbc8AWDku666r3zU6Tdc2sOih'
