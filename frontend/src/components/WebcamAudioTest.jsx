@@ -30,7 +30,9 @@ const WebcamAudioTest = () => {
   
   const videoRef = useRef(null);
   const mediaRecorderRef = useRef(null);
+  const audioRecorderRef = useRef(null);
   const chunksRef = useRef([]);
+  const audioChunksRef = useRef([]);
   const timerRef = useRef(null);
   const audioContextRef = useRef(null);
   const analyserRef = useRef(null);
