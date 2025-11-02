@@ -356,6 +356,7 @@ const PasswordGenerator = () => {
         onClose={() => setShowChangelog(false)}
         currentVersion={BUILD_VERSION}
       />
+      </>
     );
   }
 
