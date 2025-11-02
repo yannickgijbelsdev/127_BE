@@ -157,184 +157,253 @@ const LandingPage = () => {
 
   return (
     <>
-      <div className="min-h-screen bg-[#1a1a1a] flex">
-        {/* Left Side - Video */}
-        <div className="w-2/5 bg-[#2a2a2a] flex items-center justify-center p-12">
-          <div className="w-full max-w-md">
-            <video
-              autoPlay
-              loop
-              muted
-              playsInline
-              className="w-full h-auto rounded-lg shadow-2xl"
-            >
-              <source src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4" type="video/mp4" />
-              Your browser does not support the video tag.
-            </video>
-          </div>
+      <div className="min-h-screen relative overflow-hidden">
+        {/* Video Background with Blur */}
+        <div className="absolute inset-0 z-0">
+          <video
+            autoPlay
+            loop
+            muted
+            playsInline
+            className="w-full h-full object-cover"
+            style={{ filter: 'blur(10px) brightness(0.6)' }}
+          >
+            <source src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4" type="video/mp4" />
+          </video>
+          {/* Dark Overlay */}
+          <div className="absolute inset-0 bg-black bg-opacity-50"></div>
         </div>
 
-        {/* Right Side - Tools */}
-        <div className="flex-1 flex flex-col items-center justify-center p-12">
-          <div className="w-full max-w-lg space-y-8">
-            {/* Logo */}
-            <div className="text-center">
-              <img 
-                src="https://customer-assets.emergentagent.com/job_tool-metrics/artifacts/w5126i9x_127_2025_Official_Logo.png" 
-                alt="127 Logo" 
-                className="w-32 h-auto mx-auto mb-8 brightness-110"
-                draggable="false"
-              />
-            </div>
+        {/* "127" Top Left */}
+        <div className="absolute top-8 left-8 z-30">
+          <h1 className="text-5xl font-bold text-white" style={{ fontFamily: 'Inter, sans-serif' }}>
+            127
+          </h1>
+        </div>
 
-            {/* Search Bar */}
-            <div className="relative">
-              <div className="flex items-center bg-[#2a2a2a] rounded-full border-2 border-[#3a3a3a] hover:border-[#8ab4f8] transition-colors focus-within:border-[#8ab4f8]">
-                <Search className="w-5 h-5 ml-5 text-[#9aa0a6]" />
-                <input
-                  type="text"
-                  placeholder="Zoek een tool..."
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                  onFocus={() => searchQuery && setShowResults(true)}
-                  className="flex-1 px-4 py-4 bg-transparent text-[#e8eaed] placeholder-[#9aa0a6] focus:outline-none"
-                />
+        {/* Central Glass Card */}
+        <div className="relative z-10 min-h-screen flex items-center justify-center p-4">
+          <div 
+            className="w-full max-w-2xl p-12 rounded-3xl"
+            style={{
+              background: 'rgba(0, 0, 0, 0.4)',
+              backdropFilter: 'blur(16px)',
+              WebkitBackdropFilter: 'blur(16px)',
+              border: '1px solid rgba(255, 255, 255, 0.1)',
+              boxShadow: '0 8px 32px 0 rgba(0, 0, 0, 0.37)'
+            }}
+          >
+            <div className="space-y-8">
+              {/* Search Bar */}
+              <div className="relative">
+                <div 
+                  className="flex items-center px-6 py-4 rounded-full"
+                  style={{
+                    background: 'rgba(255, 255, 255, 0.1)',
+                    backdropFilter: 'blur(8px)',
+                    WebkitBackdropFilter: 'blur(8px)',
+                    border: '1px solid rgba(255, 255, 255, 0.18)'
+                  }}
+                >
+                  <Search className="w-5 h-5 text-white opacity-70" />
+                  <input
+                    type="text"
+                    placeholder="Zoek een tool..."
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
+                    onFocus={() => searchQuery && setShowResults(true)}
+                    className="flex-1 px-4 bg-transparent text-white placeholder-white placeholder-opacity-60 focus:outline-none"
+                    style={{ fontFamily: 'Inter, sans-serif' }}
+                  />
+                </div>
+
+                {/* Search Results Dropdown */}
+                {showResults && (
+                  <div 
+                    className="absolute w-full mt-3 rounded-2xl overflow-hidden animate-fade-in z-20"
+                    style={{
+                      background: 'rgba(0, 0, 0, 0.6)',
+                      backdropFilter: 'blur(16px)',
+                      WebkitBackdropFilter: 'blur(16px)',
+                      border: '1px solid rgba(255, 255, 255, 0.1)'
+                    }}
+                  >
+                    {filteredTools.length > 0 ? (
+                      <>
+                        <div className="divide-y divide-white divide-opacity-10">
+                        {filteredTools.map((tool) => {
+                          const Icon = tool.icon;
+                          return (
+                            <Link 
+                              key={tool.id} 
+                              to={tool.path}
+                              onClick={() => handleToolClick(tool.id, tool.name)}
+                              className="block"
+                            >
+                              <div className="px-6 py-4 hover:bg-white hover:bg-opacity-10 transition-colors cursor-pointer">
+                                <div className="flex items-center gap-4">
+                                  <div 
+                                    className="p-2 rounded-full"
+                                    style={{ background: 'rgba(255, 255, 255, 0.15)' }}
+                                  >
+                                    <Icon className="w-5 h-5 text-white" />
+                                  </div>
+                                  <div className="flex-1">
+                                    <div className="text-base font-medium text-white">
+                                      {tool.name}
+                                    </div>
+                                    <div className="text-sm text-white text-opacity-70 mt-0.5">
+                                      {tool.description}
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </Link>
+                          );
+                        })}
+                        </div>
+                        
+                        {/* Tool suggestion section */}
+                        <div className="border-t border-white border-opacity-10">
+                          <button
+                            onClick={() => {
+                              setShowToolSuggestion(true);
+                              logButtonClick('home', 'Landing Page', 'suggest_tool_from_search');
+                            }}
+                            className="w-full px-6 py-4 hover:bg-white hover:bg-opacity-10 transition-colors text-left"
+                          >
+                            <div className="flex items-center gap-4">
+                              <div 
+                                className="p-2 rounded-full"
+                                style={{ background: 'rgba(150, 180, 255, 0.3)' }}
+                              >
+                                <Plus className="w-5 h-5 text-white" />
+                              </div>
+                              <div className="flex-1">
+                                <div className="text-base font-medium text-white">
+                                  Mis je nog een tool?
+                                </div>
+                                <div className="text-sm text-white text-opacity-70 mt-0.5">
+                                  Laat het ons weten en we kijken wat we kunnen doen!
+                                </div>
+                              </div>
+                            </div>
+                          </button>
+                        </div>
+                      </>
+                    ) : (
+                      <>
+                        <div className="px-6 py-8 text-center text-white text-opacity-70">
+                          Geen tools gevonden
+                        </div>
+                        
+                        {/* Tool suggestion for no results */}
+                        <div className="border-t border-white border-opacity-10">
+                          <button
+                            onClick={() => {
+                              setShowToolSuggestion(true);
+                              logButtonClick('home', 'Landing Page', 'suggest_tool_no_results');
+                            }}
+                            className="w-full px-6 py-4 hover:bg-white hover:bg-opacity-10 transition-colors text-left"
+                          >
+                            <div className="flex items-center gap-4">
+                              <div 
+                                className="p-2 rounded-full"
+                                style={{ background: 'rgba(150, 180, 255, 0.3)' }}
+                              >
+                                <Plus className="w-5 h-5 text-white" />
+                              </div>
+                              <div className="flex-1">
+                                <div className="text-base font-medium text-white">
+                                  Mis je nog een tool?
+                                </div>
+                                <div className="text-sm text-white text-opacity-70 mt-0.5">
+                                  Laat het ons weten en we kijken wat we kunnen doen!
+                                </div>
+                              </div>
+                            </div>
+                          </button>
+                        </div>
+                      </>
+                    )}
+                  </div>
+                )}
               </div>
 
-              {/* Search Results Dropdown */}
-              {showResults && (
-                <div className="absolute w-full mt-2 bg-[#2a2a2a] rounded-lg border-2 border-[#3a3a3a] shadow-2xl overflow-hidden animate-fade-in z-20">
-                  {filteredTools.length > 0 ? (
-                    <>
-                      <div className="divide-y divide-[#3a3a3a]">
-                      {filteredTools.map((tool) => {
-                        const Icon = tool.icon;
-                        return (
-                          <Link 
-                            key={tool.id} 
-                            to={tool.path}
-                            onClick={() => handleToolClick(tool.id, tool.name)}
-                            className="block"
-                          >
-                            <div className="px-6 py-4 hover:bg-[#3a3a3a] transition-colors cursor-pointer">
-                              <div className="flex items-center gap-4">
-                                <div className="bg-[#3a3a3a] p-2 rounded-full">
-                                  <Icon className="w-5 h-5 text-[#8ab4f8]" />
-                                </div>
-                                <div className="flex-1">
-                                  <div className="text-base font-medium text-[#e8eaed]">
-                                    {tool.name}
-                                  </div>
-                                  <div className="text-sm text-[#9aa0a6] mt-0.5">
-                                    {tool.description}
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                          </Link>
-                        );
-                      })}
-                      </div>
-                      
-                      {/* Tool suggestion section */}
-                      <div className="border-t border-[#3a3a3a] bg-[#1a1a1a]">
-                        <button
-                          onClick={() => {
-                            setShowToolSuggestion(true);
-                            logButtonClick('home', 'Landing Page', 'suggest_tool_from_search');
-                          }}
-                          className="w-full px-6 py-4 hover:bg-[#3a3a3a] transition-colors text-left"
-                        >
-                          <div className="flex items-center gap-4">
-                            <div className="bg-[#8ab4f8] p-2 rounded-full">
-                              <Plus className="w-5 h-5 text-[#1a1a1a]" />
-                            </div>
-                            <div className="flex-1">
-                              <div className="text-base font-medium text-[#8ab4f8]">
-                                Mis je nog een tool?
-                              </div>
-                              <div className="text-sm text-[#9aa0a6] mt-0.5">
-                                Laat het ons weten en we kijken wat we kunnen doen!
-                              </div>
-                            </div>
-                          </div>
-                        </button>
-                      </div>
-                    </>
-                  ) : (
-                    <>
-                      <div className="px-6 py-8 text-center text-[#9aa0a6]">
-                        Geen tools gevonden
-                      </div>
-                      
-                      {/* Tool suggestion for no results */}
-                      <div className="border-t border-[#3a3a3a] bg-[#1a1a1a]">
-                        <button
-                          onClick={() => {
-                            setShowToolSuggestion(true);
-                            logButtonClick('home', 'Landing Page', 'suggest_tool_no_results');
-                          }}
-                          className="w-full px-6 py-4 hover:bg-[#3a3a3a] transition-colors text-left"
-                        >
-                          <div className="flex items-center gap-4">
-                            <div className="bg-[#8ab4f8] p-2 rounded-full">
-                              <Plus className="w-5 h-5 text-[#1a1a1a]" />
-                            </div>
-                            <div className="flex-1">
-                              <div className="text-base font-medium text-[#8ab4f8]">
-                                Mis je nog een tool?
-                              </div>
-                              <div className="text-sm text-[#9aa0a6] mt-0.5">
-                                Laat het ons weten en we kijken wat we kunnen doen!
-                              </div>
-                            </div>
-                          </div>
-                        </button>
-                      </div>
-                    </>
-                  )}
-                </div>
-              )}
-            </div>
-
-            {/* Tool Buttons */}
-            {!showResults && (
-              <div className="space-y-4 animate-fade-in">
-                <div className="grid grid-cols-3 gap-3">
-                  {displayedTools.map((tool) => {
-                    const Icon = tool.icon;
-                    return (
+              {/* Tool Chips */}
+              {!showResults && (
+                <div className="space-y-4 animate-fade-in">
+                  <div className="flex justify-center gap-3 flex-wrap">
+                    {displayedTools.map((tool) => (
                       <Link key={tool.id} to={tool.path} onClick={() => handleToolClick(tool.id, tool.name)}>
-                        <button className="w-full px-4 py-3 bg-[#2a2a2a] hover:bg-[#3a3a3a] text-[#e8eaed] rounded-lg text-sm font-medium transition-colors border-2 border-[#3a3a3a] hover:border-[#8ab4f8]">
+                        <button 
+                          className="px-6 py-3 rounded-full text-white font-medium text-sm transition-all hover:shadow-lg"
+                          style={{
+                            background: 'rgba(255, 255, 255, 0.08)',
+                            backdropFilter: 'blur(6px)',
+                            WebkitBackdropFilter: 'blur(6px)',
+                            border: '1px solid rgba(255, 255, 255, 0.18)',
+                            fontFamily: 'Inter, sans-serif'
+                          }}
+                          onMouseEnter={(e) => {
+                            e.currentTarget.style.background = 'rgba(255, 255, 255, 0.15)';
+                            e.currentTarget.style.boxShadow = '0 0 20px rgba(255, 255, 255, 0.2)';
+                          }}
+                          onMouseLeave={(e) => {
+                            e.currentTarget.style.background = 'rgba(255, 255, 255, 0.08)';
+                            e.currentTarget.style.boxShadow = '';
+                          }}
+                        >
                           {tool.name}
                         </button>
                       </Link>
-                    );
-                  })}
-                </div>
+                    ))}
+                  </div>
 
-                {/* Tool Voorstellen Button */}
+                  {/* Tool Voorstellen Button */}
+                  <button
+                    onClick={() => {
+                      setShowToolSuggestion(true);
+                      logButtonClick('home', 'Landing Page', 'suggest_tool_button');
+                    }}
+                    className="w-full px-6 py-4 rounded-full font-medium text-sm transition-all flex items-center justify-center gap-2"
+                    style={{
+                      background: 'rgba(150, 180, 255, 0.25)',
+                      backdropFilter: 'blur(8px)',
+                      WebkitBackdropFilter: 'blur(8px)',
+                      border: '1px solid rgba(150, 180, 255, 0.4)',
+                      color: '#cfe1ff',
+                      fontFamily: 'Inter, sans-serif'
+                    }}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.background = 'rgba(150, 180, 255, 0.35)';
+                      e.currentTarget.style.boxShadow = '0 0 20px rgba(150, 180, 255, 0.3)';
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.background = 'rgba(150, 180, 255, 0.25)';
+                      e.currentTarget.style.boxShadow = '';
+                    }}
+                  >
+                    <Plus className="w-4 h-4" />
+                    Tool Voorstellen
+                  </button>
+                </div>
+              )}
+
+              {/* Build Version */}
+              <div className="text-center">
                 <button
-                  onClick={() => {
-                    setShowToolSuggestion(true);
-                    logButtonClick('home', 'Landing Page', 'suggest_tool_button');
+                  onClick={() => setShowChangelog(true)}
+                  className="text-xs cursor-pointer hover:opacity-100 transition-opacity"
+                  style={{
+                    color: '#8fa8ff',
+                    opacity: 0.8,
+                    fontFamily: 'Inter, sans-serif'
                   }}
-                  className="w-full px-4 py-3 bg-[#8ab4f8] hover:bg-[#aac8f9] text-[#1a1a1a] rounded-lg text-sm font-bold transition-colors flex items-center justify-center gap-2"
                 >
-                  <Plus className="w-4 h-4" />
-                  Tool Voorstellen
+                  Build {BUILD_VERSION}
                 </button>
               </div>
-            )}
-
-            {/* Build Version */}
-            <div className="text-center">
-              <button
-                onClick={() => setShowChangelog(true)}
-                className="text-xs text-[#8ab4f8] hover:text-[#aac8f9] cursor-pointer underline"
-              >
-                Build {BUILD_VERSION}
-              </button>
             </div>
           </div>
         </div>
