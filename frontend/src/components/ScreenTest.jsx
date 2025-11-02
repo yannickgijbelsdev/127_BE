@@ -22,8 +22,35 @@ const ScreenTest = () => {
   const [speed, setSpeed] = useState(50);
   const [displayInfo, setDisplayInfo] = useState({});
   const [showChangelog, setShowChangelog] = useState(false);
+  const [backgroundImage, setBackgroundImage] = useState('');
   const animationFrameRef = useRef(null);
   const lastTimeRef = useRef(Date.now());
+
+  // Fetch random background image from Unsplash
+  useEffect(() => {
+    const fetchBackgroundImage = async () => {
+      try {
+        const response = await fetch(
+          'https://api.unsplash.com/photos/random?query=abstract,technology,minimal&orientation=landscape',
+          {
+            headers: {
+              Authorization: 'Client-ID rS3f7X0URqQ1BDPKC3tZ3kSEo_P7S9KR_gm6_S8h-T0'
+            }
+          }
+        );
+        
+        if (response.ok) {
+          const data = await response.json();
+          setBackgroundImage(data.urls.regular);
+        }
+      } catch (error) {
+        console.error('Error fetching Unsplash image:', error);
+        setBackgroundImage('');
+      }
+    };
+
+    fetchBackgroundImage();
+  }, []);
 
   // Log page visit
   useEffect(() => {
