@@ -344,6 +344,14 @@ const WebcamAudioTest = () => {
     }
   }, [stream, isRunning]);
 
+  // Setup audio visualizer when stream, canvas, and isRunning are ready
+  useEffect(() => {
+    if (stream && canvasRef.current && isRunning && !audioContextRef.current) {
+      console.log('Setting up audio visualizer with stream...');
+      setupAudioVisualizer(stream);
+    }
+  }, [stream, isRunning]);
+
   if (isLoading) {
     return (
       <div className="min-h-screen bg-[#202124] flex flex-col items-center justify-center p-8">
