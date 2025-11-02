@@ -742,6 +742,7 @@ const PasswordGenerator = () => {
           </Link>
         </div>
       </div>
+      </div>
 
       <style jsx>{`
         @keyframes confetti {
