@@ -160,12 +160,12 @@ const ToolSuggestionModal = ({ isOpen, onClose }) => {
 
               <div>
                 <label className="block text-sm font-medium text-white text-opacity-70 mb-2">
-                  Beschrijving *
+                  {t('Beschrijving *', 'Description *')}
                 </label>
                 <textarea
                   value={description}
                   onChange={(e) => setDescription(e.target.value)}
-                  placeholder="Wat moet deze tool doen?"
+                  placeholder={t('Wat moet deze tool doen?', 'What should this tool do?')}
                   required
                   rows={3}
                   className="w-full px-4 py-2 text-white rounded-lg focus:outline-none resize-none placeholder-white placeholder-opacity-30"
