@@ -294,7 +294,7 @@ const LandingPage = () => {
                   <Search className="w-5 h-5 text-white opacity-70" />
                   <input
                     type="text"
-                    placeholder="Zoek een tool..."
+                    placeholder={t('Zoek een tool...', 'Search for a tool...')}
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
                     onFocus={() => searchQuery && setShowResults(true)}
