@@ -196,7 +196,7 @@ const FloatingFeedbackButton = ({ hideOnFullscreen = false }) => {
             ) : (
               <>
                 <div className="flex items-center justify-between mb-6">
-                  <h2 className="text-2xl font-bold text-white">Geef Feedback</h2>
+                  <h2 className="text-2xl font-bold text-white">{t('Geef Feedback', 'Give Feedback')}</h2>
                   <button
                     onClick={() => setShowForm(false)}
                     className="p-2 rounded-lg transition-colors hover:bg-white hover:bg-opacity-10"
