@@ -855,6 +855,7 @@ const PasswordGenerator = () => {
     </div>
     
     <FloatingFeedbackButton />
+    <LanguageToggle />
     <ChangelogModal 
       isOpen={showChangelog} 
       onClose={() => setShowChangelog(false)}
