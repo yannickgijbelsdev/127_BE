@@ -639,7 +639,7 @@ const PrinterTest = () => {
                       className="border-white border-opacity-30"
                     />
                     <label htmlFor="text" className="text-white text-opacity-80 cursor-pointer">
-                      Teksttest (verschillende groottes)
+                      {t('Teksttest (verschillende groottes)', 'Text test (different sizes)')}
                     </label>
                   </div>
                   <div className="flex items-center space-x-3">
@@ -656,7 +656,7 @@ const PrinterTest = () => {
                       className="border-white border-opacity-30"
                     />
                     <label htmlFor="colors" className="text-white text-opacity-80 cursor-pointer">
-                      Kleurenbalken (RGB, CMY, gradiënt)
+                      {t('Kleurenbalken (RGB, CMY, gradiënt)', 'Color bars (RGB, CMY, gradient)')}
                     </label>
                   </div>
                   <div className="flex items-center space-x-3">
@@ -673,7 +673,7 @@ const PrinterTest = () => {
                       className="border-white border-opacity-30"
                     />
                     <label htmlFor="lines" className="text-white text-opacity-80 cursor-pointer">
-                      Lijntest (rechtheid en dikte)
+                      {t('Lijntest (rechtheid en dikte)', 'Line test (straightness and thickness)')}
                     </label>
                   </div>
                   <div className="flex items-center space-x-3">
@@ -690,7 +690,7 @@ const PrinterTest = () => {
                       className="border-white border-opacity-30"
                     />
                     <label htmlFor="alignment" className="text-white text-opacity-80 cursor-pointer">
-                      Uitlijningsraster (marges en centering)
+                      {t('Uitlijningsraster (marges en centering)', 'Alignment grid (margins and centering)')}
                     </label>
                   </div>
                 </div>
