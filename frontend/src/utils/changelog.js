@@ -1,4 +1,34 @@
+export const BUILD_VERSION = '1.8.0';
+
 export const CHANGELOG = {
+  "1.8.0": {
+    nl: {
+      title: "Glassmorphism Redesign & Pexels Integratie",
+      date: "2025-02-02",
+      features: [
+        "Volledig nieuw glassmorphism design door hele platform",
+        "Pexels video achtergronden op landing page",
+        "Pexels foto achtergronden op loading screens",
+        "Alle buttons uniform en echt glassy met backdrop-filter",
+        "Tech/work gerelateerde achtergronden (coding, networking)",
+        "Floating feedback button met glassmorphism",
+        "Runtime errors opgelost voor betere stabiliteit"
+      ]
+    },
+    en: {
+      title: "Glassmorphism Redesign & Pexels Integration",
+      date: "2025-02-02",
+      features: [
+        "Complete glassmorphism design across entire platform",
+        "Pexels video backgrounds on landing page",
+        "Pexels photo backgrounds on loading screens",
+        "All buttons uniform and truly glassy with backdrop-filter",
+        "Tech/work related backgrounds (coding, networking)",
+        "Floating feedback button with glassmorphism",
+        "Runtime errors fixed for better stability"
+      ]
+    }
+  },
   "1.7.0": {
     nl: {
       title: "Dead Pixel Detector Verbeteringen",
