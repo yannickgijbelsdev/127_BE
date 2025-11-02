@@ -623,7 +623,7 @@ const PrinterTest = () => {
                   border: '1px solid rgba(255, 255, 255, 0.05)'
                 }}
               >
-                <h3 className="font-semibold text-white text-lg mb-4">Selecteer testen:</h3>
+                <h3 className="font-semibold text-white text-lg mb-4">{t('Selecteer testen:', 'Select tests:')}</h3>
                 <div className="space-y-4">
                   <div className="flex items-center space-x-3">
                     <Checkbox 
