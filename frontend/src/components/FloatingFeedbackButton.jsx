@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { MessageSquare, X } from 'lucide-react';
+import { useLanguage } from '../contexts/LanguageContext';
 
 const FloatingFeedbackButton = ({ hideOnFullscreen = false }) => {
+  const { t } = useLanguage();
   const location = useLocation();
   const [showForm, setShowForm] = useState(false);
   const [rating, setRating] = useState(0);
