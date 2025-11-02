@@ -437,7 +437,7 @@ const PasswordGenerator = () => {
                   type="text"
                   value={password}
                   readOnly
-                  className="flex-1 text-white px-4 py-3 rounded-lg font-mono text-sm"
+                  className="flex-1 text-white px-4 py-3 rounded-full font-mono text-sm"
                   style={{
                     background: 'rgba(255, 255, 255, 0.05)',
                     border: '1px solid rgba(255, 255, 255, 0.1)'
@@ -445,7 +445,7 @@ const PasswordGenerator = () => {
                 />
                 <button
                   onClick={() => copyToClipboard(password)}
-                  className="px-4 py-3 rounded-lg transition-colors"
+                  className="px-4 py-3 rounded-full transition-colors"
                   style={{
                     background: 'rgba(150, 180, 255, 0.3)',
                     color: '#cfe1ff'
@@ -458,7 +458,7 @@ const PasswordGenerator = () => {
                 </button>
                 <button
                   onClick={generatePassword}
-                  className="px-4 py-3 rounded-lg transition-colors"
+                  className="px-4 py-3 rounded-full transition-colors"
                   style={{
                     background: 'rgba(150, 180, 255, 0.3)',
                     color: '#cfe1ff'
@@ -551,7 +551,7 @@ const PasswordGenerator = () => {
                 value={customPassword}
                 onChange={(e) => setCustomPassword(e.target.value)}
                 placeholder="Voer je wachtwoord in..."
-                className="w-full text-white px-4 py-3 rounded-lg font-mono text-sm placeholder-white placeholder-opacity-40"
+                className="w-full text-white px-4 py-3 rounded-full font-mono text-sm placeholder-white placeholder-opacity-40"
                 style={{
                   background: 'rgba(255, 255, 255, 0.05)',
                   border: '1px solid rgba(255, 255, 255, 0.1)'

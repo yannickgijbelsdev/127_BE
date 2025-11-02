@@ -265,7 +265,7 @@ const ExitFeedback = () => {
                 onChange={(e) => setFeedback(e.target.value)}
                 placeholder="Vertel ons wat je ervaring was..."
                 rows="3"
-                className="w-full text-white px-4 py-3 rounded-lg focus:outline-none resize-none placeholder-white placeholder-opacity-40"
+                className="w-full text-white px-4 py-3 rounded-full focus:outline-none resize-none placeholder-white placeholder-opacity-40"
                 style={{
                   background: 'rgba(255, 255, 255, 0.05)',
                   border: '1px solid rgba(255, 255, 255, 0.1)'
@@ -285,7 +285,7 @@ const ExitFeedback = () => {
                 onChange={(e) => setSuggestions(e.target.value)}
                 placeholder="Heb je ideeën voor verbetering?"
                 rows="2"
-                className="w-full text-white px-4 py-3 rounded-lg focus:outline-none resize-none placeholder-white placeholder-opacity-40"
+                className="w-full text-white px-4 py-3 rounded-full focus:outline-none resize-none placeholder-white placeholder-opacity-40"
                 style={{
                   background: 'rgba(255, 255, 255, 0.05)',
                   border: '1px solid rgba(255, 255, 255, 0.1)'
@@ -299,7 +299,7 @@ const ExitFeedback = () => {
             <div className="flex gap-3">
               <button
                 onClick={handleClose}
-                className="flex-1 px-4 py-3 rounded-lg font-medium transition-colors"
+                className="flex-1 px-4 py-3 rounded-full font-medium transition-colors"
                 style={{
                   background: 'rgba(255, 255, 255, 0.1)',
                   color: 'white'
@@ -312,7 +312,7 @@ const ExitFeedback = () => {
               <button
                 onClick={handleSubmit}
                 disabled={isSubmitting}
-                className="flex-1 px-4 py-3 rounded-lg font-medium transition-colors disabled:opacity-50 flex items-center justify-center gap-2"
+                className="flex-1 px-4 py-3 rounded-full font-medium transition-colors disabled:opacity-50 flex items-center justify-center gap-2"
                 style={{
                   background: 'rgba(150, 180, 255, 0.3)',
                   color: '#cfe1ff'

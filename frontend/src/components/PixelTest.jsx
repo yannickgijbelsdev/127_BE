@@ -393,7 +393,7 @@ const PixelTest = () => {
             <div className="mt-6">
               <Link to="/" onClick={(e) => e.stopPropagation()}>
                 <button 
-                  className="w-full px-4 py-3 rounded-lg font-medium transition-colors flex items-center justify-center gap-2"
+                  className="w-full px-4 py-3 rounded-full font-medium transition-colors flex items-center justify-center gap-2"
                   style={{
                     background: 'rgba(150, 180, 255, 0.3)',
                     color: '#cfe1ff'
