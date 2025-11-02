@@ -6,12 +6,15 @@ import AutumnDecoration from './AutumnDecoration';
 import FloatingFeedbackButton from './FloatingFeedbackButton';
 import ChangelogModal from './ChangelogModal';
 import ToolStatusWrapper from './ToolStatusWrapper';
+import LanguageToggle from './LanguageToggle';
+import { useLanguage } from '../contexts/LanguageContext';
 import { logPageVisit, logAction, logButtonClick, logError } from '../utils/analytics';
 
 // Build version - Update this with each change
-const BUILD_VERSION = '1.8.0';
+const BUILD_VERSION = '1.8.2';
 
 const PixelTest = () => {
+  const { t } = useLanguage();
   const [isLoading, setIsLoading] = useState(true);
   const [loadingProgress, setLoadingProgress] = useState(0);
   const [currentColor, setCurrentColor] = useState('red');
