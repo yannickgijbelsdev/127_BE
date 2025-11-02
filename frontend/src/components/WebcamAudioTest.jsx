@@ -86,11 +86,8 @@ const WebcamAudioTest = () => {
       console.log('Video tracks:', mediaStream.getVideoTracks());
       console.log('Audio tracks:', mediaStream.getAudioTracks());
       
-      // Set stream - the useEffect will handle video setup
+      // Set stream - the useEffects will handle video and audio setup
       setStream(mediaStream);
-
-      // Setup audio visualizer
-      setupAudioVisualizer(mediaStream);
 
       // Get device info
       const devices = await navigator.mediaDevices.enumerateDevices();
