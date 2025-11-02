@@ -31,7 +31,7 @@ const LandingPage = () => {
 
         for (const page of pages) {
           const response = await fetch(
-            `https://api.pexels.com/videos/search?query=colorful+nature+peaceful+calm+landscape&orientation=landscape&per_page=10&page=${page}`,
+            `https://api.pexels.com/videos/search?query=coding+programming+developer+computer+screen+typing&orientation=landscape&per_page=10&page=${page}`,
             {
               headers: {
                 Authorization: 'SBv6ZOHirhcApz4iLkxYd7c2RDXBWJPKbc8AWDku666r3zU6Tdc2sOih'
@@ -56,7 +56,7 @@ const LandingPage = () => {
           });
           
           setVideoPlaylist(selectedVideos);
-          console.log(`Pexels video playlist loaded: ${selectedVideos.length} videos`);
+          console.log(`Pexels video playlist loaded: ${selectedVideos.length} coding videos`);
         }
       } catch (error) {
         console.error('Error fetching Pexels video playlist:', error);
