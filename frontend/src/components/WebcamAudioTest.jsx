@@ -26,6 +26,7 @@ const WebcamAudioTest = () => {
   const [recordingTime, setRecordingTime] = useState(0);
   const [permissionError, setPermissionError] = useState('');
   const [audioLevel, setAudioLevel] = useState(0);
+  const [recordedMimeType, setRecordedMimeType] = useState('video/webm');
   
   const videoRef = useRef(null);
   const mediaRecorderRef = useRef(null);
