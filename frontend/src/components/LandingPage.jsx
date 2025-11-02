@@ -17,59 +17,63 @@ const LandingPage = () => {
   const [showResults, setShowResults] = useState(false);
   const [enabledToolIds, setEnabledToolIds] = useState([]);
   const [loadingTools, setLoadingTools] = useState(true);
-  const [backgroundImage, setBackgroundImage] = useState('');
   const [videoPlaylist, setVideoPlaylist] = useState([]);
   const [currentVideoIndex, setCurrentVideoIndex] = useState(0);
+  const [isTransitioning, setIsTransitioning] = useState(false);
 
-  // Fetch random background video from Pexels for landing page - with caching
+  // Fetch video playlist from Pexels for landing page - fetch multiple videos
   useEffect(() => {
-    const fetchBackgroundVideo = async () => {
-      // Check if we have a cached video URL (valid for 1 hour)
-      const cachedVideo = localStorage.getItem('landingPageVideo');
-      const cachedTime = localStorage.getItem('landingPageVideoTime');
-      const oneHour = 60 * 60 * 1000;
-      
-      if (cachedVideo && cachedTime && (Date.now() - parseInt(cachedTime)) < oneHour) {
-        setBackgroundImage(cachedVideo);
-        console.log('Using cached Pexels video');
-        return;
-      }
-
+    const fetchVideoPlaylist = async () => {
       try {
-        // Random page between 1-5 for variety - tech/hacking/working theme
-        const randomPage = Math.floor(Math.random() * 5) + 1;
-        const response = await fetch(
-          `https://api.pexels.com/videos/search?query=colorful+nature+peaceful+calm+landscape&orientation=landscape&per_page=15&page=${randomPage}`,
-          {
-            headers: {
-              Authorization: 'SBv6ZOHirhcApz4iLkxYd7c2RDXBWJPKbc8AWDku666r3zU6Tdc2sOih'
+        // Fetch multiple pages to get more variety
+        const pages = [1, 2, 3];
+        const allVideos = [];
+
+        for (const page of pages) {
+          const response = await fetch(
+            `https://api.pexels.com/videos/search?query=colorful+nature+peaceful+calm+landscape&orientation=landscape&per_page=10&page=${page}`,
+            {
+              headers: {
+                Authorization: 'SBv6ZOHirhcApz4iLkxYd7c2RDXBWJPKbc8AWDku666r3zU6Tdc2sOih'
+              }
+            }
+          );
+
+          if (response.ok) {
+            const data = await response.json();
+            if (data.videos && data.videos.length > 0) {
+              allVideos.push(...data.videos);
             }
           }
-        );
-        
-        if (response.ok) {
-          const data = await response.json();
-          if (data.videos && data.videos.length > 0) {
-            // Select a random video from the results
-            const randomVideo = data.videos[Math.floor(Math.random() * data.videos.length)];
-            // Use HD quality video file
-            const videoFile = randomVideo.video_files.find(file => file.quality === 'hd') || randomVideo.video_files[0];
-            setBackgroundImage(videoFile.link);
-            
-            // Cache the video URL
-            localStorage.setItem('landingPageVideo', videoFile.link);
-            localStorage.setItem('landingPageVideoTime', Date.now().toString());
-            console.log('Pexels video loaded and cached:', videoFile.link);
-          }
+        }
+
+        if (allVideos.length > 0) {
+          // Shuffle videos for random order and select 10 for playlist
+          const shuffled = allVideos.sort(() => Math.random() - 0.5);
+          const selectedVideos = shuffled.slice(0, 10).map(video => {
+            const videoFile = video.video_files.find(file => file.quality === 'hd') || video.video_files[0];
+            return videoFile.link;
+          });
+          
+          setVideoPlaylist(selectedVideos);
+          console.log(`Pexels video playlist loaded: ${selectedVideos.length} videos`);
         }
       } catch (error) {
-        console.error('Error fetching Pexels video:', error);
-        setBackgroundImage('');
+        console.error('Error fetching Pexels video playlist:', error);
       }
     };
 
-    fetchBackgroundVideo();
+    fetchVideoPlaylist();
   }, []); // Empty dependency array - only run once on mount
+
+  // Handle video end - switch to next video
+  const handleVideoEnd = () => {
+    setIsTransitioning(true);
+    setTimeout(() => {
+      setCurrentVideoIndex((prevIndex) => (prevIndex + 1) % videoPlaylist.length);
+      setIsTransitioning(false);
+    }, 300); // Short transition delay
+  };
 
   // Icon mapping for tools
   const iconMap = {
