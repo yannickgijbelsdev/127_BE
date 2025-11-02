@@ -211,10 +211,10 @@ const ToolSuggestionModal = ({ isOpen, onClose }) => {
                 {isSubmitting ? (
                   <>
                     <Loader2 className="w-5 h-5 animate-spin" />
-                    Verzenden...
+                    {t('Verzenden...', 'Sending...')}
                   </>
                 ) : (
-                  'Verstuur Suggestie'
+                  t('Verstuur Suggestie', 'Submit Suggestion')
                 )}
               </button>
             </form>
