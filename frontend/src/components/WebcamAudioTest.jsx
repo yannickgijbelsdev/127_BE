@@ -222,9 +222,17 @@ const WebcamAudioTest = () => {
     chunksRef.current = [];
     setRecordedChunks([]);
     
-    const mediaRecorder = new MediaRecorder(stream, {
-      mimeType: 'video/webm;codecs=vp9',
-    });
+    // Check for supported MIME types - prefer MP4 if available
+    let mimeType = 'video/webm;codecs=vp9';
+    if (MediaRecorder.isTypeSupported('video/mp4')) {
+      mimeType = 'video/mp4';
+    } else if (MediaRecorder.isTypeSupported('video/webm;codecs=h264')) {
+      mimeType = 'video/webm;codecs=h264';
+    }
+    
+    console.log('Using MIME type:', mimeType);
+    
+    const mediaRecorder = new MediaRecorder(stream, { mimeType });
 
     mediaRecorder.ondataavailable = (event) => {
       if (event.data.size > 0) {
@@ -244,12 +252,13 @@ const WebcamAudioTest = () => {
     setIsRecording(true);
     setRecordingTime(0);
 
-    console.log('Recording started');
+    console.log('Recording started with', mimeType);
 
     // Log recording start
     logAction('wea', 'Webcam & Audio Test', 'recording_started', {
       camera: devices.camera,
-      microphone: devices.microphone
+      microphone: devices.microphone,
+      mime_type: mimeType
     });
 
     // Start timer
