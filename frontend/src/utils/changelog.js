@@ -1,6 +1,28 @@
-export const BUILD_VERSION = '1.8.2';
+export const BUILD_VERSION = '1.8.3';
 
 export const CHANGELOG = {
+  "1.8.3": {
+    nl: {
+      title: "Vertaling & Tech Achtergronden",
+      date: "2025-02-03",
+      features: [
+        "Taalwisselaar op ALLE pagina's (Nederlands ⇄ English)",
+        "Tech-gerelateerde video's op landing page",
+        "Tech-gerelateerde foto's op loading screens",
+        "Alle knoppen en labels vertaald"
+      ]
+    },
+    en: {
+      title: "Translation & Tech Backgrounds",
+      date: "2025-02-03",
+      features: [
+        "Language toggle on ALL pages (Nederlands ⇄ English)",
+        "Tech-related videos on landing page",
+        "Tech-related photos on loading screens",
+        "All buttons and labels translated"
+      ]
+    }
+  },
   "1.8.2": {
     nl: {
       title: "Video Playlist Systeem",
