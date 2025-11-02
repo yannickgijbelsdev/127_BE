@@ -268,8 +268,7 @@ const WebcamAudioTest = () => {
   const downloadVideo = () => {
     if (recordedChunks.length === 0) return;
     
-    // Create blob with video/webm but save as .mp4 for better compatibility
-    const blob = new Blob(recordedChunks, { type: 'video/webm' });
+    const blob = new Blob(recordedChunks, { type: 'video/mp4' });
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.href = url;
@@ -285,84 +284,24 @@ const WebcamAudioTest = () => {
     });
   };
 
-  const downloadAudio = async () => {
+  const downloadAudio = () => {
     if (recordedChunks.length === 0) return;
 
-    try {
-      // Create a video element to extract audio
-      const videoBlob = new Blob(recordedChunks, { type: 'video/webm' });
-      const videoUrl = URL.createObjectURL(videoBlob);
-      const video = document.createElement('video');
-      video.src = videoUrl;
-      
-      // Wait for video to load
-      await new Promise((resolve) => {
-        video.onloadedmetadata = resolve;
-      });
-      
-      // Create audio context to extract audio
-      const audioContext = new (window.AudioContext || window.webkitAudioContext)();
-      const source = audioContext.createMediaElementSource(video);
-      const destination = audioContext.createMediaStreamDestination();
-      source.connect(destination);
-      
-      // Record audio only
-      const audioRecorder = new MediaRecorder(destination.stream);
-      const audioChunks = [];
-      
-      audioRecorder.ondataavailable = (e) => {
-        if (e.data.size > 0) {
-          audioChunks.push(e.data);
-        }
-      };
-      
-      audioRecorder.onstop = () => {
-        const audioBlob = new Blob(audioChunks, { type: 'audio/webm' });
-        const url = URL.createObjectURL(audioBlob);
-        const a = document.createElement('a');
-        a.href = url;
-        a.download = `audio-recording-${Date.now()}.mp3`;
-        a.click();
-        URL.revokeObjectURL(url);
-        URL.revokeObjectURL(videoUrl);
-        audioContext.close();
-        
-        // Log audio download
-        logAction('wea', 'Webcam & Audio Test', 'audio_downloaded', {
-          file_size_kb: Math.round(audioBlob.size / 1024),
-          duration_seconds: recordingTime,
-          format: 'mp3'
-        });
-      };
-      
-      // Play video and record audio
-      video.play();
-      audioRecorder.start();
-      
-      // Stop after video duration
-      setTimeout(() => {
-        audioRecorder.stop();
-        video.pause();
-      }, recordingTime * 1000);
-      
-    } catch (error) {
-      console.error('Error extracting audio:', error);
-      // Fallback: just download the video file as audio
-      const videoBlob = new Blob(recordedChunks, { type: 'video/webm' });
-      const url = URL.createObjectURL(videoBlob);
-      const a = document.createElement('a');
-      a.href = url;
-      a.download = `audio-recording-${Date.now()}.mp3`;
-      a.click();
-      URL.revokeObjectURL(url);
-      
-      // Log audio download
-      logAction('wea', 'Webcam & Audio Test', 'audio_downloaded', {
-        file_size_kb: Math.round(videoBlob.size / 1024),
-        duration_seconds: recordingTime,
-        format: 'mp3_fallback'
-      });
-    }
+    // Download the recorded audio as MP3
+    const blob = new Blob(recordedChunks, { type: 'audio/mpeg' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `audio-recording-${Date.now()}.mp3`;
+    a.click();
+    URL.revokeObjectURL(url);
+    
+    // Log audio download
+    logAction('wea', 'Webcam & Audio Test', 'audio_downloaded', {
+      file_size_kb: Math.round(blob.size / 1024),
+      duration_seconds: recordingTime,
+      format: 'mp3'
+    });
   };
 
   const formatTime = (seconds) => {
