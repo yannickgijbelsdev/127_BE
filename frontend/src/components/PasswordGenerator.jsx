@@ -622,7 +622,11 @@ const PasswordGenerator = () => {
                           type="text"
                           value={generateSuggestion()}
                           readOnly
-                          className="flex-1 bg-[#202124] text-[#e8eaed] px-3 py-2 rounded-lg border border-[#5f6368] font-mono text-xs"
+                          className="flex-1 text-white px-3 py-2 rounded-lg font-mono text-xs"
+                          style={{
+                            background: 'rgba(255, 255, 255, 0.05)',
+                            border: '1px solid rgba(255, 255, 255, 0.1)'
+                          }}
                         />
                         <button
                           onClick={() => {
@@ -630,7 +634,12 @@ const PasswordGenerator = () => {
                             setCustomPassword(suggestion);
                             copyToClipboard(suggestion);
                           }}
-                          className="px-3 py-2 bg-[#FFA500] hover:bg-[#FF8C00] text-[#202124] rounded-lg transition-colors text-sm font-medium"
+                          className="px-3 py-2 rounded-lg transition-colors text-sm font-medium text-white"
+                          style={{
+                            background: 'rgba(255, 165, 0, 0.8)'
+                          }}
+                          onMouseEnter={(e) => e.target.style.background = 'rgba(255, 140, 0, 0.9)'}
+                          onMouseLeave={(e) => e.target.style.background = 'rgba(255, 165, 0, 0.8)'}
                         >
                           Gebruik dit
                         </button>
