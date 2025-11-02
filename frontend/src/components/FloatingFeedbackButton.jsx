@@ -293,7 +293,7 @@ const FloatingFeedbackButton = ({ hideOnFullscreen = false }) => {
                     onMouseEnter={(e) => e.target.style.background = 'rgba(255, 255, 255, 0.15)'}
                     onMouseLeave={(e) => e.target.style.background = 'rgba(255, 255, 255, 0.1)'}
                   >
-                    Annuleren
+                    {t('Annuleren', 'Cancel')}
                   </button>
                   <button
                     onClick={handleSubmit}
@@ -309,7 +309,7 @@ const FloatingFeedbackButton = ({ hideOnFullscreen = false }) => {
                     onMouseEnter={(e) => !isSubmitting && (e.target.style.background = 'rgba(150, 180, 255, 0.35)')}
                     onMouseLeave={(e) => e.target.style.background = 'rgba(150, 180, 255, 0.25)'}
                   >
-                    {isSubmitting ? 'Verzenden...' : 'Verzenden'}
+                    {isSubmitting ? t('Verzenden...', 'Sending...') : t('Verzenden', 'Send')}
                   </button>
                 </div>
               </>
