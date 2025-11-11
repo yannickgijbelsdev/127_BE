@@ -17,6 +17,8 @@ const SimpleAdminLogin = () => {
     // Trim spaces
     const cleanEmail = email.trim().toLowerCase();
     
+    console.log('Login attempt:', cleanEmail);
+    
     // For now: just check email, accept any password for testing
     if (cleanEmail === 'yannick@radiogroep.be') {
       // Create a simple token
@@ -35,10 +37,12 @@ const SimpleAdminLogin = () => {
         role: 'admin'
       }));
       
-      // Use navigate instead of window.location
-      navigate('/autosoft');
+      console.log('Token saved, redirecting...');
+      
+      // Force full page reload to /autosoft
+      window.location.href = '/autosoft';
     } else {
-      setError(`Email moet yannick@radiogroep.be zijn`);
+      setError(`Email moet yannick@radiogroep.be zijn (je hebt ingevuld: ${cleanEmail})`);
       setLoading(false);
     }
   };
