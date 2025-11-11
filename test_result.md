@@ -232,12 +232,24 @@ backend:
         comment: "COMPREHENSIVE BACKEND TESTING COMPLETED - Admin tool toggle functionality working perfectly: ✅ PUT /api/admin/tools/{tool_id} with {enabled: false} successfully disables tools ✅ PUT /api/admin/tools/{tool_id} with {enabled: true} successfully enables tools ✅ Disabled tools immediately excluded from GET /api/tools public API ✅ Tool status API reflects real-time enabled/disabled state ✅ Proper authentication required (403 without token) ✅ GET /api/admin/tools returns all tools with full details ✅ Tool state changes persist correctly ✅ Tested complete disable/enable cycle with 'dpd' tool ✅ All 5 tools (dpd, printer, sscreen, wea, password) accessible via admin API"
 
 frontend:
+  - task: "AutosoftDashboard Component"
+    implemented: true
+    working: true
+    file: "/app/frontend/src/components/admin/AutosoftDashboard.jsx"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: true
+    status_history:
+      - working: true
+        agent: "main"
+        comment: "Fixed authentication issue by changing localStorage key from 'adminToken' to 'admin_token' in 4 places. Dashboard now loads correctly with barcode scanner, device list, status filters, and checklist functionality. Screenshot confirmed UI is working."
+
   - task: "ToolStatusWrapper Component"
     implemented: true
     working: true
     file: "/app/frontend/src/components/ToolStatusWrapper.jsx"
     stuck_count: 0
-    priority: "high"
+    priority: "medium"
     needs_retesting: false
     status_history:
       - working: "NA"
