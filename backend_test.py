@@ -260,6 +260,201 @@ class BackendTester:
         except Exception as e:
             self.log_result("Get Analytics Stats", False, f"Exception: {str(e)}")
     
+    def test_autosoft_endpoints(self):
+        """Test Autosoft Replacement Device Management System endpoints"""
+        print("\n=== Testing Autosoft Device Management ===")
+        
+        if not self.admin_token:
+            self.log_result("Autosoft Tests Setup", False, "No admin token available")
+            return
+        
+        test_barcode = "AUTOTEST123"
+        
+        # 1. Test device scanning - First scan (registration)
+        try:
+            scan_data = {"barcode": test_barcode}
+            response = self.session.post(f"{BACKEND_URL}/autosoft/scan", json=scan_data)
+            
+            if response.status_code == 200:
+                scan_result = response.json()
+                if scan_result.get("action") == "registered":
+                    self.log_result("Device First Scan", True, f"Device {test_barcode} registered successfully", scan_result)
+                else:
+                    self.log_result("Device First Scan", False, f"Unexpected action: {scan_result.get('action')}", scan_result)
+            else:
+                self.log_result("Device First Scan", False, f"Scan failed: {response.status_code}", response.text)
+                return
+                
+        except Exception as e:
+            self.log_result("Device First Scan", False, f"Exception: {str(e)}")
+            return
+        
+        # 2. Test get all devices
+        try:
+            response = self.session.get(f"{BACKEND_URL}/autosoft/devices")
+            
+            if response.status_code == 200:
+                devices_data = response.json()
+                devices = devices_data.get("devices", [])
+                
+                # Check if our test device is in the list
+                test_device = next((d for d in devices if d.get("barcode") == test_barcode), None)
+                if test_device:
+                    self.log_result("Get All Devices", True, f"Found {len(devices)} devices including test device", {"total_devices": len(devices), "test_device_status": test_device.get("status")})
+                else:
+                    self.log_result("Get All Devices", False, f"Test device {test_barcode} not found in {len(devices)} devices")
+            else:
+                self.log_result("Get All Devices", False, f"Failed to get devices: {response.status_code}", response.text)
+                
+        except Exception as e:
+            self.log_result("Get All Devices", False, f"Exception: {str(e)}")
+        
+        # 3. Test device scanning - Second scan (open checklist)
+        try:
+            scan_data = {"barcode": test_barcode}
+            response = self.session.post(f"{BACKEND_URL}/autosoft/scan", json=scan_data)
+            
+            if response.status_code == 200:
+                scan_result = response.json()
+                if scan_result.get("action") == "open_checklist":
+                    device_data = scan_result.get("device", {})
+                    if device_data.get("barcode") == test_barcode:
+                        self.log_result("Device Second Scan", True, f"Device {test_barcode} ready for checklist", {"device_status": device_data.get("status")})
+                    else:
+                        self.log_result("Device Second Scan", False, "Device data mismatch", scan_result)
+                else:
+                    self.log_result("Device Second Scan", False, f"Unexpected action: {scan_result.get('action')}", scan_result)
+            else:
+                self.log_result("Device Second Scan", False, f"Second scan failed: {response.status_code}", response.text)
+                
+        except Exception as e:
+            self.log_result("Device Second Scan", False, f"Exception: {str(e)}")
+        
+        # 4. Test checklist update
+        try:
+            checklist_data = {
+                "checklist": {
+                    "no_damage": True,
+                    "windows_version": "11 24H2",
+                    "charger_included": True,
+                    "image_restored": True,
+                    "customer_data_wiped": True,
+                    "notes": "Device tested successfully by automated test"
+                }
+            }
+            
+            response = self.session.put(f"{BACKEND_URL}/autosoft/device/{test_barcode}/checklist", json=checklist_data)
+            
+            if response.status_code == 200:
+                updated_device = response.json()
+                if updated_device.get("status") == "checked" and updated_device.get("checklist"):
+                    checklist = updated_device.get("checklist", {})
+                    if checklist.get("windows_version") == "11 24H2":
+                        self.log_result("Update Checklist", True, f"Checklist updated successfully, status changed to 'checked'", {"windows_version": checklist.get("windows_version"), "notes": checklist.get("notes")})
+                    else:
+                        self.log_result("Update Checklist", False, "Checklist data not saved correctly", updated_device)
+                else:
+                    self.log_result("Update Checklist", False, "Device status not updated or checklist missing", updated_device)
+            else:
+                self.log_result("Update Checklist", False, f"Checklist update failed: {response.status_code}", response.text)
+                
+        except Exception as e:
+            self.log_result("Update Checklist", False, f"Exception: {str(e)}")
+        
+        # 5. Test get devices after checklist update
+        try:
+            response = self.session.get(f"{BACKEND_URL}/autosoft/devices")
+            
+            if response.status_code == 200:
+                devices_data = response.json()
+                devices = devices_data.get("devices", [])
+                
+                # Check if our test device has updated status
+                test_device = next((d for d in devices if d.get("barcode") == test_barcode), None)
+                if test_device and test_device.get("status") == "checked":
+                    self.log_result("Verify Device Status", True, f"Device {test_barcode} status correctly updated to 'checked'", {"status": test_device.get("status"), "checked_by": test_device.get("checked_by")})
+                else:
+                    self.log_result("Verify Device Status", False, f"Device status not updated correctly", {"found_device": test_device})
+            else:
+                self.log_result("Verify Device Status", False, f"Failed to verify device status: {response.status_code}", response.text)
+                
+        except Exception as e:
+            self.log_result("Verify Device Status", False, f"Exception: {str(e)}")
+        
+        # 6. Test device deletion
+        try:
+            response = self.session.delete(f"{BACKEND_URL}/autosoft/device/{test_barcode}")
+            
+            if response.status_code == 200:
+                delete_result = response.json()
+                if delete_result.get("message") == "Device deleted successfully":
+                    self.log_result("Delete Device", True, f"Device {test_barcode} deleted successfully", delete_result)
+                else:
+                    self.log_result("Delete Device", False, "Unexpected delete response", delete_result)
+            else:
+                self.log_result("Delete Device", False, f"Device deletion failed: {response.status_code}", response.text)
+                
+        except Exception as e:
+            self.log_result("Delete Device", False, f"Exception: {str(e)}")
+        
+        # 7. Test get devices after deletion
+        try:
+            response = self.session.get(f"{BACKEND_URL}/autosoft/devices")
+            
+            if response.status_code == 200:
+                devices_data = response.json()
+                devices = devices_data.get("devices", [])
+                
+                # Check if our test device is gone
+                test_device = next((d for d in devices if d.get("barcode") == test_barcode), None)
+                if not test_device:
+                    self.log_result("Verify Device Deletion", True, f"Device {test_barcode} successfully removed from system", {"remaining_devices": len(devices)})
+                else:
+                    self.log_result("Verify Device Deletion", False, f"Device {test_barcode} still exists after deletion", test_device)
+            else:
+                self.log_result("Verify Device Deletion", False, f"Failed to verify device deletion: {response.status_code}", response.text)
+                
+        except Exception as e:
+            self.log_result("Verify Device Deletion", False, f"Exception: {str(e)}")
+    
+    def test_autosoft_authentication(self):
+        """Test Autosoft endpoints require authentication"""
+        print("\n=== Testing Autosoft Authentication Requirements ===")
+        
+        # Remove auth header temporarily
+        temp_headers = self.session.headers.copy()
+        if "Authorization" in self.session.headers:
+            del self.session.headers["Authorization"]
+        
+        test_endpoints = [
+            ("POST", "/autosoft/scan", {"barcode": "TEST123"}),
+            ("GET", "/autosoft/devices", None),
+            ("PUT", "/autosoft/device/TEST123/checklist", {"checklist": {"no_damage": True}}),
+            ("DELETE", "/autosoft/device/TEST123", None)
+        ]
+        
+        for method, endpoint, data in test_endpoints:
+            try:
+                if method == "POST":
+                    response = self.session.post(f"{BACKEND_URL}{endpoint}", json=data)
+                elif method == "GET":
+                    response = self.session.get(f"{BACKEND_URL}{endpoint}")
+                elif method == "PUT":
+                    response = self.session.put(f"{BACKEND_URL}{endpoint}", json=data)
+                elif method == "DELETE":
+                    response = self.session.delete(f"{BACKEND_URL}{endpoint}")
+                
+                if response.status_code == 403:  # Forbidden expected
+                    self.log_result(f"Auth Required - {method} {endpoint}", True, "Correctly rejected unauthorized access", {"status": response.status_code})
+                else:
+                    self.log_result(f"Auth Required - {method} {endpoint}", False, f"Unexpected response: {response.status_code}", response.text)
+                    
+            except Exception as e:
+                self.log_result(f"Auth Required - {method} {endpoint}", False, f"Exception: {str(e)}")
+        
+        # Restore auth header
+        self.session.headers = temp_headers
+
     def test_error_handling(self):
         """Test error handling for malformed requests"""
         print("\n=== Testing Error Handling ===")
@@ -309,6 +504,33 @@ class BackendTester:
                 
         except Exception as e:
             self.log_result("Unauthorized Access Handling", False, f"Exception: {str(e)}")
+        
+        # 3. Test Autosoft error handling
+        if self.admin_token:
+            try:
+                # Test invalid barcode format
+                invalid_scan = {"barcode": ""}
+                response = self.session.post(f"{BACKEND_URL}/autosoft/scan", json=invalid_scan)
+                
+                if response.status_code in [400, 422]:  # Bad request expected
+                    self.log_result("Invalid Barcode Handling", True, "Correctly rejected empty barcode", {"status": response.status_code})
+                else:
+                    self.log_result("Invalid Barcode Handling", False, f"Unexpected response for empty barcode: {response.status_code}", response.text)
+                    
+            except Exception as e:
+                self.log_result("Invalid Barcode Handling", False, f"Exception: {str(e)}")
+            
+            try:
+                # Test device not found
+                response = self.session.get(f"{BACKEND_URL}/autosoft/device/NONEXISTENT123")
+                
+                if response.status_code == 404:  # Not found expected
+                    self.log_result("Device Not Found Handling", True, "Correctly returned 404 for non-existent device", {"status": response.status_code})
+                else:
+                    self.log_result("Device Not Found Handling", False, f"Unexpected response for non-existent device: {response.status_code}", response.text)
+                    
+            except Exception as e:
+                self.log_result("Device Not Found Handling", False, f"Exception: {str(e)}")
     
     def run_all_tests(self):
         """Run all backend tests"""
