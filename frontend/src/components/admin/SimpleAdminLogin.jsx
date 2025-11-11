@@ -31,7 +31,8 @@ const SimpleAdminLogin = () => {
         role: 'admin'
       }));
       
-      navigate('/localhost');
+      // Redirect to autosoft
+      window.location.href = '/autosoft';
     } else {
       setError('Ongeldige email of wachtwoord');
       setLoading(false);
