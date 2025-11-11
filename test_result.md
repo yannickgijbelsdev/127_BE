@@ -411,10 +411,6 @@ metadata:
 
 test_plan:
   current_focus:
-    - "Autosoft Device Scan API - POST /api/autosoft/scan"
-    - "Autosoft Get Devices API - GET /api/autosoft/devices"
-    - "Autosoft Update Checklist API - PUT /api/autosoft/device/{barcode}/checklist"
-    - "Autosoft Delete Device API - DELETE /api/autosoft/device/{barcode}"
     - "AutosoftDashboard Component"
   stuck_tasks: []
   test_all: false
