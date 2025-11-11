@@ -43,11 +43,11 @@ const SimpleAdminLogin = () => {
         role: 'admin'
       }));
       
-      alert('Token gezet! Redirecting naar /autosoft');
+      alert('Token gezet! Redirecting naar admin dashboard');
       
-      // Force full page reload to /autosoft
+      // Redirect to admin dashboard, not directly to autosoft
       setTimeout(() => {
-        window.location.href = '/autosoft';
+        window.location.href = '/localhost/dashboard';
       }, 100);
     } else {
       alert(`Email NIET correct: ${cleanEmail}`);
