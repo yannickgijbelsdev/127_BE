@@ -393,19 +393,19 @@ frontend:
 
 metadata:
   created_by: "main_agent"
-  version: "1.0"
-  test_sequence: 0
+  version: "1.1"
+  test_sequence: 1
   run_ui: false
 
 test_plan:
   current_focus:
-    - "Public Tool Status API - GET /api/tools"
-    - "Public Tool Status Check API - GET /api/tools/{tool_id}/status"
-    - "ToolStatusWrapper Component"
-    - "LandingPage - Filter Enabled Tools"
-    - "All Tool Components - Offline Protection"
+    - "Autosoft Device Scan API - POST /api/autosoft/scan"
+    - "Autosoft Get Devices API - GET /api/autosoft/devices"
+    - "Autosoft Update Checklist API - PUT /api/autosoft/device/{barcode}/checklist"
+    - "Autosoft Delete Device API - DELETE /api/autosoft/device/{barcode}"
+    - "AutosoftDashboard Component"
   stuck_tasks: []
-  test_all: true
+  test_all: false
   test_priority: "high_first"
 
 agent_communication:
