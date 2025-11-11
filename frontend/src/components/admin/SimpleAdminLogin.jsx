@@ -14,11 +14,19 @@ const SimpleAdminLogin = () => {
     setError('');
     setLoading(true);
 
+    // Trim spaces and check
+    const cleanEmail = email.trim();
+    const cleanPassword = password.trim();
+    
+    console.log('Login attempt:', { cleanEmail, cleanPassword });
+    console.log('Expected:', { email: 'yannick@radiogroep.be', password: 'KYLovie13monx' });
+    console.log('Match:', cleanEmail === 'yannick@radiogroep.be', cleanPassword === 'KYLovie13monx');
+
     // Simple hardcoded check
-    if (email === 'yannick@radiogroep.be' && password === 'KYLovie13monx') {
+    if (cleanEmail === 'yannick@radiogroep.be' && cleanPassword === 'KYLovie13monx') {
       // Create a simple token
       const token = btoa(JSON.stringify({
-        email: email,
+        email: cleanEmail,
         role: 'admin',
         timestamp: Date.now()
       }));
@@ -26,15 +34,17 @@ const SimpleAdminLogin = () => {
       localStorage.setItem('adminToken', token);
       localStorage.setItem('adminUser', JSON.stringify({
         id: 'admin',
-        email: email,
+        email: cleanEmail,
         username: 'Yannick',
         role: 'admin'
       }));
       
       // Redirect to autosoft
-      window.location.href = '/autosoft';
+      setTimeout(() => {
+        window.location.href = '/autosoft';
+      }, 100);
     } else {
-      setError('Ongeldige email of wachtwoord');
+      setError(`Ongeldige email of wachtwoord (Email: ${cleanEmail}, Pass length: ${cleanPassword.length})`);
       setLoading(false);
     }
   };
