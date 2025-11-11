@@ -61,7 +61,7 @@ const AutosoftDashboard = () => {
 
     setLoading(true);
     try {
-      const token = localStorage.getItem('adminToken');
+      const token = localStorage.getItem('admin_token');
       const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/autosoft/scan`, {
         method: 'POST',
         headers: {
