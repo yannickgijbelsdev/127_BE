@@ -13,6 +13,10 @@ import uuid
 from datetime import datetime, timezone, timedelta
 import bcrypt
 import jwt
+from jwt.exceptions import ExpiredSignatureError, InvalidTokenError
+import pyotp
+import qrcode
+import io
 import pyotp
 import qrcode
 import io
