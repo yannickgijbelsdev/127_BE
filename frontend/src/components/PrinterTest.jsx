@@ -579,6 +579,7 @@ const PrinterTest = () => {
         onClose={() => setShowChangelog(false)}
         currentVersion={BUILD_VERSION}
       />
+      </>
     );
   }
 
