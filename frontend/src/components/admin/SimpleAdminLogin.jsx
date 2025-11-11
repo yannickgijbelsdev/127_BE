@@ -26,7 +26,8 @@ const SimpleAdminLogin = () => {
         timestamp: Date.now()
       }));
       
-      localStorage.setItem('adminToken', token);
+      // Use correct localStorage key that App.js expects!
+      localStorage.setItem('admin_token', token);
       localStorage.setItem('adminUser', JSON.stringify({
         id: 'admin',
         email: cleanEmail,
@@ -34,11 +35,8 @@ const SimpleAdminLogin = () => {
         role: 'admin'
       }));
       
-      // Redirect to autosoft
-      alert('Login succesvol! Redirecting...');
-      setTimeout(() => {
-        window.location.href = '/autosoft';
-      }, 500);
+      // Use navigate instead of window.location
+      navigate('/autosoft');
     } else {
       setError(`Email moet yannick@radiogroep.be zijn`);
       setLoading(false);
