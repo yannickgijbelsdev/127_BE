@@ -11,16 +11,22 @@ const SimpleAdminLogin = () => {
 
   const handleLogin = async (e) => {
     e.preventDefault();
+    e.stopPropagation();
+    
+    alert('Login functie aangeroepen!');
+    
     setError('');
     setLoading(true);
 
     // Trim spaces
     const cleanEmail = email.trim().toLowerCase();
     
-    console.log('Login attempt:', cleanEmail);
+    alert(`Email: ${cleanEmail}`);
     
     // For now: just check email, accept any password for testing
     if (cleanEmail === 'yannick@radiogroep.be') {
+      alert('Email correct! Token wordt gezet...');
+      
       // Create a simple token
       const token = btoa(JSON.stringify({
         email: cleanEmail,
@@ -37,11 +43,14 @@ const SimpleAdminLogin = () => {
         role: 'admin'
       }));
       
-      console.log('Token saved, redirecting...');
+      alert('Token gezet! Redirecting naar /autosoft');
       
       // Force full page reload to /autosoft
-      window.location.href = '/autosoft';
+      setTimeout(() => {
+        window.location.href = '/autosoft';
+      }, 100);
     } else {
+      alert(`Email NIET correct: ${cleanEmail}`);
       setError(`Email moet yannick@radiogroep.be zijn (je hebt ingevuld: ${cleanEmail})`);
       setLoading(false);
     }
