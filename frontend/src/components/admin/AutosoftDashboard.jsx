@@ -572,6 +572,27 @@ const AutosoftDashboard = () => {
 
   return (
     <div className="min-h-screen bg-[#202124] text-white p-6">
+      {/* Notification Toast */}
+      {notification && (
+        <div className="fixed top-4 right-4 z-50 animate-slide-in">
+          <div className={`flex items-center gap-3 px-4 py-3 rounded-lg shadow-lg min-w-[300px] ${
+            notification.type === 'success' ? 'bg-green-600' :
+            notification.type === 'error' ? 'bg-red-600' :
+            'bg-blue-600'
+          }`}>
+            {notification.type === 'success' && <CheckCircle2 className="w-5 h-5" />}
+            {notification.type === 'error' && <AlertCircle className="w-5 h-5" />}
+            <span className="flex-1 text-white font-medium">{notification.message}</span>
+            <button
+              onClick={() => setNotification(null)}
+              className="text-white hover:text-gray-200 transition-colors"
+            >
+              <X className="w-4 h-4" />
+            </button>
+          </div>
+        </div>
+      )}
+
       {/* Header */}
       <div className="max-w-7xl mx-auto mb-8">
         <h1 className="text-3xl font-bold text-white mb-2">Autosoft Vervangtoestellen</h1>
