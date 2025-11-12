@@ -163,13 +163,13 @@ class AutosoftOverlay:
         )
         close_btn.pack(side=tk.RIGHT, pady=10)
         
-        # Content frame
-        content_frame = tk.Frame(main_frame, bg="white")
-        content_frame.pack(fill=tk.BOTH, expand=True, padx=2, pady=2)
+        # Content frame - dark background
+        content_frame = tk.Frame(main_frame, bg="#1a1a1a")
+        content_frame.pack(fill=tk.BOTH, expand=True, padx=0, pady=0)
         
         # Info labels container
-        info_frame = tk.Frame(content_frame, bg="white")
-        info_frame.pack(fill=tk.BOTH, expand=True, padx=15, pady=10)
+        info_frame = tk.Frame(content_frame, bg="#1a1a1a")
+        info_frame.pack(fill=tk.BOTH, expand=True, padx=20, pady=15)
         
         # Device Type
         self.device_type_label = self.create_info_label(info_frame, "Device Type:", "Loading...")
