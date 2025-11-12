@@ -551,12 +551,12 @@ const AutosoftDashboard = () => {
       );
 
       if (response.ok) {
-        alert('Toestel verwijderd');
+        showNotification('success', 'Toestel succesvol verwijderd');
         fetchDevices();
       }
     } catch (error) {
       console.error('Error deleting device:', error);
-      alert('Fout bij verwijderen');
+      showNotification('error', 'Fout bij verwijderen');
     }
   };
 
