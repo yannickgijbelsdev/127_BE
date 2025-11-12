@@ -256,7 +256,7 @@ const AutosoftDashboard = () => {
       }
     } catch (error) {
       console.error('Error saving checklist:', error);
-      alert('Fout bij opslaan checklist');
+      showNotification('error', 'Fout bij opslaan checklist');
     }
   };
 
