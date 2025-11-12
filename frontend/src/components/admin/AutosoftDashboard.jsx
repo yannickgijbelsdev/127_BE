@@ -422,12 +422,14 @@ const AutosoftDashboard = () => {
                     ${checklistToPrint.no_damage ? '✓ JA' : '✗ NEE'}
                   </td>
                 </tr>
+                ${checklistToPrint.device_platform && checklistToPrint.os_version ? `
                 <tr>
-                  <td>Windows versie</td>
-                  <td style="text-align: center;" class="${checklistToPrint.windows_version ? 'status-ok' : 'status-nok'}">
-                    ${checklistToPrint.windows_version || '✗ Niet ingevuld'}
+                  <td>${checklistToPrint.device_platform} versie</td>
+                  <td style="text-align: center;" class="status-ok">
+                    ${checklistToPrint.os_version}
                   </td>
                 </tr>
+                ` : ''}
                 <tr>
                   <td>Lader erbij</td>
                   <td style="text-align: center;" class="${checklistToPrint.charger_included ? 'status-ok' : 'status-nok'}">
