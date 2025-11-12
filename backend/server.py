@@ -1153,13 +1153,38 @@ async def update_device_checklist(
     updated_device = await db.replacement_devices.find_one({"barcode": barcode}, {"_id": 0})
     return updated_device
 
+@api_router.put("/autosoft/device/{barcode}/info")
+async def update_device_info(
+    barcode: str,
+    info_data: DeviceInfoUpdateRequest,
+    current_admin: User = Depends(get_current_admin)
+):
+    """Update device info (type and/or serial number)"""
+    update_fields = {"updated_at": datetime.now(timezone.utc).isoformat()}
+    
+    if info_data.device_type is not None:
+        update_fields["device_type"] = info_data.device_type
+    if info_data.serial_number is not None:
+        update_fields["serial_number"] = info_data.serial_number
+    
+    result = await db.replacement_devices.update_one(
+        {"barcode": barcode},
+        {"$set": update_fields}
+    )
+    
+    if result.modified_count == 0:
+        raise HTTPException(status_code=404, detail="Device not found")
+    
+    updated_device = await db.replacement_devices.find_one({"barcode": barcode}, {"_id": 0})
+    return updated_device
+
 @api_router.put("/autosoft/device/{barcode}/type")
 async def update_device_type(
     barcode: str,
     type_data: DeviceTypeUpdateRequest,
     current_admin: User = Depends(get_current_admin)
 ):
-    """Update device type"""
+    """Update device type (legacy endpoint)"""
     result = await db.replacement_devices.update_one(
         {"barcode": barcode},
         {
