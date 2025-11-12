@@ -416,17 +416,20 @@ const AutosoftDashboard = () => {
 
             <!-- Document Title -->
             <div class="document-title">Checklist # ${selectedDevice.barcode}</div>
-            ${selectedDevice.device_type ? `<p style="color: #000; font-size: 12pt; margin-top: 10px; font-weight: bold;">Type: ${selectedDevice.device_type}</p>` : ''}
-            ${selectedDevice.serial_number ? `<p style="color: #666; font-size: 10pt; margin-top: 5px;">Serienummer: ${selectedDevice.serial_number}</p>` : ''}
 
-            <!-- Document Info -->
-            <div class="document-info">
-              <div class="document-info-left">
-                <p><strong>Datum:</strong><br>${checkDate.toLocaleDateString('nl-NL', { day: '2-digit', month: '2-digit', year: 'numeric' })}</p>
-              </div>
-              <div class="document-info-right" style="text-align: right;">
-                <p><strong>Status:</strong><br>Gecontroleerd</p>
-              </div>
+            <!-- Device Info Section -->
+            <div style="background: #f0f8ff; padding: 15px; border-radius: 5px; margin: 20px 0; border-left: 4px solid #2596be;">
+              ${selectedDevice.device_type ? `
+                <p style="margin: 5px 0;"><strong>Type:</strong> ${selectedDevice.device_type}</p>
+              ` : ''}
+              ${selectedDevice.serial_number ? `
+                <p style="margin: 5px 0;"><strong>Serienummer:</strong> ${selectedDevice.serial_number}</p>
+              ` : ''}
+              ${checklistToPrint.device_platform && checklistToPrint.os_version ? `
+                <p style="margin: 5px 0;"><strong>Platform:</strong> ${checklistToPrint.device_platform} - ${checklistToPrint.os_version}</p>
+              ` : ''}
+              <p style="margin: 5px 0;"><strong>Datum Controle:</strong> ${checkDate.toLocaleDateString('nl-NL', { day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit' })}</p>
+              <p style="margin: 5px 0;"><strong>Status:</strong> Gecontroleerd</p>
             </div>
 
             <!-- Checklist Table -->
