@@ -30,15 +30,11 @@ const LandingPage = () => {
         // Fetch multiple pages to get more variety
         const pages = [1, 2, 3];
         const allVideos = [];
+        const backendUrl = process.env.REACT_APP_BACKEND_URL;
 
         for (const page of pages) {
           const response = await fetch(
-            `https://api.pexels.com/videos/search?query=technology+data+server+network+circuit+board+digital&orientation=landscape&per_page=10&page=${page}`,
-            {
-              headers: {
-                Authorization: 'SBv6ZOHirhcApz4iLkxYd7c2RDXBWJPKbc8AWDku666r3zU6Tdc2sOih'
-              }
-            }
+            `${backendUrl}/api/pexels/videos?query=technology+data+server+network+circuit+board+digital&orientation=landscape&per_page=10&page=${page}`
           );
 
           if (response.ok) {
