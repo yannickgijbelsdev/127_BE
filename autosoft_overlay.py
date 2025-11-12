@@ -194,7 +194,7 @@ class AutosoftOverlay:
         self.last_check_label = self.create_info_label(info_frame, "Laatste Check:", "Nog niet gecontroleerd")
         
         # Status bar at bottom
-        status_frame = tk.Frame(content_frame, bg="#f0f0f0", height=25)
+        status_frame = tk.Frame(content_frame, bg="#0d0d0d", height=30)
         status_frame.pack(fill=tk.X, side=tk.BOTTOM)
         status_frame.pack_propagate(False)
         
@@ -202,10 +202,10 @@ class AutosoftOverlay:
             status_frame,
             text="Laatste update: Net nu",
             font=("Arial", 8),
-            bg="#f0f0f0",
-            fg="#666666"
+            bg="#0d0d0d",
+            fg="#999999"
         )
-        self.status_label.pack(pady=5)
+        self.status_label.pack(pady=8)
     
     def create_info_label(self, parent, label_text, value_text):
         """Create a label pair (label: value)"""
