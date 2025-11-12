@@ -91,6 +91,7 @@ const AutosoftDashboard = () => {
           // First scan - device registered
           setSelectedDevice(data.device);
           setDeviceType(data.device.device_type || '');
+          setSerialNumber(data.device.serial_number || '');
           setShowChecklist(true);
           setBarcode('');
           fetchDevices();
@@ -98,6 +99,7 @@ const AutosoftDashboard = () => {
           // Device exists - show options
           setSelectedDevice(data.device);
           setDeviceType(data.device.device_type || '');
+          setSerialNumber(data.device.serial_number || '');
           setShowDeviceOptions(true);
           setBarcode('');
         }
