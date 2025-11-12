@@ -83,6 +83,7 @@ const AutosoftDashboard = () => {
           // Second scan - open checklist
           setSelectedDevice(data.device);
           setShowChecklist(true);
+          setBarcode('');
           
           // Pre-fill checklist if exists
           if (data.device.checklist) {
