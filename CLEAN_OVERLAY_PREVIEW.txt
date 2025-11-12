@@ -1,0 +1,42 @@
+╔═══════════════════════════════════════════════════╗
+║ [AUTOSOFT LOGO - Kleur]                        × ║ <- Blauw header (#2596be)
+╠═══════════════════════════════════════════════════╣
+║                                                   ║
+║  Device Type: Dell Latitude 5420                 ║ <- Wit op donker
+║                                                   ║
+║  Barcode: LAP-WIN-001                            ║ <- Wit op donker
+║                                                   ║
+║  Windows: Windows 11 24H2                        ║ <- Wit op donker
+║                                                   ║
+║  PC Naam: LAPTOP-ABC123                          ║ <- Wit op donker
+║                                                   ║
+║  IP Adres: 192.168.1.105                         ║ <- Wit op donker
+║                                                   ║
+║  Laatste Check: 12-11-2025 02:45                 ║ <- Wit op donker
+║                                                   ║
+╠═══════════════════════════════════════════════════╣
+║  Laatste update: 02:50                           ║ <- Status (lichtgrijs)
+╚═══════════════════════════════════════════════════╝
+
+KLEUREN:
+• Header: #2596be (Autosoft blauw)
+• Content: #1a1a1a (bijna zwart)
+• Tekst: #ffffff (zuiver wit)
+• Status: #999999 (lichtgrijs)
+• Status bar: #0d0d0d (donkerder)
+
+DESIGN:
+✓ Super clean - geen borders, geen boxes
+✓ Plain white text op donkere achtergrond
+✓ Alleen het logo in kleur (blauw)
+✓ Minimalistisch - focus op data
+✓ Segoe UI font (modern Windows font)
+✓ Goede spacing voor leesbaarheid
+✓ Professioneel en overzichtelijk
+
+FEATURES BLIJVEN:
+✓ Draggable (sleep via blauwe header)
+✓ Always on top
+✓ Semi-transparant (95%)
+✓ Auto-refresh elke 5 min
+✓ Close button (×)
