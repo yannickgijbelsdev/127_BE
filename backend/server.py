@@ -1055,17 +1055,18 @@ async def scan_device(
     scan_request: DeviceScanRequest,
     current_admin: User = Depends(get_current_admin)
 ):
-    """Scan a device barcode - first scan registers, second scan returns device for checklist"""
+    """Scan a device barcode - returns device info if exists, registers if new"""
     barcode = scan_request.barcode.strip()
     
     # Check if device exists
     existing_device = await db.replacement_devices.find_one({"barcode": barcode}, {"_id": 0})
     
     if existing_device:
-        # Second scan - return device info for checklist
+        # Device exists - return it with action to show options
         return {
-            "action": "open_checklist",
-            "device": existing_device
+            "action": "device_exists",
+            "device": existing_device,
+            "checks_count": len(existing_device.get("checklists", []))
         }
     else:
         # First scan - register device
