@@ -290,6 +290,56 @@ async def create_default_admin():
 async def root():
     return {"message": "Hello World"}
 
+@api_router.get("/pexels/videos")
+async def get_pexels_videos(query: str, orientation: str = "landscape", per_page: int = 10, page: int = 1):
+    """Proxy endpoint for Pexels video API to keep API key secure"""
+    pexels_api_key = os.environ.get('PEXELS_API_KEY')
+    if not pexels_api_key:
+        raise HTTPException(status_code=500, detail="Pexels API key not configured")
+    
+    async with httpx.AsyncClient() as client:
+        try:
+            response = await client.get(
+                f"https://api.pexels.com/videos/search",
+                params={
+                    "query": query,
+                    "orientation": orientation,
+                    "per_page": per_page,
+                    "page": page
+                },
+                headers={"Authorization": pexels_api_key},
+                timeout=10.0
+            )
+            response.raise_for_status()
+            return response.json()
+        except httpx.HTTPError as e:
+            raise HTTPException(status_code=500, detail=f"Pexels API error: {str(e)}")
+
+@api_router.get("/pexels/photos")
+async def get_pexels_photos(query: str, orientation: str = "landscape", per_page: int = 15, page: int = 1):
+    """Proxy endpoint for Pexels photo API to keep API key secure"""
+    pexels_api_key = os.environ.get('PEXELS_API_KEY')
+    if not pexels_api_key:
+        raise HTTPException(status_code=500, detail="Pexels API key not configured")
+    
+    async with httpx.AsyncClient() as client:
+        try:
+            response = await client.get(
+                f"https://api.pexels.com/v1/search",
+                params={
+                    "query": query,
+                    "orientation": orientation,
+                    "per_page": per_page,
+                    "page": page
+                },
+                headers={"Authorization": pexels_api_key},
+                timeout=10.0
+            )
+            response.raise_for_status()
+            return response.json()
+        except httpx.HTTPError as e:
+            raise HTTPException(status_code=500, detail=f"Pexels API error: {str(e)}")
+
 @api_router.post("/status", response_model=StatusCheck)
 async def create_status_check(input: StatusCheckCreate):
     status_dict = input.model_dump()
