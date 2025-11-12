@@ -258,11 +258,11 @@ class AutosoftOverlay:
                     try:
                         check_date = datetime.fromisoformat(data['last_check_date'].replace('Z', '+00:00'))
                         formatted_date = check_date.strftime('%d-%m-%Y %H:%M')
-                        self.last_check_label.config(text=formatted_date)
+                        self.last_check_label.config(text=f"{self.last_check_label.label_text} {formatted_date}")
                     except:
-                        self.last_check_label.config(text="Datum onbekend")
+                        self.last_check_label.config(text=f"{self.last_check_label.label_text} Datum onbekend")
                 else:
-                    self.last_check_label.config(text="Nog niet gecontroleerd")
+                    self.last_check_label.config(text=f"{self.last_check_label.label_text} Nog niet gecontroleerd")
                 
                 # Update status
                 now = datetime.now().strftime('%H:%M')
