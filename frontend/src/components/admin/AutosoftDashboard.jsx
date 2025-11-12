@@ -37,6 +37,20 @@ const AutosoftDashboard = () => {
 
   const barcodeInputRef = useRef(null);
 
+  // Helper function to show notification
+  const showNotification = (type, message) => {
+    setNotification({ type, message });
+    setTimeout(() => setNotification(null), 4000);
+  };
+
+  // Helper function to get serial number label based on platform
+  const getSerialLabel = (platform) => {
+    if (platform === 'iOS' || platform === 'Android') {
+      return 'IMEI nummer';
+    }
+    return 'Serienummer';
+  };
+
   // Helper function to get platform icon
   const getPlatformIcon = (device) => {
     const latestCheck = device.checklists && device.checklists.length > 0 
