@@ -76,18 +76,19 @@ const AdminNavBar = () => {
           <div className="p-4 border-b border-[#5f6368] bg-[#202124]">
             <div className="flex items-center justify-center">
               {isCollapsed ? (
-                <div className="text-[#8ab4f8] font-bold text-2xl">
-                  127
-                </div>
+                <img 
+                  src="https://customer-assets.emergentagent.com/job_tool-metrics/artifacts/w5126i9x_127_2025_Official_Logo.png" 
+                  alt="127 Logo" 
+                  className="h-10 w-auto brightness-110"
+                  draggable="false"
+                />
               ) : (
-                <div className="flex items-center gap-2">
-                  <div className="text-[#8ab4f8] font-bold text-3xl">
-                    127
-                  </div>
-                  <div className="text-[#e8eaed] text-sm">
-                    | Yannick Tools
-                  </div>
-                </div>
+                <img 
+                  src="https://customer-assets.emergentagent.com/job_tool-metrics/artifacts/w5126i9x_127_2025_Official_Logo.png" 
+                  alt="127 Logo" 
+                  className="h-12 w-auto brightness-110"
+                  draggable="false"
+                />
               )}
             </div>
           </div>
