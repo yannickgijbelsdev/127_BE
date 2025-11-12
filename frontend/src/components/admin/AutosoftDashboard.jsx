@@ -358,14 +358,16 @@ const AutosoftDashboard = () => {
 
             <!-- Document Title -->
             <div class="document-title">Checklist # ${selectedDevice.barcode}</div>
+            ${selectedDevice.device_type ? `<p style="color: #666; font-size: 11pt; margin-top: 5px;">Type: ${selectedDevice.device_type}</p>` : ''}
 
             <!-- Document Info -->
             <div class="document-info">
               <div class="document-info-left">
-                <p><strong>Datum:</strong><br>${new Date(selectedDevice.updated_at).toLocaleDateString('nl-NL', { day: '2-digit', month: '2-digit', year: 'numeric' })}</p>
+                <p><strong>Datum:</strong><br>${checkDate.toLocaleDateString('nl-NL', { day: '2-digit', month: '2-digit', year: 'numeric' })}</p>
               </div>
               <div class="document-info-right" style="text-align: right;">
-                <p><strong>Status:</strong><br>${selectedDevice.status === 'checked' ? 'Gecontroleerd' : 'Op technische dienst'}</p>
+                <p><strong>Status:</strong><br>Gecontroleerd</p>
+                ${checkedBy ? `<p style="margin-top: 5px;"><strong>Door:</strong><br>${checkedBy}</p>` : ''}
               </div>
             </div>
 
