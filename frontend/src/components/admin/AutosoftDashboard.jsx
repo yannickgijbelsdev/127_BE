@@ -35,6 +35,28 @@ const AutosoftDashboard = () => {
 
   const barcodeInputRef = useRef(null);
 
+  // Helper function to get platform icon
+  const getPlatformIcon = (device) => {
+    const latestCheck = device.checklists && device.checklists.length > 0 
+      ? device.checklists[device.checklists.length - 1] 
+      : null;
+    
+    const platform = latestCheck?.device_platform || '';
+    
+    switch(platform) {
+      case 'Windows':
+        return <Monitor className="w-4 h-4 text-blue-400" title="Windows" />;
+      case 'macOS':
+        return <Apple className="w-4 h-4 text-gray-300" title="macOS" />;
+      case 'Android':
+        return <Smartphone className="w-4 h-4 text-green-400" title="Android" />;
+      case 'iOS':
+        return <Smartphone className="w-4 h-4 text-gray-400" title="iOS" />;
+      default:
+        return <TabletSmartphone className="w-4 h-4 text-gray-500" title="Onbekend" />;
+    }
+  };
+
   useEffect(() => {
     // Focus barcode input on mount
     barcodeInputRef.current?.focus();
