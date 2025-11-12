@@ -791,9 +791,19 @@ const AutosoftDashboard = () => {
                         <div className={`p-2 rounded ${check.no_damage ? 'bg-green-900/30 text-green-300' : 'bg-red-900/30 text-red-300'}`}>
                           Schade: {check.no_damage ? '✓ Geen' : '✗ Ja'}
                         </div>
-                        <div className="p-2 bg-gray-700 rounded text-gray-300">
-                          Windows: {check.windows_version || 'N/A'}
-                        </div>
+                        {check.device_platform && check.os_version ? (
+                          <div className="p-2 bg-gray-700 rounded text-gray-300">
+                            {check.device_platform}: {check.os_version}
+                          </div>
+                        ) : check.windows_version ? (
+                          <div className="p-2 bg-gray-700 rounded text-gray-300">
+                            Windows: {check.windows_version}
+                          </div>
+                        ) : (
+                          <div className="p-2 bg-gray-700 rounded text-gray-400">
+                            OS: N/A
+                          </div>
+                        )}
                         <div className={`p-2 rounded ${check.charger_included ? 'bg-green-900/30 text-green-300' : 'bg-red-900/30 text-red-300'}`}>
                           Lader: {check.charger_included ? '✓ Ja' : '✗ Nee'}
                         </div>
