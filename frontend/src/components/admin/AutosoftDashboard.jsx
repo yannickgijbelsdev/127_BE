@@ -367,7 +367,6 @@ const AutosoftDashboard = () => {
               </div>
               <div class="document-info-right" style="text-align: right;">
                 <p><strong>Status:</strong><br>Gecontroleerd</p>
-                ${checkedBy ? `<p style="margin-top: 5px;"><strong>Door:</strong><br>${checkedBy}</p>` : ''}
               </div>
             </div>
 
