@@ -188,9 +188,11 @@ const AutosoftDashboard = () => {
         setShowChecklist(false);
         setSelectedDevice(null);
         setDeviceType('');
+        setSerialNumber('');
         setChecklist({
           no_damage: false,
-          windows_version: '',
+          device_platform: '',
+          os_version: '',
           charger_included: false,
           image_restored: false,
           customer_data_wiped: false,
