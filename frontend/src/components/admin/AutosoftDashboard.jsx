@@ -237,7 +237,7 @@ const AutosoftDashboard = () => {
       );
 
       if (response.ok) {
-        alert('Checklist opgeslagen!');
+        showNotification('success', 'Checklist succesvol opgeslagen!');
         setShowChecklist(false);
         setSelectedDevice(null);
         setDeviceType('');
