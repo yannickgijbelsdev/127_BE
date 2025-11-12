@@ -256,7 +256,7 @@ const AutosoftDashboard = () => {
             .footer {
               margin-top: 40px;
               padding-top: 15px;
-              border-top: 2px solid #000;
+              border-top: 2px solid #2596be;
               text-align: center;
               font-size: 8pt;
               line-height: 1.8;
