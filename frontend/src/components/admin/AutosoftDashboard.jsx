@@ -287,12 +287,6 @@ const AutosoftDashboard = () => {
               </div>
             </div>
 
-            <!-- Customer Info -->
-            <div class="customer-info">
-              <p><strong>Gijbels Yannick</strong></p>
-              <p>gijbels.yannick@ascit.be</p>
-            </div>
-
             <!-- Document Title -->
             <div class="document-title">Checklist # ${selectedDevice.barcode}</div>
 
