@@ -49,6 +49,9 @@ class AutosoftOverlay:
         # System info
         self.system_info = self.get_system_info()
         
+        # Download and cache logo
+        self.logo_image = self.load_logo()
+        
         # Setup UI
         self.setup_ui()
         
@@ -58,6 +61,22 @@ class AutosoftOverlay:
         
         # Initial data fetch
         self.update_device_info()
+    
+    def load_logo(self):
+        """Download and load the Autosoft logo"""
+        try:
+            response = requests.get(AUTOSOFT_LOGO_URL, timeout=10)
+            if response.status_code == 200:
+                image = Image.open(BytesIO(response.content))
+                # Resize to fit in header (max height 50px)
+                aspect_ratio = image.width / image.height
+                new_height = 50
+                new_width = int(new_height * aspect_ratio)
+                image = image.resize((new_width, new_height), Image.Resampling.LANCZOS)
+                return ImageTk.PhotoImage(image)
+        except Exception as e:
+            print(f"Kon logo niet laden: {e}")
+        return None
     
     def get_system_info(self):
         """Collect system information"""
