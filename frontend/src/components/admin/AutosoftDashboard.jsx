@@ -79,19 +79,17 @@ const AutosoftDashboard = () => {
         
         if (data.action === 'registered') {
           // First scan - device registered
-          alert(`Toestel ${barcode} geregistreerd en op technische dienst geplaatst`);
-          setBarcode('');
-          fetchDevices();
-        } else if (data.action === 'open_checklist') {
-          // Second scan - open checklist
           setSelectedDevice(data.device);
+          setDeviceType(data.device.device_type || '');
           setShowChecklist(true);
           setBarcode('');
-          
-          // Pre-fill checklist if exists
-          if (data.device.checklist) {
-            setChecklist(data.device.checklist);
-          }
+          fetchDevices();
+        } else if (data.action === 'device_exists') {
+          // Device exists - show options
+          setSelectedDevice(data.device);
+          setDeviceType(data.device.device_type || '');
+          setShowDeviceOptions(true);
+          setBarcode('');
         }
       }
     } catch (error) {
