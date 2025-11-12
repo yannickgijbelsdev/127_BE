@@ -12,16 +12,26 @@ const AutosoftDashboard = () => {
   const [showDeviceOptions, setShowDeviceOptions] = useState(false);
   const [showHistory, setShowHistory] = useState(false);
   const [deviceType, setDeviceType] = useState('');
+  const [serialNumber, setSerialNumber] = useState('');
   
   // Checklist state
   const [checklist, setChecklist] = useState({
     no_damage: false,
-    windows_version: '',
+    device_platform: '',
+    os_version: '',
     charger_included: false,
     image_restored: false,
     customer_data_wiped: false,
     notes: ''
   });
+
+  // OS Version options based on platform
+  const osVersionOptions = {
+    'Windows': ['Windows 10 22H2', 'Windows 11 23H2', 'Windows 11 24H2', 'Windows 11 25H2'],
+    'macOS': ['macOS Sequoia 15', 'macOS Sonoma 14', 'macOS Ventura 13', 'macOS Monterey 12', 'macOS Big Sur 11'],
+    'Android': ['Android 15', 'Android 14', 'Android 13', 'Android 12', 'Android 11', 'Android 10'],
+    'iOS': ['iOS 18', 'iOS 17', 'iOS 16', 'iOS 15', 'iOS 14']
+  };
 
   const barcodeInputRef = useRef(null);
 
