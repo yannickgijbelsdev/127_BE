@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Search, Printer, CheckCircle, Clock, Trash2, History, Plus, Laptop } from 'lucide-react';
+import { Search, Printer, CheckCircle, Clock, Trash2, History, Plus, Laptop, Monitor, Apple, Smartphone, TabletSmartphone } from 'lucide-react';
 
 const AutosoftDashboard = () => {
   const [barcode, setBarcode] = useState('');
