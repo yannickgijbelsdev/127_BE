@@ -623,6 +623,144 @@ const AutosoftDashboard = () => {
         </div>
       </div>
 
+      {/* Device Options Modal */}
+      {showDeviceOptions && selectedDevice && (
+        <div className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50 p-4">
+          <div className="bg-[#303134] rounded-lg max-w-md w-full">
+            <div className="p-6">
+              <h2 className="text-2xl font-bold text-white mb-4">
+                Device Gevonden - {selectedDevice.barcode}
+              </h2>
+              
+              <div className="space-y-3 mb-6">
+                <p className="text-gray-300">
+                  Dit device bestaat al met {selectedDevice.checklists?.length || 0} eerdere check(s).
+                </p>
+                {selectedDevice.device_type && (
+                  <p className="text-gray-400 text-sm">
+                    Type: {selectedDevice.device_type}
+                  </p>
+                )}
+              </div>
+
+              <div className="space-y-3">
+                <button
+                  onClick={handleNewCheck}
+                  className="w-full flex items-center justify-center gap-2 px-4 py-3 bg-blue-600 hover:bg-blue-700 rounded-lg text-white font-medium transition-colors"
+                >
+                  <Plus className="w-5 h-5" />
+                  Nieuwe Check Maken
+                </button>
+                
+                <button
+                  onClick={handleViewHistory}
+                  className="w-full flex items-center justify-center gap-2 px-4 py-3 bg-gray-600 hover:bg-gray-700 rounded-lg text-white font-medium transition-colors"
+                >
+                  <History className="w-5 h-5" />
+                  Bekijk Historie ({selectedDevice.checklists?.length || 0})
+                </button>
+                
+                <button
+                  onClick={() => {
+                    setShowDeviceOptions(false);
+                    setSelectedDevice(null);
+                  }}
+                  className="w-full px-4 py-3 bg-[#202124] hover:bg-[#252629] rounded-lg text-white font-medium transition-colors"
+                >
+                  Annuleren
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* History Modal */}
+      {showHistory && selectedDevice && (
+        <div className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50 p-4">
+          <div className="bg-[#303134] rounded-lg max-w-4xl w-full max-h-[90vh] overflow-y-auto">
+            <div className="p-6">
+              <h2 className="text-2xl font-bold text-white mb-4">
+                Check Historie - {selectedDevice.barcode}
+              </h2>
+              
+              {selectedDevice.device_type && (
+                <p className="text-gray-400 mb-4">Type: {selectedDevice.device_type}</p>
+              )}
+
+              <div className="space-y-4">
+                {(selectedDevice.checklists || []).length === 0 ? (
+                  <p className="text-gray-400 text-center py-8">Nog geen checks uitgevoerd</p>
+                ) : (
+                  [...(selectedDevice.checklists || [])].reverse().map((check, index) => (
+                    <div key={index} className="bg-[#202124] rounded-lg p-4 border border-gray-600">
+                      <div className="flex justify-between items-start mb-3">
+                        <div>
+                          <p className="text-white font-medium">
+                            Check #{selectedDevice.checklists.length - index}
+                          </p>
+                          <p className="text-gray-400 text-sm">
+                            {new Date(check.checked_at).toLocaleString('nl-NL')}
+                          </p>
+                          {check.checked_by && (
+                            <p className="text-gray-500 text-sm">Door: {check.checked_by}</p>
+                          )}
+                        </div>
+                        <button
+                          onClick={() => {
+                            setSelectedDevice({ ...selectedDevice, currentCheckIndex: selectedDevice.checklists.length - 1 - index });
+                            handlePrint();
+                          }}
+                          className="p-2 bg-blue-600 hover:bg-blue-700 rounded text-white"
+                          title="Print deze check"
+                        >
+                          <Printer className="w-4 h-4" />
+                        </button>
+                      </div>
+                      
+                      <div className="grid grid-cols-2 gap-2 text-sm">
+                        <div className={`p-2 rounded ${check.no_damage ? 'bg-green-900/30 text-green-300' : 'bg-red-900/30 text-red-300'}`}>
+                          Schade: {check.no_damage ? '✓ Geen' : '✗ Ja'}
+                        </div>
+                        <div className="p-2 bg-gray-700 rounded text-gray-300">
+                          Windows: {check.windows_version || 'N/A'}
+                        </div>
+                        <div className={`p-2 rounded ${check.charger_included ? 'bg-green-900/30 text-green-300' : 'bg-red-900/30 text-red-300'}`}>
+                          Lader: {check.charger_included ? '✓ Ja' : '✗ Nee'}
+                        </div>
+                        <div className={`p-2 rounded ${check.image_restored ? 'bg-green-900/30 text-green-300' : 'bg-red-900/30 text-red-300'}`}>
+                          Image: {check.image_restored ? '✓ Ja' : '✗ Nee'}
+                        </div>
+                        <div className={`p-2 rounded ${check.customer_data_wiped ? 'bg-green-900/30 text-green-300' : 'bg-red-900/30 text-red-300'}`}>
+                          Data gewist: {check.customer_data_wiped ? '✓ Ja' : '✗ Nee'}
+                        </div>
+                      </div>
+                      
+                      {check.notes && (
+                        <div className="mt-3 p-2 bg-yellow-900/20 border border-yellow-700 rounded">
+                          <p className="text-yellow-300 text-sm font-medium">Notities:</p>
+                          <p className="text-gray-300 text-sm">{check.notes}</p>
+                        </div>
+                      )}
+                    </div>
+                  ))
+                )}
+              </div>
+
+              <button
+                onClick={() => {
+                  setShowHistory(false);
+                  setSelectedDevice(null);
+                }}
+                className="w-full mt-6 px-4 py-3 bg-[#202124] hover:bg-[#252629] rounded-lg text-white font-medium transition-colors"
+              >
+                Sluiten
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
       {/* Checklist Modal */}
       {showChecklist && selectedDevice && (
         <div className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50 p-4">
@@ -633,6 +771,22 @@ const AutosoftDashboard = () => {
               </h2>
 
               <div className="space-y-4">
+                {/* Device Type */}
+                <div className="p-3 bg-[#202124] rounded-lg">
+                  <label className="flex items-center gap-2 text-white mb-2">
+                    <Laptop className="w-4 h-4" />
+                    Laptop Type:
+                  </label>
+                  <input
+                    type="text"
+                    value={deviceType}
+                    onChange={(e) => setDeviceType(e.target.value)}
+                    placeholder="Bijv. Dell Latitude 5420, HP EliteBook 840 G8..."
+                    className="w-full px-4 py-2 bg-[#303134] border border-gray-600 rounded-lg text-white focus:outline-none focus:border-blue-500"
+                  />
+                  <p className="text-gray-400 text-xs mt-1">Vul handmatig in of laat leeg</p>
+                </div>
+
                 {/* No Damage */}
                 <label className="flex items-center space-x-3 p-3 bg-[#202124] rounded-lg cursor-pointer hover:bg-[#252629]">
                   <input
