@@ -24,6 +24,11 @@ const AutosoftDashboard = () => {
     charger_included: false,
     image_restored: false,
     customer_data_wiped: false,
+    has_bag: false,
+    other_accessories: '',
+    has_case: false,
+    has_screen_protector: false,
+    has_camera_protector: false,
     notes: ''
   });
 
