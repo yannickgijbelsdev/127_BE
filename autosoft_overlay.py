@@ -122,20 +122,31 @@ class AutosoftOverlay:
         main_frame = tk.Frame(self.root, bg="#2596be", relief=tk.RAISED, bd=2)
         main_frame.pack(fill=tk.BOTH, expand=True)
         
-        # Header with logo and title
-        header_frame = tk.Frame(main_frame, bg="#2596be", height=60)
+        # Header with logo
+        header_frame = tk.Frame(main_frame, bg="#2596be", height=70)
         header_frame.pack(fill=tk.X, padx=10, pady=5)
         header_frame.pack_propagate(False)
         
-        # Title
-        title_label = tk.Label(
-            header_frame,
-            text="AUTOSOFT",
-            font=("Arial", 16, "bold"),
-            bg="#2596be",
-            fg="white"
-        )
-        title_label.pack(side=tk.LEFT, pady=10)
+        # Logo (if loaded)
+        if self.logo_image:
+            logo_label = tk.Label(
+                header_frame,
+                image=self.logo_image,
+                bg="#2596be"
+            )
+            logo_label.pack(side=tk.LEFT, pady=10)
+            # Keep a reference to prevent garbage collection
+            logo_label.image = self.logo_image
+        else:
+            # Fallback to text if logo couldn't be loaded
+            title_label = tk.Label(
+                header_frame,
+                text="AUTOSOFT",
+                font=("Arial", 16, "bold"),
+                bg="#2596be",
+                fg="white"
+            )
+            title_label.pack(side=tk.LEFT, pady=10)
         
         # Close button
         close_btn = tk.Button(
@@ -146,7 +157,9 @@ class AutosoftOverlay:
             fg="white",
             bd=0,
             command=self.close_overlay,
-            cursor="hand2"
+            cursor="hand2",
+            activebackground="#1e7a9f",
+            activeforeground="white"
         )
         close_btn.pack(side=tk.RIGHT, pady=10)
         
