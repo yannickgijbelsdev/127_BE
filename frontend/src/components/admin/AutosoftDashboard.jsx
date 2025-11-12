@@ -157,7 +157,7 @@ const AutosoftDashboard = () => {
       }
     } catch (error) {
       console.error('Error scanning device:', error);
-      alert('Fout bij scannen van toestel');
+      showNotification('error', 'Fout bij scannen van toestel');
     } finally {
       setLoading(false);
     }
