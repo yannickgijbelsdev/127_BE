@@ -220,17 +220,25 @@ const AutosoftDashboard = () => {
                 margin: 15mm; 
                 size: A4;
               }
+              body {
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+              }
             }
             * {
               margin: 0;
               padding: 0;
               box-sizing: border-box;
+              -webkit-print-color-adjust: exact !important;
+              print-color-adjust: exact !important;
             }
             body {
               font-family: Arial, sans-serif;
               font-size: 11pt;
               line-height: 1.4;
               color: #000;
+              -webkit-print-color-adjust: exact !important;
+              print-color-adjust: exact !important;
             }
             .container {
               max-width: 210mm;
