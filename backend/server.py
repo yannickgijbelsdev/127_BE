@@ -265,6 +265,10 @@ class ChecklistUpdateRequest(BaseModel):
 class DeviceTypeUpdateRequest(BaseModel):
     device_type: str
 
+class DeviceInfoUpdateRequest(BaseModel):
+    device_type: Optional[str] = None
+    serial_number: Optional[str] = None
+
 # Initialize default admin on startup
 async def create_default_admin():
     # Check if ANY admin user exists
