@@ -1,8 +1,9 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Search, Printer, CheckCircle, Clock, Trash2, History, Plus, Laptop, Monitor, Apple, Smartphone, TabletSmartphone } from 'lucide-react';
+import { Search, Printer, CheckCircle, Clock, Trash2, History, Plus, Laptop, Monitor, Apple, Smartphone, TabletSmartphone, X, CheckCircle2, AlertCircle } from 'lucide-react';
 
 const AutosoftDashboard = () => {
   const [barcode, setBarcode] = useState('');
+  const [notification, setNotification] = useState(null); // { type: 'success'|'error'|'info', message: '' }
   const [devices, setDevices] = useState([]);
   const [filteredDevices, setFilteredDevices] = useState([]);
   const [loading, setLoading] = useState(false);
