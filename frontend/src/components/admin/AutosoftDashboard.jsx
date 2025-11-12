@@ -637,6 +637,31 @@ const AutosoftDashboard = () => {
         </div>
       )}
 
+      {/* Confirm Dialog Modal */}
+      {confirmDialog && (
+        <div className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50 p-4">
+          <div className="bg-[#303134] rounded-lg max-w-md w-full p-6 animate-scale-in">
+            <h2 className="text-xl font-bold text-white mb-3">{confirmDialog.title}</h2>
+            <p className="text-gray-300 mb-6">{confirmDialog.message}</p>
+            
+            <div className="flex gap-3 justify-end">
+              <button
+                onClick={confirmDialog.onCancel}
+                className="px-4 py-2 bg-[#202124] hover:bg-[#252629] rounded-lg text-white font-medium transition-colors"
+              >
+                Annuleren
+              </button>
+              <button
+                onClick={confirmDialog.onConfirm}
+                className="px-4 py-2 bg-red-600 hover:bg-red-700 rounded-lg text-white font-medium transition-colors"
+              >
+                Verwijderen
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
       {/* Header */}
       <div className="max-w-7xl mx-auto mb-8">
         <h1 className="text-3xl font-bold text-white mb-2">Autosoft Vervangtoestellen</h1>
