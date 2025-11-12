@@ -208,31 +208,26 @@ class AutosoftOverlay:
         self.status_label.pack(pady=8)
     
     def create_info_label(self, parent, label_text, value_text):
-        """Create a label pair (label: value)"""
-        frame = tk.Frame(parent, bg="white")
-        frame.pack(fill=tk.X, pady=3)
+        """Create a clean label pair (label: value) in white text"""
+        frame = tk.Frame(parent, bg="#1a1a1a")
+        frame.pack(fill=tk.X, pady=4)
         
+        # Combined label with value - cleaner look
+        full_text = f"{label_text} {value_text}"
         label = tk.Label(
             frame,
-            text=label_text,
-            font=("Arial", 9, "bold"),
-            bg="white",
-            fg="#333333",
+            text=full_text,
+            font=("Segoe UI", 10),
+            bg="#1a1a1a",
+            fg="#ffffff",
             anchor="w"
         )
         label.pack(side=tk.LEFT)
         
-        value = tk.Label(
-            frame,
-            text=value_text,
-            font=("Arial", 9),
-            bg="white",
-            fg="#666666",
-            anchor="w"
-        )
-        value.pack(side=tk.LEFT, padx=5)
+        # Store reference to update value later
+        label.label_text = label_text
         
-        return value
+        return label
     
     def update_device_info(self):
         """Fetch device info from backend"""
