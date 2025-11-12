@@ -604,7 +604,9 @@ const AutosoftDashboard = () => {
                       )}
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-300">
-                      {device.checked_by || '-'}
+                      <span className="inline-flex items-center px-2 py-1 rounded bg-blue-900/30 text-blue-300 text-xs">
+                        {device.checklists?.length || 0} check(s)
+                      </span>
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-300">
                       {formatDate(device.updated_at)}
