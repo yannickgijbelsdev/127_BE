@@ -1,0 +1,139 @@
+╔══════════════════════════════════════════════════════════════════════╗
+║        AUTOSOFT DESKTOP OVERLAY - INSTALLATIE INSTRUCTIES            ║
+╔══════════════════════════════════════════════════════════════════════╝
+
+STAP 1: PYTHON INSTALLEREN
+═══════════════════════════════════════════════════════════════════════
+
+1. Download Python van: https://www.python.org/downloads/
+   (Minimaal versie 3.8, aanbevolen: nieuwste versie)
+
+2. Voer de installer uit
+   ⚠️ BELANGRIJK: Vink onderaan "Add Python to PATH" aan!
+   
+3. Klik "Install Now"
+
+4. Test de installatie:
+   - Open Command Prompt (Win + R, typ "cmd", Enter)
+   - Typ: python --version
+   - Je zou moeten zien: Python 3.x.x
+
+
+STAP 2: BESTANDEN KLAARZETTEN
+═══════════════════════════════════════════════════════════════════════
+
+1. Maak een folder aan: C:\Autosoft
+
+2. Download deze bestanden naar C:\Autosoft:
+   - autosoft_overlay.py
+   - autosoft_overlay_requirements.txt  
+   - start_autosoft_overlay.bat
+   - AUTOSOFT_OVERLAY_README.md (optioneel)
+
+3. Je folder moet er zo uitzien:
+   C:\Autosoft\
+   ├── autosoft_overlay.py
+   ├── autosoft_overlay_requirements.txt
+   ├── start_autosoft_overlay.bat
+   └── AUTOSOFT_OVERLAY_README.md
+
+
+STAP 3: DEPENDENCIES INSTALLEREN
+═══════════════════════════════════════════════════════════════════════
+
+1. Open Command Prompt als Administrator:
+   - Druk Win + X
+   - Kies "Command Prompt (Admin)" of "Windows PowerShell (Admin)"
+
+2. Navigeer naar de folder:
+   cd C:\Autosoft
+
+3. Installeer de benodigde packages:
+   pip install -r autosoft_overlay_requirements.txt
+
+4. Wacht tot installatie klaar is (duurt 10-30 seconden)
+
+
+STAP 4: OVERLAY STARTEN
+═══════════════════════════════════════════════════════════════════════
+
+OPTIE A - Simpel (dubbelklik):
+   → Dubbelklik op "start_autosoft_overlay.bat"
+
+OPTIE B - Via Command Prompt:
+   1. Open Command Prompt
+   2. cd C:\Autosoft
+   3. python autosoft_overlay.py
+
+
+STAP 5: EERSTE GEBRUIK
+═══════════════════════════════════════════════════════════════════════
+
+1. De overlay verschijnt linksboven op je scherm
+2. Initieel zie je "Loading..." - dit is normaal
+3. Als het device in Autosoft geregistreerd is, worden de gegevens getoond
+4. Anders zie je "Device niet gevonden in systeem"
+
+Je kunt de overlay:
+- Slepen naar gewenste positie (klik en sleep op blauwe balk)
+- Sluiten met de × knop rechtsboven
+
+
+STAP 6: AUTOMATISCH STARTEN (OPTIONEEL)
+═══════════════════════════════════════════════════════════════════════
+
+Om de overlay automatisch bij opstarten te laten draaien:
+
+1. Druk Win + R
+2. Typ: shell:startup
+3. Druk Enter (de Startup folder opent)
+4. Maak een snelkoppeling:
+   - Rechtsklik in de folder
+   - Kies "Nieuw" → "Snelkoppeling"
+   - Browse naar: C:\Autosoft\start_autosoft_overlay.bat
+   - Klik "Volgende" en "Voltooien"
+5. De overlay start nu automatisch bij het opstarten
+
+
+TROUBLESHOOTING
+═══════════════════════════════════════════════════════════════════════
+
+❌ "Python is niet geïnstalleerd"
+   → Herinstalleer Python en vink "Add to PATH" aan
+
+❌ "Device niet gevonden in systeem"
+   → Het device moet eerst gescand zijn in het Autosoft dashboard
+   → Controleer of het serienummer klopt
+
+❌ "Geen verbinding met backend"
+   → Check internetverbinding
+   → Test: ping pixel-diagnostics.preview.emergentagent.com
+
+❌ Overlay verdwijnt direct
+   → Check Task Manager (Ctrl+Shift+Esc) of Python draait
+   → Start via Command Prompt om foutmeldingen te zien
+
+❌ "Module not found"
+   → Installeer dependencies opnieuw: pip install -r autosoft_overlay_requirements.txt
+
+
+SNELLE TEST VAN BACKEND
+═══════════════════════════════════════════════════════════════════════
+
+Test of de backend bereikbaar is via browser:
+https://pixel-diagnostics.preview.emergentagent.com/api/autosoft/device-info/TEST123
+
+Je zou een JSON response moeten zien (404 is OK als TEST123 niet bestaat)
+
+
+CONTACT
+═══════════════════════════════════════════════════════════════════════
+
+Bij problemen, check:
+- Windows Event Viewer voor Python errors
+- Command Prompt output voor error messages
+- Autosoft backend logs in admin dashboard
+
+═══════════════════════════════════════════════════════════════════════
+© 2025 Autosoft IT Solutions BV
+═══════════════════════════════════════════════════════════════════════
