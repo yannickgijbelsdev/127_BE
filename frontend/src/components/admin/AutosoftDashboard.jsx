@@ -145,54 +145,111 @@ const AutosoftDashboard = () => {
         <head>
           <title>Autosoft Checklist - ${selectedDevice.barcode}</title>
           <style>
+            @media print {
+              @page { margin: 20mm; }
+            }
             body {
               font-family: Arial, sans-serif;
               padding: 20px;
               max-width: 800px;
               margin: 0 auto;
             }
+            .header {
+              display: flex;
+              align-items: center;
+              justify-content: space-between;
+              margin-bottom: 30px;
+              padding-bottom: 20px;
+              border-bottom: 3px solid #1e90ff;
+            }
+            .header img {
+              max-width: 200px;
+              height: auto;
+            }
+            .header-text {
+              text-align: right;
+            }
             h1 {
-              color: #333;
-              border-bottom: 2px solid #333;
-              padding-bottom: 10px;
+              color: #1e90ff;
+              margin: 0;
+              font-size: 24px;
+            }
+            .subtitle {
+              color: #666;
+              font-size: 14px;
+              margin-top: 5px;
             }
             .info-section {
               margin: 20px 0;
+              background: #f0f8ff;
+              padding: 15px;
+              border-radius: 5px;
+              border-left: 4px solid #1e90ff;
+            }
+            .info-section p {
+              margin: 8px 0;
+            }
+            h2 {
+              color: #1e90ff;
+              font-size: 18px;
+              margin-top: 30px;
+              margin-bottom: 15px;
             }
             .checklist-item {
-              padding: 10px;
-              margin: 5px 0;
+              padding: 12px;
+              margin: 8px 0;
               background: #f5f5f5;
-              border-left: 3px solid ${selectedDevice.checklist?.no_damage ? '#4CAF50' : '#ccc'};
+              border-left: 4px solid #ccc;
+              border-radius: 3px;
             }
             .checked {
               border-left-color: #4CAF50;
+              background: #f1f8f4;
             }
             .not-checked {
               border-left-color: #f44336;
+              background: #fef5f5;
             }
             .notes {
               margin-top: 20px;
               padding: 15px;
-              background: #fff3cd;
-              border: 1px solid #ffc107;
+              background: #fff9e6;
+              border: 2px solid #ffd700;
+              border-radius: 5px;
+            }
+            .notes h3 {
+              color: #cc8800;
+              margin-top: 0;
             }
             .footer {
               margin-top: 40px;
               padding-top: 20px;
-              border-top: 1px solid #ccc;
-              font-size: 12px;
+              border-top: 2px solid #1e90ff;
+              font-size: 11px;
               color: #666;
+              text-align: center;
+            }
+            @media print {
+              .footer {
+                position: fixed;
+                bottom: 0;
+                width: 100%;
+              }
             }
           </style>
         </head>
         <body>
-          <h1>Autosoft Vervangtoestel Checklist</h1>
+          <div class="header">
+            <img src="https://customer-assets.emergentagent.com/job_pixel-diagnostics/artifacts/2r9adp9r_Autosoft%20IT%20Solutions%20BV.png" alt="Autosoft Logo" />
+            <div class="header-text">
+              <h1>Vervangtoestel Checklist</h1>
+              <div class="subtitle">Technische Controle Rapport</div>
+            </div>
+          </div>
           
           <div class="info-section">
             <p><strong>Barcode:</strong> ${selectedDevice.barcode}</p>
             <p><strong>Status:</strong> ${selectedDevice.status === 'checked' ? 'Gecontroleerd' : 'Op technische dienst'}</p>
-            <p><strong>Gecontroleerd door:</strong> ${selectedDevice.checked_by || '-'}</p>
             <p><strong>Datum:</strong> ${new Date(selectedDevice.updated_at).toLocaleString('nl-NL')}</p>
           </div>
 
@@ -226,7 +283,7 @@ const AutosoftDashboard = () => {
           ` : ''}
 
           <div class="footer">
-            <p>Autosoft Computerwinkel - Vervangtoestellen Systeem</p>
+            <p style="display:none;">Autosoft Computerwinkel - Vervangtoestellen Systeem</p>
             <p>Geprint op: ${new Date().toLocaleString('nl-NL')}</p>
           </div>
         </body>
