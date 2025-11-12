@@ -239,6 +239,13 @@ class ReplacementDeviceChecklist(BaseModel):
     charger_included: bool = False
     image_restored: bool = False
     customer_data_wiped: bool = False
+    # Laptop accessories (Windows/macOS)
+    has_bag: bool = False
+    other_accessories: str = ""
+    # Mobile accessories (iOS/Android)
+    has_case: bool = False
+    has_screen_protector: bool = False
+    has_camera_protector: bool = False
     notes: str = ""
     checked_by: Optional[str] = None
     checked_at: str = Field(default_factory=lambda: datetime.now(timezone.utc).isoformat())
