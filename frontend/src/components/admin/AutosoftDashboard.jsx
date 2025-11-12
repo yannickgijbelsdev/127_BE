@@ -644,8 +644,11 @@ const AutosoftDashboard = () => {
               ) : (
                 filteredDevices.map((device) => (
                   <tr key={device.id} className="hover:bg-[#3c4043]">
-                    <td className="px-6 py-4 whitespace-nowrap font-mono text-sm">
-                      {device.barcode}
+                    <td className="px-6 py-4 whitespace-nowrap">
+                      <div className="flex items-center gap-2">
+                        {getPlatformIcon(device)}
+                        <span className="font-mono text-sm">{device.barcode}</span>
+                      </div>
                     </td>
                     <td className="px-6 py-4 text-sm text-gray-300">
                       {device.device_type || <span className="text-gray-500 italic">Niet ingevuld</span>}
