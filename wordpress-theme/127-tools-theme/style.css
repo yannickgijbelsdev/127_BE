@@ -1,0 +1,116 @@
+/*
+Theme Name: 127 Yannick Tools
+Theme URI: https://127.be
+Author: Yannick
+Author URI: https://127.be
+Description: Custom WordPress theme for 127.be diagnostic tools platform with integrated admin panel, analytics, and blog functionality
+Version: 1.0.0
+License: GNU General Public License v2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Text Domain: 127-tools
+Tags: custom, tools, diagnostic, admin-panel, blog
+
+This theme is designed for 127.be - a comprehensive diagnostic tools platform featuring:
+- Dead Pixel Detector
+- Printer Tester
+- Screen Refresh Tester
+- Webcam & Audio Test
+- Password Generator
+- Admin Dashboard
+- Analytics & Feedback System
+- Autosoft Device Management
+- Blog functionality
+*/
+
+/* ==================== GLOBAL STYLES ==================== */
+
+:root {
+  --color-primary: #8ab4f8;
+  --color-dark: #202124;
+  --color-darker: #171717;
+  --color-gray: #303134;
+  --color-light-gray: #5f6368;
+  --color-text: #e8eaed;
+  --color-text-dim: #9aa0a6;
+  --color-success: #34a853;
+  --color-danger: #ea4335;
+  --color-warning: #fbbc04;
+  --color-autosoft: #2596be;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: var(--color-dark);
+  color: var(--color-text);
+  line-height: 1.6;
+}
+
+a {
+  color: var(--color-primary);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+a:hover {
+  color: #aac8f9;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+/* ==================== UTILITY CLASSES ==================== */
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.mt-1 { margin-top: 0.5rem; }
+.mt-2 { margin-top: 1rem; }
+.mt-3 { margin-top: 1.5rem; }
+.mt-4 { margin-top: 2rem; }
+
+.mb-1 { margin-bottom: 0.5rem; }
+.mb-2 { margin-bottom: 1rem; }
+.mb-3 { margin-bottom: 1.5rem; }
+.mb-4 { margin-bottom: 2rem; }
+
+/* ==================== LOADING ANIMATIONS ==================== */
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.fade-in {
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+/* ==================== RESPONSIVE ==================== */
+
+@media (max-width: 768px) {
+  .container {
+    padding: 0 15px;
+  }
+}
