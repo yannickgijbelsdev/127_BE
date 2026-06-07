@@ -300,7 +300,7 @@ async def get_pexels_videos(query: str, orientation: str = "landscape", per_page
     async with httpx.AsyncClient() as client:
         try:
             response = await client.get(
-                f"https://api.pexels.com/videos/search",
+                "https://api.pexels.com/videos/search",
                 params={
                     "query": query,
                     "orientation": orientation,
@@ -325,7 +325,7 @@ async def get_pexels_photos(query: str, orientation: str = "landscape", per_page
     async with httpx.AsyncClient() as client:
         try:
             response = await client.get(
-                f"https://api.pexels.com/v1/search",
+                "https://api.pexels.com/v1/search",
                 params={
                     "query": query,
                     "orientation": orientation,
