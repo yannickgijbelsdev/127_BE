@@ -489,6 +489,25 @@ const LandingPage = () => {
             </div>
           </div>
         </div>
+
+        {/* Koodh Logo Footer */}
+        <div className="absolute bottom-0 left-0 right-0 z-30 flex justify-center pb-6">
+          <a
+            href="https://koodh.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            data-testid="koodh-footer-link"
+            className="inline-flex items-center bg-white rounded-full px-6 py-3 shadow-lg transition-transform hover:scale-105"
+          >
+            <img
+              src="https://customer-assets-agu9un31.emergentagent.net/job_c356018c-cf17-411c-a1d0-23a56c5d3773/artifacts/8bwbwtt6_koodh-logo.png"
+              alt="Koodh"
+              className="h-6 w-auto"
+              draggable="false"
+              data-testid="koodh-footer-logo"
+            />
+          </a>
+        </div>
       </div>
 
       <FloatingFeedbackButton />
