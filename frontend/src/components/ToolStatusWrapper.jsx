@@ -13,7 +13,9 @@ const ToolStatusWrapper = ({ toolId, children }) => {
         );
         
         if (!response.ok) {
-          setStatus({ loading: false, enabled: false, error: true });
+          // Fail-open: don't mark a tool offline just because the status
+          // check failed (e.g. DB not seeded). Only an explicit disable counts.
+          setStatus({ loading: false, enabled: true });
           return;
         }
         

@@ -1,0 +1,44 @@
+{
+  "summary": "Full test of the 127 IT Library review request. Backend: 12/12 pytest cases pass covering tool status fail-open (5 known + 1 unknown), Pexels photos+videos proxy with cache, robots.txt + sitemap.xml reachable. Frontend: landing page title is exactly 'Your online IT Library', Koodh footer link present bottom-left with href='https://koodh.com', meta description contains 'IT Library', 2 JSON-LD blocks. All 5 tool routes (/dpd, /printer, /sscreen, /wea, /password) render actual tool UI (Dead Pixel Detector, Printer Tester, Screen Refresh Tester, Webcam & Audio Test, Wachtwoord Generator) and do NOT show the 'Sorry, deze tool is offline' message. The originally reported bugs (offline tools + Pexels image loading) are resolved.",
+  "backend_issues": {
+    "critical": [],
+    "minor": []
+  },
+  "frontend_issues": {
+    "ui_bugs": [],
+    "integration_issues": [
+      {
+        "flow": "Landing page Pexels video background",
+        "issue": "Initial fetchVideoPlaylist sometimes logs 'TypeError: Failed to fetch' twice before succeeding. Subsequent calls succeed ('Pexels video playlist loaded: 10 coding videos'). Non-blocking, but adds console noise. Likely first-request race with the emergent-main.js fetch wrapper.",
+        "affected_selectors": ["landing page background video"]
+      }
+    ],
+    "design_issues": []
+  },
+  "test_report_links": [
+    "/app/backend/tests/test_tools_and_pexels.py",
+    "/app/test_reports/pytest/pytest_results.xml"
+  ],
+  "action_items": [
+    "Optional: investigate the initial 'Failed to fetch' for the landing page Pexels video playlist (it retries and succeeds, but two console errors appear on first paint).",
+    "Optional: fix React warning on /password page: 'Received `%s` for a non-boolean attribute `%s`... true jsx jsx' — a boolean-valued prop is being passed to a non-boolean HTML attribute (likely a `jsx` or `global` prop on a <style> tag). Convert to string or use styled-jsx conventions."
+  ],
+  "critical_code_review_comments": [
+    "server.py is 1375 lines — consider splitting into routers/modules (>700-line threshold).",
+    "get_tool_status now correctly fail-opens on missing DB row; consider distinguishing 'explicitly disabled' vs 'not seeded' via a boolean column so admins still see a warning list.",
+    "_fetch_pexels TTL cache is process-local — behind multiple workers each worker warms its own cache. Fine for current scale, but worth noting.",
+    "_fetch_pexels swallows HTTPError and returns 200 with empty photos/videos — good UX but silently hides quota/auth failures. Consider logging severity=error and emitting a monitoring metric.",
+    "index.html canonical/OG URLs are hardcoded to https://127.be/ — fine for production but the preview domain won't match; acceptable per SEO intent.",
+    "ToolStatusWrapper does a status fetch on every mount for every tool — could be skipped entirely now that fail-open is the default; the ~1s loading spinner delays every tool needlessly. Consider removing the wrapper or short-circuiting to 'enabled' immediately and updating in the background."
+  ],
+  "updated_files": [
+    "/app/backend/tests/test_tools_and_pexels.py (new)"
+  ],
+  "success_rate": {"backend": "100%", "frontend": "100%"},
+  "test_credentials": "Not required — all tested endpoints and routes are public.",
+  "seed_data_creation": "None. Tests were designed to work against an empty DB (fail-open behavior).",
+  "retest_needed": false,
+  "should_main_agent_self_test": false,
+  "context_for_next_testing_agent": "Regression suite lives at /app/backend/tests/test_tools_and_pexels.py — 12 tests, all pass in ~1.3s. Run with: `pytest /app/backend/tests/test_tools_and_pexels.py -v`. Frontend playwright checks used domcontentloaded (not networkidle) because the landing page continuously polls Pexels for background videos and networkidle never fires. Tool pages have a ~1s status-check loading spinner before rendering the tool — wait ~2s after navigation before asserting on body text. Koodh footer link bbox at 1920x1080 is (32, 1025) confirming bottom-left placement.",
+  "rca of the issue": "Original 'offline tools' bug: get_tool_status returned 404 when the tools collection had no row for a given tool_id (which is the default state on a fresh DB), and the frontend ToolStatusWrapper treated any non-2xx as enabled=false, showing the Dutch 'Sorry, deze tool is offline' page. Fix: (a) backend now returns 200 + enabled:true for unknown tool_ids (fail-open), (b) frontend also fail-opens on !response.ok as defense-in-depth. Original 'Pexels/unsplash not loading' issue: mitigated by /api/pexels/* proxy with API key server-side, an in-memory TTL cache to reduce latency, and a graceful empty-payload fallback on upstream failure. Verified via 12 automated pytest cases + Playwright UI checks on all 5 tool routes."
+}

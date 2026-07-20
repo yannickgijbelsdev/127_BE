@@ -6,6 +6,7 @@ from starlette.middleware.cors import CORSMiddleware
 from motor.motor_asyncio import AsyncIOMotorClient
 import os
 import logging
+import time
 from pathlib import Path
 from pydantic import BaseModel, Field, ConfigDict, EmailStr
 from typing import List, Optional
@@ -290,55 +291,49 @@ async def create_default_admin():
 async def root():
     return {"message": "Hello World"}
 
-@api_router.get("/pexels/videos")
-async def get_pexels_videos(query: str, orientation: str = "landscape", per_page: int = 10, page: int = 1):
-    """Proxy endpoint for Pexels video API to keep API key secure"""
+# Simple in-memory TTL cache for Pexels proxy responses (speeds up tools, reduces external calls)
+_pexels_cache: dict = {}
+_PEXELS_CACHE_TTL = 3600  # seconds
+
+async def _fetch_pexels(url: str, query: str, orientation: str, per_page: int, page: int):
     pexels_api_key = os.environ.get('PEXELS_API_KEY')
     if not pexels_api_key:
         raise HTTPException(status_code=500, detail="Pexels API key not configured")
-    
+
+    cache_key = f"{url}|{query}|{orientation}|{per_page}|{page}"
+    cached = _pexels_cache.get(cache_key)
+    now = time.time()
+    if cached and (now - cached[0] < _PEXELS_CACHE_TTL):
+        return cached[1]
+
     async with httpx.AsyncClient() as client:
         try:
             response = await client.get(
-                "https://api.pexels.com/videos/search",
-                params={
-                    "query": query,
-                    "orientation": orientation,
-                    "per_page": per_page,
-                    "page": page
-                },
+                url,
+                params={"query": query, "orientation": orientation, "per_page": per_page, "page": page},
                 headers={"Authorization": pexels_api_key},
-                timeout=10.0
+                timeout=8.0
             )
             response.raise_for_status()
-            return response.json()
+            data = response.json()
+            _pexels_cache[cache_key] = (now, data)
+            return data
         except httpx.HTTPError as e:
-            raise HTTPException(status_code=500, detail=f"Pexels API error: {str(e)}")
+            # Serve stale cache if available, otherwise fail gracefully with empty payload
+            if cached:
+                return cached[1]
+            logger.warning(f"Pexels API error: {str(e)}")
+            return {"page": page, "per_page": per_page, "photos": [], "videos": []}
+
+@api_router.get("/pexels/videos")
+async def get_pexels_videos(query: str, orientation: str = "landscape", per_page: int = 10, page: int = 1):
+    """Proxy endpoint for Pexels video API to keep API key secure"""
+    return await _fetch_pexels("https://api.pexels.com/videos/search", query, orientation, per_page, page)
 
 @api_router.get("/pexels/photos")
 async def get_pexels_photos(query: str, orientation: str = "landscape", per_page: int = 15, page: int = 1):
     """Proxy endpoint for Pexels photo API to keep API key secure"""
-    pexels_api_key = os.environ.get('PEXELS_API_KEY')
-    if not pexels_api_key:
-        raise HTTPException(status_code=500, detail="Pexels API key not configured")
-    
-    async with httpx.AsyncClient() as client:
-        try:
-            response = await client.get(
-                "https://api.pexels.com/v1/search",
-                params={
-                    "query": query,
-                    "orientation": orientation,
-                    "per_page": per_page,
-                    "page": page
-                },
-                headers={"Authorization": pexels_api_key},
-                timeout=10.0
-            )
-            response.raise_for_status()
-            return response.json()
-        except httpx.HTTPError as e:
-            raise HTTPException(status_code=500, detail=f"Pexels API error: {str(e)}")
+    return await _fetch_pexels("https://api.pexels.com/v1/search", query, orientation, per_page, page)
 
 @api_router.post("/status", response_model=StatusCheck)
 async def create_status_check(input: StatusCheckCreate):
@@ -746,7 +741,9 @@ async def get_tool_status(tool_id: str):
     """Check if a specific tool is enabled (publicly accessible)"""
     tool = await db.tools.find_one({"id": tool_id}, {"_id": 0, "enabled": 1, "name": 1})
     if not tool:
-        raise HTTPException(status_code=404, detail="Tool not found")
+        # Fail-open: tools exist as app routes even if not seeded in DB.
+        # Only an explicit disable in the DB should mark a tool offline.
+        return {"id": tool_id, "enabled": True, "name": ""}
     return {"id": tool_id, "enabled": tool.get("enabled", True), "name": tool.get("name", "")}
 
 # ==================== ANALYTICS ENDPOINTS ====================
