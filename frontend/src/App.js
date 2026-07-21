@@ -19,6 +19,20 @@ import ToolSuggestionsAdmin from './components/admin/ToolSuggestionsAdmin';
 import AutosoftDashboard from './components/admin/AutosoftDashboard';
 import AdminNavBar from './components/admin/AdminNavBar';
 import ExitFeedback from './components/ExitFeedback';
+import { ThemeProvider } from './contexts/ThemeContext';
+import { ToolboxProvider } from './contexts/ToolboxContext';
+import ToolboxLayout from './layouts/ToolboxLayout';
+import ToolboxHome from './pages/ToolboxHome';
+import ToolPage from './pages/ToolPage';
+import { Toaster } from './components/ui/sonner';
+
+const ToolboxProviders = () => (
+  <ThemeProvider>
+    <ToolboxProvider>
+      <ToolboxLayout />
+    </ToolboxProvider>
+  </ThemeProvider>
+);
 
 function AppContent() {
   const [isAdminLoggedIn, setIsAdminLoggedIn] = useState(
@@ -146,6 +160,12 @@ function AppContent() {
         <Route path="/sscreen" element={<ScreenTest />} />
         <Route path="/wea" element={<WebcamAudioTest />} />
         <Route path="/password" element={<PasswordGenerator />} />
+
+        {/* Tool127 Developer Toolbox */}
+        <Route path="/tools" element={<ToolboxProviders />}>
+          <Route index element={<ToolboxHome />} />
+          <Route path=":toolId" element={<ToolPage />} />
+        </Route>
         
         {/* Admin Routes on /localhost */}
         <Route 
@@ -218,6 +238,7 @@ function App() {
     <LanguageProvider>
       <BrowserRouter>
         <AppContent />
+        <Toaster position="bottom-right" />
       </BrowserRouter>
     </LanguageProvider>
   );

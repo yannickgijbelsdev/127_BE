@@ -385,6 +385,23 @@ const LandingPage = () => {
                     <Plus className="w-4 h-4" />
                     {t('Tool Voorstellen', 'Suggest Tool')}
                   </button>
+
+                  {/* Developer Toolbox entry */}
+                  <Link to="/tools" data-testid="open-toolbox-link">
+                    <button
+                      className="w-full px-6 py-4 rounded-full font-medium text-sm transition-all flex items-center justify-center gap-2"
+                      style={{
+                        background: 'rgba(255, 255, 255, 0.08)',
+                        backdropFilter: 'blur(8px)',
+                        WebkitBackdropFilter: 'blur(8px)',
+                        border: '1px solid rgba(255, 255, 255, 0.12)',
+                        color: '#ffffff',
+                        fontFamily: 'Inter, sans-serif'
+                      }}
+                    >
+                      {t('Developer Toolbox openen', 'Open Developer Toolbox')} →
+                    </button>
+                  </Link>
                 </div>
               )}
 

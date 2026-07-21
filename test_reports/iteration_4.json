@@ -1,0 +1,95 @@
+{
+  "summary": "End-to-end frontend testing of the new Tool127 developer toolbox at /tools. All 31 tools across 8 categories render, command palette works via click and Ctrl+K, home search filters live, favorites (card + tool page) add/remove and persist to localStorage, sidebar Favorites group appears after favoriting, Recent section populates after visiting a tool, theme toggle switches dark<->light and persists across reload. All computational tools verified against ground truth: SHA-256('Tool127')=9dd5f68e127da764b7a8a18e4d7731ad8883835c3bc753af0c4d0763f8bcb6a6 (correct); MD5/SHA-1/SHA-512 correct; JWT is a valid HS256 header.payload.signature that decodes to {alg:HS256,typ:JWT} + {sub:1234567890,name:Tool127,iat:1516239022} and re-signs when secret/alg change; IP calculator 192.168.1.100/24 -> 192.168.1.0 / 192.168.1.255 / 254 usable hosts. JSON<->YAML/XML, CSV<->JSON, all four formatters (SQL/HTML/CSS/JS), regex/unix-ts/cron, http-status/mime/UA/DNS/WHOIS, color-palette/gradient/box-shadow/border-radius, subnet-calc & port-lookup all produce expected output. DNS Lookup and WHOIS Lookup successfully hit dns.google and rdap.org from the browser. Regression: '/' still loads with a working data-testid=open-toolbox-link that navigates to /tools, and /password + /dpd still load correctly.",
+  "backend_issues": { "critical": [], "minor": [] },
+  "frontend_issues": {
+    "ui_bugs": [],
+    "integration_issues": [],
+    "design_issues": [
+      {
+        "screen": "Toolbox global (all /tools/* pages)",
+        "issues": [
+          "Console warning: Radix `DialogContent` requires a `DialogTitle` for a11y (CommandPalette uses shadcn CommandDialog without a title). Non-blocking, but should wrap a hidden DialogTitle to satisfy screen-reader requirements.",
+          "Pre-existing React warning from legacy PasswordGenerator (`<style jsx>` non-boolean attribute) still logs on / and hardware tool pages — not introduced by this MVP.",
+          "Copy-to-clipboard toast shows 'Could not copy' inside sandboxed browsers because navigator.clipboard is not permitted. Buttons don't crash but users get a red toast — consider a document.execCommand('copy') fallback or a friendlier message."
+        ]
+      }
+    ]
+  },
+  "verified_flows": {
+    "31_tool_cards_on_home": true,
+    "8_category_sections_on_home": true,
+    "sidebar_data_testid_per_tool": true,
+    "command_palette_opens_on_click": true,
+    "command_palette_ctrl_k": true,
+    "command_palette_filters_and_navigates": true,
+    "home_search_live_filter": true,
+    "favorites_add_persist_reload_localStorage_key": "tool127-favorites",
+    "sidebar_shows_Favorites_group_after_fav": true,
+    "tool_page_tool_favorite_button_present": true,
+    "recent_section_populates_after_visit": true,
+    "theme_toggle_dark_light_persist_localStorage_key": "tool127-theme",
+    "json_yaml_default_output_correct_and_error_banner_on_invalid": true,
+    "json_xml_bidirectional_and_direction_toggle": true,
+    "csv_json_bidirectional": true,
+    "jwt_valid_HS256_3parts_decodes_updates_on_secret_alg": true,
+    "hash_sha256_Tool127_matches_ground_truth": true,
+    "hash_md5_sha1_sha512_correct_for_Tool127": true,
+    "password_generator_length_slider_and_regenerate": true,
+    "password_strength_shows_entropy": true,
+    "uuid_v4_default_and_count_slider": true,
+    "case_converter_camel_and_snake": true,
+    "remove_duplicate_lines_output_shown": true,
+    "sort_lines_alphabetical": true,
+    "word_counter_counts_5_words": true,
+    "sql_html_css_js_formatters_all_format": true,
+    "regex_tester_default_matches": true,
+    "unix_timestamp_converter_both_directions": true,
+    "cron_generator_expression_and_preset": true,
+    "http_status_search_404_shows_Not_Found": true,
+    "mime_type_search_json_shows_application_json": true,
+    "user_agent_parses_browser_os_device": true,
+    "dns_lookup_returns_real_records_via_DoH": true,
+    "whois_lookup_returns_real_RDAP_data": true,
+    "color_palette_shows_swatches": true,
+    "css_gradient_output_contains_linear_gradient": true,
+    "box_shadow_output_contains_box_shadow_css": true,
+    "border_radius_output_contains_border_radius_css": true,
+    "ip_calculator_192_168_1_100_24_matches_expected": true,
+    "subnet_calculator_10_0_0_0_8_correct": true,
+    "port_lookup_443_shows_HTTPS": true,
+    "copy_buttons_render_and_click_without_crash": true,
+    "regression_landing_open_toolbox_link_navigates_to_tools": true,
+    "regression_password_and_dpd_routes_still_load": true
+  },
+  "ground_truth_verifications": {
+    "sha256_Tool127_expected": "9dd5f68e127da764b7a8a18e4d7731ad8883835c3bc753af0c4d0763f8bcb6a6",
+    "sha256_Tool127_from_app": "9dd5f68e127da764b7a8a18e4d7731ad8883835c3bc753af0c4d0763f8bcb6a6",
+    "md5_Tool127_from_app": "920a2376990391ee8f42774dab5f2113",
+    "sha1_Tool127_from_app": "e7809a73cf24f305d0ec733dbb7a392deac3a32e",
+    "jwt_default_header": {"alg": "HS256", "typ": "JWT"},
+    "jwt_default_payload": {"sub": "1234567890", "name": "Tool127", "iat": 1516239022},
+    "jwt_signature_changes_on_secret_change": true,
+    "jwt_header_alg_updates_to_HS384_on_alg_change": true,
+    "ip_calc_192_168_1_100_24": {"network": "192.168.1.0", "broadcast": "192.168.1.255", "usable_hosts": 254, "netmask": "255.255.255.0"}
+  },
+  "test_report_links": [],
+  "action_items": [
+    "Wrap CommandPalette's CommandDialog with a VisuallyHidden DialogTitle to remove the Radix a11y console warning (low priority).",
+    "Consider adding a document.execCommand('copy') fallback (or friendlier toast) for the CopyButton primitive so sandboxed / http-only previews don't show 'Could not copy' when navigator.clipboard is unavailable (low priority).",
+    "(Carryover from iteration_3) Fix legacy PasswordGenerator.jsx `<style jsx>` → plain <style> to silence the ongoing non-boolean-attribute React warning."
+  ],
+  "critical_code_review_comments": [
+    "SecurityTools.jsx uses `Object.keys(opts).map` to render checkboxes with lowercase testids (`password-opt-upper|lower|digits|symbols`) but displays labels 'Upper/Lower/Digits/Symbols'. Testids and labels are consistent; no bug — noted for testers.",
+    "CommandPalette.jsx registers a global document keydown for Ctrl/Cmd+K inside a useEffect dependent on `onOpenChange`. Because ToolboxLayout passes an inline arrow function each render as onOpenChange, this handler is torn down and re-added on every render. Works correctly but is slightly wasteful; consider useCallback or a stable ref.",
+    "ThemeContext's cleanup effect `useEffect(() => () => document.documentElement.classList.remove('dark'), [])` fires on ToolboxProviders unmount — good defensive behavior so the rest of 127.be keeps its own styling; verified by round-tripping from /tools -> / -> /tools.",
+    "CopyButton uses navigator.clipboard.writeText only. In sandboxed preview iframes (no clipboard permission) this rejects and shows a red 'Could not copy' toast. Suggest a document.execCommand fallback for graceful degradation."
+  ],
+  "updated_files": [],
+  "success_rate": { "backend": "n/a", "frontend": "100%" },
+  "test_credentials": "n/a (toolbox is fully client-side and public)",
+  "seed_data_creation": "none",
+  "retest_needed": false,
+  "should_main_agent_self_test": false,
+  "context_for_next_testing_agent": "Toolbox lives at /tools with 31 tools across 8 categories. Data-testids to know: search-trigger, command-input, command-item-<id>, home-search, sidebar-<id>, desktop-sidebar, favorite-<id> (home card), tool-favorite (tool page), theme-toggle, category-section-<catid>, tool-card-<id>, direction-toggle, json-yaml-output-value / json-xml-output-value / csv-json-output-value (textareas — read via .value), error-banner, jwt-alg, jwt-secret, jwt-payload, jwt-output-value, hash-input, hash-MD5/hash-SHA-1/hash-SHA-256/hash-SHA-512 (labels are the uppercase suffix), password-length, password-opt-upper|lower|digits|symbols, password-value, password-regenerate, strength-input, strength-result, uuid-count, uuid-generate, uuid-list, http-search / mime-search / port-search, ip-address, ip-prefix, ip-result, ip-error, subnet-cidr, dns-domain / dns-type / dns-lookup-btn / dns-results, whois-domain / whois-lookup-btn / whois-result. LocalStorage keys: 'tool127-theme', 'tool127-favorites', 'tool127-recents'. To read output panel values (textareas) use el.value (input_value) — not get_attribute('value'). For range sliders use the native input value setter + input+change events (React uses the hidden value tracker). DNS and WHOIS DID succeed from this sandbox — dns.google (DoH) and rdap.org are reachable.",
+  "rca of the issue": "No open bugs. All requested features verified. Two low-priority carryover / minor a11y items only."
+}

@@ -2,6 +2,25 @@
 @tailwind components;
 @tailwind utilities;
 
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+/* Tool127 toolbox typography (scoped) */
+.toolbox-root, .toolbox-root button, .toolbox-root input, .toolbox-root select, .toolbox-root textarea {
+    font-family: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+.toolbox-root .font-mono,
+.toolbox-root code,
+.toolbox-root kbd,
+.toolbox-root textarea.font-mono {
+    font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+
+/* Thin, trackless developer-style scrollbars inside the toolbox */
+.toolbox-root ::-webkit-scrollbar { width: 8px; height: 8px; }
+.toolbox-root ::-webkit-scrollbar-track { background: transparent; }
+.toolbox-root ::-webkit-scrollbar-thumb { background: hsl(var(--border)); border-radius: 9999px; }
+.toolbox-root ::-webkit-scrollbar-thumb:hover { background: hsl(var(--muted-foreground) / 0.5); }
+
 body {
     margin: 0;
     padding: 0;
