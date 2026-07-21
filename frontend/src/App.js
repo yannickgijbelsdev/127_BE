@@ -18,6 +18,7 @@ import ToolSuggestionsAdmin from './components/admin/ToolSuggestionsAdmin';
 import AutosoftDashboard from './components/admin/AutosoftDashboard';
 import AdminNavBar from './components/admin/AdminNavBar';
 import ExitFeedback from './components/ExitFeedback';
+import RouteSeo from './components/RouteSeo';
 import { ThemeProvider } from './contexts/ThemeContext';
 import { ToolboxProvider } from './contexts/ToolboxContext';
 import ToolboxLayout from './layouts/ToolboxLayout';
@@ -150,6 +151,7 @@ function AppContent() {
 
   return (
     <div className="App">
+      <RouteSeo />
       {showAdminNav && <AdminNavBar />}
       <ExitFeedback />
       <Routes>

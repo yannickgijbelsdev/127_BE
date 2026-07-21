@@ -3,21 +3,23 @@
     <head>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta name="theme-color" content="#202124" />
+        <meta name="theme-color" content="#0b0f19" />
 
         <!-- Primary SEO -->
         <title>Your online IT Library</title>
         <meta
             name="description"
-            content="Your online IT Library — free browser-based IT tools: dead pixel detector, printer tester, screen refresh tester, webcam & microphone test and a secure password generator. No install, works instantly."
+            content="127 — your online IT library. Free, 100% browser-based IT & developer tools: dead pixel detector, printer tester, webcam & microphone test, secure password generator, plus a 30+ tool developer toolbox (JSON formatter, JWT decoder, hash & UUID generators, Base64, and more). No install, nothing uploaded — everything runs client-side and works instantly."
         />
         <meta
             name="keywords"
-            content="IT tools, online IT library, dead pixel test, printer test, screen refresh rate test, webcam test, microphone test, password generator, hardware diagnostics"
+            content="IT tools, online IT library, developer tools, dev toolbox, dead pixel test, printer test, webcam test, microphone test, password generator, JSON formatter, JWT decoder, hash generator, UUID generator, Base64 encoder, hardware diagnostics, free browser tools"
         />
         <meta name="author" content="127" />
-        <meta name="robots" content="index, follow, max-image-preview:large" />
+        <meta name="application-name" content="127 — Your online IT Library" />
+        <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
         <link rel="canonical" href="https://127.be/" />
+        <link rel="manifest" href="/manifest.json" />
 
         <!-- Language / geo targeting -->
         <link rel="alternate" hreflang="nl-BE" href="https://127.be/" />
@@ -32,7 +34,7 @@
         <meta property="og:title" content="Your online IT Library" />
         <meta
             property="og:description"
-            content="Free browser-based IT tools: dead pixel detector, printer tester, screen refresh tester, webcam & microphone test and a secure password generator."
+            content="Free, browser-based IT & developer tools: dead pixel detector, printer tester, webcam & microphone test, secure password generator, and a 30+ tool developer toolbox. No install — everything runs client-side."
         />
         <meta property="og:url" content="https://127.be/" />
         <meta property="og:locale" content="nl_BE" />
@@ -41,13 +43,14 @@
             property="og:image"
             content="https://customer-assets.emergentagent.com/job_tool-metrics/artifacts/w5126i9x_127_2025_Official_Logo.png"
         />
+        <meta property="og:image:alt" content="127 — Your online IT Library" />
 
         <!-- Twitter -->
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Your online IT Library" />
         <meta
             name="twitter:description"
-            content="Free browser-based IT tools: dead pixel detector, printer tester, screen refresh tester, webcam & microphone test and a secure password generator."
+            content="Free, browser-based IT & developer tools: dead pixel detector, printer tester, webcam & microphone test, secure password generator, and a 30+ tool developer toolbox. No install — everything runs client-side."
         />
         <meta
             name="twitter:image"
@@ -59,14 +62,18 @@
             {
                 "@context": "https://schema.org",
                 "@type": "WebSite",
-                "name": "Your online IT Library",
+                "name": "127 — Your online IT Library",
+                "alternateName": "127",
                 "url": "https://127.be/",
                 "inLanguage": ["nl-BE", "en"],
-                "description": "Free browser-based IT tools: dead pixel detector, printer tester, screen refresh tester, webcam & microphone test and a secure password generator.",
+                "description": "Free, browser-based IT and developer tools: dead pixel detector, printer tester, webcam & microphone test, secure password generator, and a 30+ tool developer toolbox. Everything runs client-side.",
                 "publisher": {
                     "@type": "Organization",
                     "name": "127",
+                    "alternateName": "Your online IT Library",
                     "url": "https://127.be/",
+                    "logo": "https://customer-assets.emergentagent.com/job_tool-metrics/artifacts/w5126i9x_127_2025_Official_Logo.png",
+                    "description": "127 provides free, privacy-friendly, browser-based IT and developer tools that run entirely on the client — no install and nothing uploaded.",
                     "areaServed": "BE"
                 }
             }
@@ -75,12 +82,26 @@
             {
                 "@context": "https://schema.org",
                 "@type": "ItemList",
-                "name": "IT Tools",
+                "name": "127 IT & Developer Tools",
                 "itemListElement": [
-                    { "@type": "SoftwareApplication", "position": 1, "name": "Dead Pixel Detector", "applicationCategory": "UtilitiesApplication", "operatingSystem": "Web", "url": "https://127.be/dpd", "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" } },
-                    { "@type": "SoftwareApplication", "position": 2, "name": "Printer Tester", "applicationCategory": "UtilitiesApplication", "operatingSystem": "Web", "url": "https://127.be/printer", "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" } },
-                    { "@type": "SoftwareApplication", "position": 3, "name": "Webcam & Audio Tester", "applicationCategory": "UtilitiesApplication", "operatingSystem": "Web", "url": "https://127.be/wea", "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" } },
-                    { "@type": "SoftwareApplication", "position": 4, "name": "Password Generator", "applicationCategory": "SecurityApplication", "operatingSystem": "Web", "url": "https://127.be/password", "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" } }
+                    { "@type": "SoftwareApplication", "position": 1, "name": "Dead Pixel Detector", "description": "Test your screen for dead or stuck pixels in fullscreen with solid color patterns.", "applicationCategory": "UtilitiesApplication", "operatingSystem": "Web", "url": "https://127.be/dpd", "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" } },
+                    { "@type": "SoftwareApplication", "position": 2, "name": "Printer Tester", "description": "Print calibration pages with text, color bars, lines and alignment grids to test print quality.", "applicationCategory": "UtilitiesApplication", "operatingSystem": "Web", "url": "https://127.be/printer", "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" } },
+                    { "@type": "SoftwareApplication", "position": 3, "name": "Webcam & Audio Tester", "description": "Test your webcam and microphone, preview video and record locally — nothing is uploaded.", "applicationCategory": "UtilitiesApplication", "operatingSystem": "Web", "url": "https://127.be/wea", "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" } },
+                    { "@type": "SoftwareApplication", "position": 4, "name": "Password Generator", "description": "Generate strong, secure passwords and check password strength — fully client-side.", "applicationCategory": "SecurityApplication", "operatingSystem": "Web", "url": "https://127.be/password", "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" } },
+                    { "@type": "SoftwareApplication", "position": 5, "name": "Developer Toolbox", "description": "A 30+ tool developer toolbox: JSON formatter & validator, JWT decoder, hash and UUID generators, Base64 encoder/decoder, text utilities, network and design tools — all client-side.", "applicationCategory": "DeveloperApplication", "operatingSystem": "Web", "url": "https://127.be/tools", "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" } }
+                ]
+            }
+        </script>
+        <script type="application/ld+json">
+            {
+                "@context": "https://schema.org",
+                "@type": "FAQPage",
+                "mainEntity": [
+                    { "@type": "Question", "name": "Are the 127 IT tools free?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. Every tool on 127 is completely free to use, with no account and no sign-up required." } },
+                    { "@type": "Question", "name": "Do I need to install anything?", "acceptedAnswer": { "@type": "Answer", "text": "No. All 127 tools are 100% browser-based and work instantly on desktop and mobile — nothing to download or install." } },
+                    { "@type": "Question", "name": "Is my data safe and private?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. The tools run entirely client-side in your browser. Your files, recordings and passwords never leave your device and are not uploaded or stored on any server." } },
+                    { "@type": "Question", "name": "What tools does 127 offer?", "acceptedAnswer": { "@type": "Answer", "text": "127 offers a Dead Pixel Detector, Printer Tester, Webcam & Microphone Tester, a secure Password Generator, and a 30+ tool Developer Toolbox including a JSON formatter, JWT decoder, hash and UUID generators, Base64 encoder, and text, network and design utilities." } },
+                    { "@type": "Question", "name": "Does the password generator store my passwords?", "acceptedAnswer": { "@type": "Answer", "text": "No. Passwords are generated locally in your browser and are never sent to or saved on our servers." } }
                 ]
             }
         </script>

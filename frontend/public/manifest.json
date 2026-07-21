@@ -1,0 +1,19 @@
+{
+  "name": "127 — Your online IT Library",
+  "short_name": "127",
+  "description": "Free, browser-based IT and developer tools. No install, everything runs client-side.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#0b0f19",
+  "theme_color": "#0b0f19",
+  "lang": "en",
+  "icons": [
+    {
+      "src": "https://customer-assets.emergentagent.com/job_tool-metrics/artifacts/w5126i9x_127_2025_Official_Logo.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ]
+}
