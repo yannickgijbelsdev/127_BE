@@ -75,7 +75,7 @@ const PasswordGenerator = () => {
       const autosoftPattern = /^Autosoft01!*$/i; // Matches Autosoft01, Autosoft01!, Autosoft01!!, etc.
       if (autosoftPattern.test(customPassword)) {
         setIsAutosoftPassword(true);
-        setStrength({ score: 0, label: 'Test Wachtwoord', color: '#FF0000' });
+        setStrength({ score: 0, label: 'Test Password', color: '#FF0000' });
         setShowConfetti(false);
         
         // Log Autosoft password detection
@@ -174,16 +174,16 @@ const PasswordGenerator = () => {
     let label = '';
     let color = '';
     if (score < 40) {
-      label = 'Zwak';
+      label = 'Weak';
       color = '#FF4444';
     } else if (score < 60) {
-      label = 'Gemiddeld';
+      label = 'Medium';
       color = '#FFA500';
     } else if (score < 80) {
-      label = 'Sterk';
+      label = 'Strong';
       color = '#4CAF50';
     } else {
-      label = 'Uitstekend';
+      label = 'Excellent';
       color = '#9C27B0';
     }
 
@@ -393,18 +393,8 @@ const PasswordGenerator = () => {
       <div className="max-w-4xl mx-auto">
           {/* Header */}
           <div className="text-center mb-8">
-            <h1 className="text-3xl font-bold text-white mb-2">Wachtwoord Generator</h1>
-            <p className="text-white text-opacity-70">Maak veilige wachtwoorden en test de sterkte</p>
-            <button 
-              onClick={() => setShowChangelog(true)}
-              className="text-xs cursor-pointer hover:opacity-100 transition-opacity mt-2"
-              style={{
-                color: '#8fa8ff',
-                opacity: 0.8
-              }}
-            >
-              Build {BUILD_VERSION}
-            </button>
+            <h1 className="text-3xl font-bold text-white mb-2">Password Generator</h1>
+            <p className="text-white text-opacity-70">Create secure passwords and test their strength</p>
           </div>
 
           <div className="grid md:grid-cols-2 gap-6">
@@ -420,7 +410,7 @@ const PasswordGenerator = () => {
             >
               <div className="flex items-center gap-2 mb-6">
                 <Lock className="w-5 h-5 text-white text-opacity-80" />
-                <h2 className="text-xl font-semibold text-white">Genereer Wachtwoord</h2>
+                <h2 className="text-xl font-semibold text-white">Generate Password</h2>
               </div>
 
             {/* Generated Password Display */}
@@ -448,7 +438,7 @@ const PasswordGenerator = () => {
                   }}
                   onMouseEnter={(e) => e.target.style.background = 'rgba(150, 180, 255, 0.35)'}
                   onMouseLeave={(e) => e.target.style.background = 'rgba(150, 180, 255, 0.25)'}
-                  title="Kopieer"
+                  title="Copy"
                 >
                   {copied ? <CheckCircle className="w-5 h-5" /> : <Copy className="w-5 h-5" />}
                 </button>
@@ -496,7 +486,7 @@ const PasswordGenerator = () => {
                   onChange={(e) => setIncludeUppercase(e.target.checked)}
                   className="w-4 h-4 accent-[#8ab4f8]"
                 />
-                <span className="text-sm text-white text-opacity-90">Hoofdletters (A-Z)</span>
+                <span className="text-sm text-white text-opacity-90">Uppercase (A-Z)</span>
               </label>
               <label className="flex items-center gap-3 cursor-pointer">
                 <input
@@ -505,7 +495,7 @@ const PasswordGenerator = () => {
                   onChange={(e) => setIncludeLowercase(e.target.checked)}
                   className="w-4 h-4 accent-[#8ab4f8]"
                 />
-                <span className="text-sm text-white text-opacity-90">Kleine letters (a-z)</span>
+                <span className="text-sm text-white text-opacity-90">Lowercase (a-z)</span>
               </label>
               <label className="flex items-center gap-3 cursor-pointer">
                 <input
@@ -514,7 +504,7 @@ const PasswordGenerator = () => {
                   onChange={(e) => setIncludeNumbers(e.target.checked)}
                   className="w-4 h-4 accent-[#8ab4f8]"
                 />
-                <span className="text-sm text-white text-opacity-90">Cijfers (0-9)</span>
+                <span className="text-sm text-white text-opacity-90">Numbers (0-9)</span>
               </label>
               <label className="flex items-center gap-3 cursor-pointer">
                 <input
@@ -523,7 +513,7 @@ const PasswordGenerator = () => {
                   onChange={(e) => setIncludeSymbols(e.target.checked)}
                   className="w-4 h-4 accent-[#8ab4f8]"
                 />
-                <span className="text-sm text-white text-opacity-90">Speciale tekens (!@#$%)</span>
+                <span className="text-sm text-white text-opacity-90">Special characters (!@#$%)</span>
               </label>
             </div>
           </div>
@@ -540,7 +530,7 @@ const PasswordGenerator = () => {
           >
             <div className="flex items-center gap-2 mb-6">
               <CheckCircle className="w-5 h-5 text-white text-opacity-80" />
-              <h2 className="text-xl font-semibold text-white">Sterkte Check</h2>
+              <h2 className="text-xl font-semibold text-white">Strength Check</h2>
             </div>
 
             {/* Custom Password Input */}
@@ -563,7 +553,7 @@ const PasswordGenerator = () => {
               <div className="space-y-4">
                 <div>
                   <div className="flex justify-between items-center mb-2">
-                    <span className="text-sm text-white text-opacity-70">Sterkte</span>
+                    <span className="text-sm text-white text-opacity-70">Strength</span>
                     <span 
                       className="text-sm font-semibold"
                       style={{ color: strength.color }}
@@ -591,16 +581,16 @@ const PasswordGenerator = () => {
                   <div className="bg-[#FF0000] bg-opacity-20 border-2 border-[#FF0000] rounded-lg p-4 animate-pulse">
                     <div className="flex items-center gap-2 mb-2">
                       <AlertTriangle className="w-5 h-5 text-[#FF0000]" />
-                      <h3 className="text-[#FF0000] font-bold">WAARSCHUWING: Test Wachtwoord Gedetecteerd!</h3>
+                      <h3 className="text-[#FF0000] font-bold">WARNING: Test Password Detected!</h3>
                     </div>
                     <p className="text-[#e8eaed] text-sm mb-3">
-                      Dit is een test wachtwoord dat niet veilig is. Verander dit onmiddellijk naar een sterker wachtwoord.
+                      This is a test password that is not secure. Change it immediately to a stronger password.
                     </p>
                     <button
                       onClick={() => setShowMemorableForm(true)}
                       className="w-full px-4 py-2 bg-[#FF0000] hover:bg-[#CC0000] text-white rounded-lg font-medium transition-colors"
                     >
-                      Maak een veilig wachtwoord
+                      Create a secure password
                     </button>
                   </div>
                 )}
@@ -610,10 +600,10 @@ const PasswordGenerator = () => {
                   <div className="bg-[#FFA500] bg-opacity-20 border border-[#FFA500] rounded-lg p-4">
                     <div className="flex items-center gap-2 mb-2">
                       <Lightbulb className="w-5 h-5 text-[#FFA500]" />
-                      <h3 className="text-[#FFA500] font-semibold">Suggestie</h3>
+                      <h3 className="text-[#FFA500] font-semibold">Suggestion</h3>
                     </div>
                     <p className="text-[#e8eaed] text-sm mb-3">
-                      Je wachtwoord is niet sterk genoeg. Probeer een van deze opties:
+                      Your password is not strong enough. Try one of these options:
                     </p>
                     <div className="space-y-2">
                       <div className="flex gap-2">
@@ -640,7 +630,7 @@ const PasswordGenerator = () => {
                           onMouseEnter={(e) => e.target.style.background = 'rgba(255, 140, 0, 0.9)'}
                           onMouseLeave={(e) => e.target.style.background = 'rgba(255, 165, 0, 0.8)'}
                         >
-                          Gebruik dit
+                          Use this
                         </button>
                       </div>
                       <button
@@ -656,7 +646,7 @@ const PasswordGenerator = () => {
                         onMouseEnter={(e) => e.target.style.background = 'rgba(150, 180, 255, 0.35)'}
                         onMouseLeave={(e) => e.target.style.background = 'rgba(150, 180, 255, 0.25)'}
                       >
-                        Of maak een memorabel wachtwoord
+                        Or create a memorable password
                       </button>
                     </div>
                   </div>
@@ -671,12 +661,12 @@ const PasswordGenerator = () => {
                     border: '1px solid rgba(255, 255, 255, 0.1)'
                   }}
                 >
-                  <h3 className="text-sm font-semibold text-white mb-2">Tips voor sterker wachtwoord:</h3>
+                  <h3 className="text-sm font-semibold text-white mb-2">Tips for a stronger password:</h3>
                   <ul className="text-xs text-white text-opacity-70 space-y-1">
-                    <li>• Minimaal 12 karakters lang</li>
-                    <li>• Mix van hoofd/kleine letters, cijfers en symbolen</li>
-                    <li>• Vermijd herhalende karakters of patronen</li>
-                    <li>• Gebruik geen veelvoorkomende woorden</li>
+                    <li>• At least 12 characters long</li>
+                    <li>• Mix of upper/lowercase, numbers and symbols</li>
+                    <li>• Avoid repeating characters or patterns</li>
+                    <li>• Don't use common words</li>
                   </ul>
                 </div>
                 )}
@@ -690,7 +680,7 @@ const PasswordGenerator = () => {
                     }}
                   >
                     <p className="text-white text-center font-semibold">
-                      Uitstekend wachtwoord!
+                      Excellent password!
                     </p>
                   </div>
                 )}
@@ -711,19 +701,19 @@ const PasswordGenerator = () => {
                 border: '1px solid rgba(255, 255, 255, 0.1)'
               }}
             >
-              <h2 className="text-xl font-bold text-white mb-4">Maak een Memorabel Wachtwoord</h2>
+              <h2 className="text-xl font-bold text-white mb-4">Create a Memorable Password</h2>
               <p className="text-sm text-white text-opacity-70 mb-4">
-                Vul je favoriete dingen in om een sterk maar makkelijk te onthouden wachtwoord te maken
+                Enter your favorite things to create a strong but easy-to-remember password
               </p>
               
               <div className="space-y-4">
                 <div>
-                  <label className="block text-sm text-white text-opacity-70 mb-1">Jouw interesse of hobby</label>
+                  <label className="block text-sm text-white text-opacity-70 mb-1">Your interest or hobby</label>
                   <input
                     type="text"
                     value={memorableInputs.interest}
                     onChange={(e) => setMemorableInputs({...memorableInputs, interest: e.target.value})}
-                    placeholder="bijv. Voetbal, Muziek, Reizen"
+                    placeholder="e.g. Football, Music, Travel"
                     className="w-full text-white px-4 py-2 rounded-full text-sm placeholder-white placeholder-opacity-40"
                     style={{
                       background: 'rgba(255, 255, 255, 0.05)',
@@ -733,12 +723,12 @@ const PasswordGenerator = () => {
                 </div>
                 
                 <div>
-                  <label className="block text-sm text-white text-opacity-70 mb-1">Belangrijk jaar</label>
+                  <label className="block text-sm text-white text-opacity-70 mb-1">Important year</label>
                   <input
                     type="text"
                     value={memorableInputs.year}
                     onChange={(e) => setMemorableInputs({...memorableInputs, year: e.target.value})}
-                    placeholder="bijv. 1990, 2024"
+                    placeholder="e.g. 1990, 2024"
                     maxLength="4"
                     className="w-full text-white px-4 py-2 rounded-full text-sm placeholder-white placeholder-opacity-40"
                     style={{
@@ -749,12 +739,12 @@ const PasswordGenerator = () => {
                 </div>
                 
                 <div>
-                  <label className="block text-sm text-white text-opacity-70 mb-1">Favoriete ding</label>
+                  <label className="block text-sm text-white text-opacity-70 mb-1">Favorite thing</label>
                   <input
                     type="text"
                     value={memorableInputs.favorite}
                     onChange={(e) => setMemorableInputs({...memorableInputs, favorite: e.target.value})}
-                    placeholder="bijv. Kat, Pizza, Strand"
+                    placeholder="e.g. Cat, Pizza, Beach"
                     className="w-full text-white px-4 py-2 rounded-full text-sm placeholder-white placeholder-opacity-40"
                     style={{
                       background: 'rgba(255, 255, 255, 0.05)',
@@ -778,7 +768,7 @@ const PasswordGenerator = () => {
                   onMouseEnter={(e) => e.target.style.background = 'rgba(255, 255, 255, 0.15)'}
                   onMouseLeave={(e) => e.target.style.background = 'rgba(255, 255, 255, 0.1)'}
                 >
-                  Annuleren
+                  Cancel
                 </button>
                 <button
                   onClick={handleMemorableSubmit}
@@ -791,7 +781,7 @@ const PasswordGenerator = () => {
                   onMouseEnter={(e) => !e.target.disabled && (e.target.style.background = 'rgba(150, 180, 255, 0.4)')}
                   onMouseLeave={(e) => e.target.style.background = 'rgba(150, 180, 255, 0.3)'}
                 >
-                  Genereer
+                  Generate
                 </button>
               </div>
             </div>
@@ -811,7 +801,7 @@ const PasswordGenerator = () => {
               onMouseLeave={(e) => e.target.style.background = 'rgba(150, 180, 255, 0.3)'}
             >
               <ArrowLeft className="w-4 h-4" />
-              Bekijk ook andere tools
+              Check out other tools
             </button>
           </Link>
         </div>
@@ -835,7 +825,7 @@ const PasswordGenerator = () => {
     </div>
     
     <FloatingFeedbackButton />
-    <LanguageToggle />
+    {/* language toggle removed */}
     <ChangelogModal 
       isOpen={showChangelog} 
       onClose={() => setShowChangelog(false)}

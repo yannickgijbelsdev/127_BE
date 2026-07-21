@@ -21,8 +21,8 @@ const PrinterTest = () => {
   const { t } = useLanguage();
   const [isLoading, setIsLoading] = useState(false);
   const [loadingProgress, setLoadingProgress] = useState(0);
-  const [showInstructions, setShowInstructions] = useState(true);
-  const [showConfig, setShowConfig] = useState(false);
+  const [showInstructions, setShowInstructions] = useState(false);
+  const [showConfig, setShowConfig] = useState(true);
   const [showChangelog, setShowChangelog] = useState(false);
   const [backgroundImage, setBackgroundImage] = useState('');
   
@@ -556,7 +556,7 @@ const PrinterTest = () => {
 
   if (showConfig) {
     return (
-      <div className="min-h-screen bg-[#202124] py-8 px-4">
+      <div className="min-h-screen bg-[#0b0f19] py-8 px-4">
         {/* 127 Logo Top Left */}
         <div className="absolute top-8 left-8 z-30">
           <Link to="/">
@@ -734,19 +734,6 @@ const PrinterTest = () => {
                   </button>
                 </Link>
               </div>
-
-              <div className="text-center">
-                <button
-                  onClick={() => setShowChangelog(true)}
-                  className="text-xs cursor-pointer hover:opacity-100 transition-opacity"
-                  style={{
-                    color: '#8fa8ff',
-                    opacity: 0.8
-                  }}
-                >
-                  Build {BUILD_VERSION}
-                </button>
-              </div>
             </div>
           </div>
           
@@ -764,7 +751,6 @@ const PrinterTest = () => {
   return (
     <>
       <FloatingFeedbackButton />
-      <LanguageToggle />
       <ChangelogModal 
         isOpen={showChangelog} 
         onClose={() => setShowChangelog(false)}

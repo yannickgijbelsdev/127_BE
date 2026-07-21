@@ -295,11 +295,10 @@ const PixelTest = () => {
         }
       `}</style>
       <div 
-        onClick={handleClick}
         className="relative min-h-screen no-transition"
         style={{ 
           backgroundColor: isFullscreen ? currentColorObj.hex : '#0b0f19',
-          cursor: isFullscreen ? 'none' : 'pointer'
+          cursor: isFullscreen ? 'none' : 'default'
         }}
       >
         {/* Instructions when not in fullscreen */}
@@ -321,20 +320,7 @@ const PixelTest = () => {
                 className="w-32 h-auto mb-4 brightness-110"
                draggable="false"/>
               <h2 className="text-2xl font-bold text-white mb-2">Dead Pixel Detector</h2>
-              <p className="text-white text-opacity-70">{t('Klik om te starten', 'Click to start')}</p>
-              <button 
-                onClick={(e) => {
-                  e.stopPropagation();
-                  setShowChangelog(true);
-                }}
-                className="text-xs cursor-pointer hover:opacity-100 transition-opacity mt-2"
-                style={{
-                  color: '#8fa8ff',
-                  opacity: 0.8
-                }}
-              >
-                Build {BUILD_VERSION}
-              </button>
+              <p className="text-white text-opacity-70">{t('Test je scherm op dode of hangende pixels', 'Test your screen for dead or stuck pixels')}</p>
             </div>
             <div 
               className="rounded-2xl p-4 text-left"
@@ -345,7 +331,7 @@ const PixelTest = () => {
             >
               <h3 className="font-semibold text-white text-lg mb-2">{t('Instructies:', 'Instructions:')}</h3>
               <ul className="text-sm text-white text-opacity-80 space-y-1">
-                <li>• {t('Klik overal op het scherm om fullscreen te gaan', 'Click anywhere on screen to go fullscreen')}</li>
+                <li>• {t('Klik op "Start Test" om fullscreen te gaan', 'Click "Start Test" to go fullscreen')}</li>
                 <li>• {t('Gebruik pijltjestoetsen (← →) om van kleur te wisselen', 'Use arrow keys (← →) to switch colors')}</li>
                 <li>• {t('De muis verdwijnt automatisch in fullscreen', 'Mouse disappears automatically in fullscreen')}</li>
                 <li>• {t('Druk op ESC om fullscreen te verlaten', 'Press ESC to exit fullscreen')}</li>
@@ -376,16 +362,23 @@ const PixelTest = () => {
                 {t('Huidige kleur:', 'Current color:')} <span className="font-bold text-white">{currentColorObj.name}</span>
               </p>
             </div>
-            <div className="mt-6">
-              <Link to="/" onClick={(e) => e.stopPropagation()}>
+            <div className="mt-6 space-y-3">
+              <button
+                onClick={handleClick}
+                data-testid="dpd-start-test"
+                className="w-full px-4 py-3 rounded-full font-semibold text-white transition-transform duration-150 hover:scale-[1.02]"
+                style={{ background: 'linear-gradient(135deg, #3291FF 0%, #1e6fd6 100%)' }}
+              >
+                {t('Start Test', 'Start Test')}
+              </button>
+              <Link to="/">
                 <button 
                   className="w-full px-4 py-3 rounded-full font-medium transition-colors flex items-center justify-center gap-2"
                   style={{
-                    background: 'rgba(150, 180, 255, 0.3)',
-                    color: '#cfe1ff'
+                    background: 'rgba(255, 255, 255, 0.08)',
+                    color: '#cfe1ff',
+                    border: '1px solid rgba(255,255,255,0.12)'
                   }}
-                  onMouseEnter={(e) => e.target.style.background = 'rgba(150, 180, 255, 0.4)'}
-                  onMouseLeave={(e) => e.target.style.background = 'rgba(150, 180, 255, 0.3)'}
                 >
                   <ArrowLeft className="w-4 h-4" />
                   {t('Bekijk ook andere tools', 'Check out other tools')}
@@ -399,7 +392,7 @@ const PixelTest = () => {
       
       {/* Floating Feedback Button - Hide in fullscreen */}
       <FloatingFeedbackButton hideOnFullscreen={true} />
-      <LanguageToggle hideOnFullscreen={true} />
+      {/* language toggle removed */}
       
       {/* Changelog Modal */}
       <ChangelogModal 

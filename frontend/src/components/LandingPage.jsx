@@ -157,7 +157,7 @@ const LandingPage = () => {
         <div className="absolute inset-0 z-0" style={{ backgroundColor: '#0b0f19' }}></div>
 
         {/* Language Toggle */}
-        <LanguageToggle />
+        {/* language toggle removed */}
 
         {/* 127 Logo Top Left */}
         <div className="absolute top-4 left-4 sm:top-8 sm:left-8 z-30">
@@ -390,21 +390,6 @@ const LandingPage = () => {
                   </Link>
                 </div>
               )}
-
-              {/* Build Version */}
-              <div className="text-center">
-                <button
-                  onClick={() => setShowChangelog(true)}
-                  className="text-xs cursor-pointer hover:opacity-100 transition-opacity"
-                  style={{
-                    color: '#8fa8ff',
-                    opacity: 0.8,
-                    fontFamily: 'Inter, sans-serif'
-                  }}
-                >
-                  Build {BUILD_VERSION}
-                </button>
-              </div>
             </div>
           </div>
         </div>

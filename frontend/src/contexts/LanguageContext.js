@@ -11,25 +11,14 @@ export const useLanguage = () => {
 };
 
 export const LanguageProvider = ({ children }) => {
-  const [language, setLanguage] = useState(() => {
-    // Get from localStorage or default to 'nl'
-    return localStorage.getItem('language') || 'nl';
-  });
-
-  useEffect(() => {
-    // Save to localStorage whenever language changes
-    localStorage.setItem('language', language);
-  }, [language]);
-
-  const toggleLanguage = () => {
-    setLanguage(prev => prev === 'nl' ? 'en' : 'nl');
-  };
+  // Language is fixed to English (the language toggle has been removed).
+  const [language] = useState('en');
 
   const value = {
     language,
-    setLanguage,
-    toggleLanguage,
-    t: (nl, en) => language === 'nl' ? nl : en
+    setLanguage: () => {},
+    toggleLanguage: () => {},
+    t: (nl, en) => en
   };
 
   return (

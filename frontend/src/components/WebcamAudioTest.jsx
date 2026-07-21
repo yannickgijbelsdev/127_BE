@@ -16,8 +16,8 @@ const BUILD_VERSION = '1.8.3';
 const WebcamAudioTest = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [loadingProgress, setLoadingProgress] = useState(0);
-  const [showInstructions, setShowInstructions] = useState(true);
-  const [showPermissionRequest, setShowPermissionRequest] = useState(false);
+  const [showInstructions, setShowInstructions] = useState(false);
+  const [showPermissionRequest, setShowPermissionRequest] = useState(true);
   const [isRunning, setIsRunning] = useState(false);
   const [stream, setStream] = useState(null);
   const [devices, setDevices] = useState({ camera: 'Unknown', microphone: 'Unknown' });
@@ -518,16 +518,7 @@ const WebcamAudioTest = () => {
               <Progress value={loadingProgress} className="h-3" />
               <p className="text-center text-lg text-white text-opacity-80">{Math.round(loadingProgress)}%</p>
               <div className="text-center">
-                <button
-                  onClick={() => setShowChangelog(true)}
-                  className="text-xs cursor-pointer hover:opacity-100 transition-opacity"
-                  style={{
-                    color: '#8fa8ff',
-                    opacity: 0.8
-                  }}
-                >
-                  Build {BUILD_VERSION}
-                </button>
+                {/* build number removed */}
               </div>
             </div>
           </div>
@@ -643,25 +634,11 @@ const WebcamAudioTest = () => {
                   }}
                 >
                   <ArrowLeft className="w-4 h-4" />
-                  Bekijk ook andere tools
+                  Check out other tools
                 </button>
               </Link>
 
-              <div className="text-center">
-                <button
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    setShowChangelog(true);
-                  }}
-                  className="text-xs cursor-pointer hover:opacity-100 transition-opacity"
-                  style={{
-                    color: '#8fa8ff',
-                    opacity: 0.8
-                  }}
-                >
-                  Build {BUILD_VERSION}
-                </button>
-              </div>
+              {/* build number removed */}
             </div>
           </div>
         </div>
@@ -680,7 +657,7 @@ const WebcamAudioTest = () => {
   if (showPermissionRequest) {
     return (
       <>
-      <div className="min-h-screen bg-[#202124] flex items-center justify-center px-6">
+      <div className="min-h-screen bg-[#0b0f19] flex items-center justify-center px-6">
         <div className="w-full max-w-md">
           <div className="bg-[#303134] backdrop-blur-sm rounded-lg shadow-2xl p-8 border border-[#5f6368]">
             <div className="mb-6 flex flex-col items-center">
@@ -689,8 +666,8 @@ const WebcamAudioTest = () => {
                 alt="127 Logo" 
                 className="w-32 h-auto mb-4 brightness-110"
                draggable="false"/>
-              <h2 className="text-2xl font-bold text-[#e8eaed] mb-2">Toestemming Vereist</h2>
-              <p className="text-[#9aa0a6] text-center">We hebben toegang nodig tot uw camera en microfoon</p>
+              <h2 className="text-2xl font-bold text-[#e8eaed] mb-2">Permission Required</h2>
+              <p className="text-[#9aa0a6] text-center">We need access to your camera and microphone</p>
             </div>
 
             <div className="bg-[#202124] border border-[#5f6368] rounded-lg p-4 mb-4">
@@ -698,7 +675,7 @@ const WebcamAudioTest = () => {
                 <Video className="w-5 h-5 text-[#8ab4f8] mt-0.5" />
                 <div>
                   <p className="text-[#e8eaed] font-medium text-sm">Camera</p>
-                  <p className="text-[#9aa0a6] text-xs">Voor video preview en opname</p>
+                  <p className="text-[#9aa0a6] text-xs">For video preview and recording</p>
                 </div>
               </div>
               <div className="flex items-start gap-3">
@@ -727,7 +704,7 @@ const WebcamAudioTest = () => {
                 onMouseEnter={(e) => e.target.style.background = 'rgba(150, 180, 255, 0.4)'}
                 onMouseLeave={(e) => e.target.style.background = 'rgba(150, 180, 255, 0.3)'}
               >
-                Geef Toestemming
+                Grant Permission
               </button>
               <Link to="/" onClick={(e) => e.stopPropagation()}>
                 <button 
@@ -740,13 +717,13 @@ const WebcamAudioTest = () => {
                   onMouseLeave={(e) => e.target.style.background = 'rgba(255, 255, 255, 0.1)'}
                 >
                   <ArrowLeft className="w-4 h-4" />
-                  Annuleren
+                  Cancel
                 </button>
               </Link>
             </div>
 
             <p className="text-xs text-[#9aa0a6] mt-4 text-center">
-              Uw privacy is belangrijk. Deze tool bewaart geen opnames op onze servers.
+              Your privacy matters. This tool does not store recordings on our servers.
             </p>
           </div>
         </div>
@@ -769,7 +746,7 @@ const WebcamAudioTest = () => {
 
   return (
     <>
-    <div className="min-h-screen bg-[#202124] flex flex-col">
+    <div className="min-h-screen bg-[#0b0f19] flex flex-col">
       {/* Control Panel */}
       <div className="bg-[#303134] border-b border-[#5f6368] p-6">
         <div className="max-w-7xl mx-auto">
@@ -778,13 +755,8 @@ const WebcamAudioTest = () => {
               <Video className="w-8 h-8 text-[#8ab4f8]" />
               <div>
                 <h1 className="text-2xl font-bold text-[#e8eaed]">Webcam & Audio Test</h1>
-                <p className="text-sm text-[#9aa0a6]">Test uw camera en microfoon</p>
-                <button 
-                  onClick={() => setShowChangelog(true)}
-                  className="text-xs text-[#8ab4f8] hover:text-[#aac8f9] cursor-pointer underline"
-                >
-                  Build {BUILD_VERSION}
-                </button>
+                <p className="text-sm text-[#9aa0a6]">Test your camera and microphone</p>
+                {/* build number removed */}
               </div>
             </div>
             <Link to="/">
@@ -793,14 +765,14 @@ const WebcamAudioTest = () => {
                 className="border-[#5f6368] text-[#e8eaed] hover:bg-[#3c4043]"
               >
                 <ArrowLeft className="w-4 h-4 mr-2" />
-                Terug
+                Back
               </Button>
             </Link>
           </div>
 
           {/* Device Info */}
           <div className="bg-[#202124] border border-[#5f6368] rounded-lg p-4 mb-4">
-            <h3 className="text-sm font-semibold text-[#8ab4f8] mb-3">Apparaat Informatie</h3>
+            <h3 className="text-sm font-semibold text-[#8ab4f8] mb-3">Device Information</h3>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div className="flex items-center gap-3">
                 <Video className="w-5 h-5 text-[#8ab4f8]" />
@@ -812,7 +784,7 @@ const WebcamAudioTest = () => {
               <div className="flex items-center gap-3">
                 <Mic className="w-5 h-5 text-[#8ab4f8]" />
                 <div>
-                  <p className="text-[#9aa0a6] text-xs">Microfoon</p>
+                  <p className="text-[#9aa0a6] text-xs">Microphone</p>
                   <p className="text-[#e8eaed] text-sm font-medium">{devices.microphone}</p>
                 </div>
               </div>
@@ -832,7 +804,7 @@ const WebcamAudioTest = () => {
                 onMouseLeave={(e) => e.target.style.background = 'rgba(220, 38, 38, 0.8)'}
               >
                 <Circle className="w-4 h-4 fill-current" />
-                Start Opname
+                Start Recording
               </button>
             ) : (
               <>
@@ -846,7 +818,7 @@ const WebcamAudioTest = () => {
                   onMouseLeave={(e) => e.target.style.background = 'rgba(75, 85, 99, 0.8)'}
                 >
                   <Square className="w-4 h-4" />
-                  Stop Opname
+                  Stop Recording
                 </button>
                 <div className="px-4 py-2 rounded-lg font-mono text-white" style={{ background: 'rgba(220, 38, 38, 0.8)' }}>
                   {formatTime(recordingTime)}
@@ -903,7 +875,7 @@ const WebcamAudioTest = () => {
           {isRecording && (
             <div className="absolute top-4 left-4 bg-red-600 text-white px-4 py-2 rounded-full flex items-center gap-2 animate-pulse">
               <Circle className="w-4 h-4 fill-current" />
-              <span className="font-medium">OPNAME {formatTime(recordingTime)}</span>
+              <span className="font-medium">RECORDING {formatTime(recordingTime)}</span>
             </div>
           )}
         </div>
@@ -914,7 +886,7 @@ const WebcamAudioTest = () => {
             <div className="flex items-center justify-between mb-3">
               <div className="flex items-center gap-2">
                 <Mic className="w-5 h-5 text-[#8ab4f8]" />
-                <span className="text-[#e8eaed] font-medium">Audio Niveau</span>
+                <span className="text-[#e8eaed] font-medium">Audio Level</span>
               </div>
               <span className="text-[#8ab4f8] font-mono text-lg">{audioLevel}%</span>
             </div>
@@ -930,7 +902,7 @@ const WebcamAudioTest = () => {
     </div>
     
     <FloatingFeedbackButton />
-    <LanguageToggle />
+    {/* language toggle removed */}
     <ChangelogModal 
       isOpen={showChangelog} 
       onClose={() => setShowChangelog(false)}
