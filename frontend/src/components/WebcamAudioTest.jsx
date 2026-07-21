@@ -7,7 +7,6 @@ import AutumnDecoration from './AutumnDecoration';
 import FloatingFeedbackButton from './FloatingFeedbackButton';
 import ChangelogModal from './ChangelogModal';
 import ToolStatusWrapper from './ToolStatusWrapper';
-import LanguageToggle from './LanguageToggle';
 import { logPageVisit, logButtonClick, logAction, logError } from '../utils/analytics';
 
 // Build version - Update this with each change
@@ -143,13 +142,13 @@ const WebcamAudioTest = () => {
     } catch (error) {
       console.error('Error accessing media devices:', error);
       
-      let errorMessage = 'Kon geen toegang krijgen tot camera/microfoon.';
+      let errorMessage = 'Could not access camera/microphone.';
       if (error.name === 'NotAllowedError' || error.name === 'PermissionDeniedError') {
-        errorMessage = 'Toestemming geweigerd. Geef toestemming voor camera en microfoon in uw browserinstellingen.';
+        errorMessage = 'Permission denied. Please allow access to the camera and microphone in your browser settings.';
       } else if (error.name === 'NotFoundError' || error.name === 'DevicesNotFoundError') {
-        errorMessage = 'Geen camera of microfoon gevonden. Controleer uw apparaten.';
+        errorMessage = 'No camera or microphone found. Please check your devices.';
       } else if (error.name === 'NotReadableError' || error.name === 'TrackStartError') {
-        errorMessage = 'Camera of microfoon wordt al gebruikt door een ander programma.';
+        errorMessage = 'Camera or microphone is already in use by another program.';
       }
       
       // Log permission error as both action and error
@@ -596,7 +595,7 @@ const WebcamAudioTest = () => {
             <div className="space-y-6">
               <div className="text-center">
                 <h2 className="text-3xl font-bold text-white mb-2">Webcam & Audio Test</h2>
-                <p className="text-white text-opacity-70">Klik om te starten</p>
+                <p className="text-white text-opacity-70">Click to start</p>
               </div>
               
               <div 
@@ -606,13 +605,13 @@ const WebcamAudioTest = () => {
                   border: '1px solid rgba(255, 255, 255, 0.05)'
                 }}
               >
-                <h3 className="font-semibold text-white text-lg mb-3">Instructies:</h3>
+                <h3 className="font-semibold text-white text-lg mb-3">Instructions:</h3>
                 <ul className="text-white text-opacity-80 space-y-2">
-                  <li>• Klik om camera en microfoon te activeren</li>
-                  <li>• Geef toestemming voor camera en microfoon</li>
-                  <li>• Test uw beeld en geluid</li>
-                  <li>• Neem op en download de opname</li>
-                  <li>• Download video en audio apart of samen</li>
+                  <li>• Click to activate camera and microphone</li>
+                  <li>• Allow access to the camera and microphone</li>
+                  <li>• Test your video and audio</li>
+                  <li>• Record and download the recording</li>
+                  <li>• Download video and audio separately or together</li>
                 </ul>
               </div>
 
@@ -681,8 +680,8 @@ const WebcamAudioTest = () => {
               <div className="flex items-start gap-3">
                 <Mic className="w-5 h-5 text-[#8ab4f8] mt-0.5" />
                 <div>
-                  <p className="text-[#e8eaed] font-medium text-sm">Microfoon</p>
-                  <p className="text-[#9aa0a6] text-xs">Voor audio opname</p>
+                  <p className="text-[#e8eaed] font-medium text-sm">Microphone</p>
+                  <p className="text-[#9aa0a6] text-xs">For audio recording</p>
                 </div>
               </div>
             </div>
@@ -902,7 +901,6 @@ const WebcamAudioTest = () => {
     </div>
     
     <FloatingFeedbackButton />
-    {/* language toggle removed */}
     <ChangelogModal 
       isOpen={showChangelog} 
       onClose={() => setShowChangelog(false)}

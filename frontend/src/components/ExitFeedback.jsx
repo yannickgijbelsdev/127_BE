@@ -121,12 +121,12 @@ const ExitFeedback = () => {
 
   const handleSubmit = async () => {
     if (rating === 0) {
-      alert('Geef alsjeblieft een beoordeling');
+      alert('Please give a rating');
       return;
     }
 
     if (!feedback.trim()) {
-      alert('Geef alsjeblieft feedback');
+      alert('Please provide feedback');
       return;
     }
 
@@ -167,7 +167,7 @@ const ExitFeedback = () => {
       }
     } catch (error) {
       console.error('Failed to submit feedback:', error);
-      alert('Er ging iets mis. Probeer het later opnieuw.');
+      alert('Something went wrong. Please try again later.');
     } finally {
       setIsSubmitting(false);
     }
@@ -200,13 +200,13 @@ const ExitFeedback = () => {
                 <Send className="w-8 h-8 text-green-400" />
               </div>
             </div>
-            <h3 className="text-2xl font-bold text-white mb-2">Bedankt!</h3>
-            <p className="text-white text-opacity-70">Je feedback is verzonden.</p>
+            <h3 className="text-2xl font-bold text-white mb-2">Thank you!</h3>
+            <p className="text-white text-opacity-70">Your feedback has been sent.</p>
           </div>
         ) : (
           <>
             <div className="flex items-center justify-between mb-6">
-              <h2 className="text-2xl font-bold text-white">Voor je weggaat...</h2>
+              <h2 className="text-2xl font-bold text-white">Before you leave...</h2>
               <button
                 onClick={handleClose}
                 className="p-2 rounded-lg transition-colors hover:bg-white hover:bg-opacity-10"
@@ -216,13 +216,13 @@ const ExitFeedback = () => {
             </div>
 
             <p className="text-white text-opacity-70 mb-6">
-              Help ons beter te worden! Geef je mening over je ervaring.
+              Help us improve! Share your opinion about your experience.
             </p>
 
             {/* Rating */}
             <div className="mb-6">
               <label className="block text-sm font-medium text-white mb-3">
-                Geef een beoordeling (1-10)
+                Give a rating (1-10)
               </label>
               <div className="flex gap-2 justify-center">
                 {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((num) => (
@@ -258,12 +258,12 @@ const ExitFeedback = () => {
             {/* Feedback */}
             <div className="mb-4">
               <label className="block text-sm font-medium text-white mb-2">
-                Wat kan er beter?
+                What can be improved?
               </label>
               <textarea
                 value={feedback}
                 onChange={(e) => setFeedback(e.target.value)}
-                placeholder="Vertel ons wat je ervaring was..."
+                placeholder="Tell us about your experience..."
                 rows="3"
                 className="w-full text-white px-4 py-3 rounded-full focus:outline-none resize-none placeholder-white placeholder-opacity-40"
                 style={{
@@ -278,12 +278,12 @@ const ExitFeedback = () => {
             {/* Suggestions */}
             <div className="mb-6">
               <label className="block text-sm font-medium text-white mb-2">
-                Suggesties (optioneel)
+                Suggestions (optional)
               </label>
               <textarea
                 value={suggestions}
                 onChange={(e) => setSuggestions(e.target.value)}
-                placeholder="Heb je ideeën voor verbetering?"
+                placeholder="Do you have ideas for improvement?"
                 rows="2"
                 className="w-full text-white px-4 py-3 rounded-full focus:outline-none resize-none placeholder-white placeholder-opacity-40"
                 style={{
@@ -307,7 +307,7 @@ const ExitFeedback = () => {
                 onMouseEnter={(e) => e.target.style.background = 'rgba(255, 255, 255, 0.15)'}
                 onMouseLeave={(e) => e.target.style.background = 'rgba(255, 255, 255, 0.1)'}
               >
-                Overslaan
+                Skip
               </button>
               <button
                 onClick={handleSubmit}
@@ -321,11 +321,11 @@ const ExitFeedback = () => {
                 onMouseLeave={(e) => e.target.style.background = 'rgba(150, 180, 255, 0.3)'}
               >
                 {isSubmitting ? (
-                  'Verzenden...'
+                  'Sending...'
                 ) : (
                   <>
                     <Send className="w-4 h-4" />
-                    Verzenden
+                    Send
                   </>
                 )}
               </button>

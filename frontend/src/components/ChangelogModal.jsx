@@ -3,7 +3,7 @@ import { X, Calendar, Package } from 'lucide-react';
 import { CHANGELOG } from '../utils/changelog';
 
 const ChangelogModal = ({ isOpen, onClose, currentVersion }) => {
-  const [language, setLanguage] = useState('nl');
+  const language = 'en';
 
   if (!isOpen) return null;
 
@@ -33,41 +33,10 @@ const ChangelogModal = ({ isOpen, onClose, currentVersion }) => {
             <Package className="w-8 h-8 text-white text-opacity-90" />
             <div>
               <h2 className="text-2xl font-bold text-white">Changelog</h2>
-              <p className="text-sm text-white text-opacity-70">Huidige versie: {currentVersion}</p>
+              <p className="text-sm text-white text-opacity-70">Current version: {currentVersion}</p>
             </div>
           </div>
           <div className="flex items-center gap-3">
-            {/* Language Toggle */}
-            <div 
-              className="flex rounded-lg p-1"
-              style={{
-                background: 'rgba(255, 255, 255, 0.1)',
-                border: '1px solid rgba(255, 255, 255, 0.1)'
-              }}
-            >
-              <button
-                onClick={() => setLanguage('nl')}
-                className={`px-3 py-1 rounded text-sm font-medium transition-colors ${
-                  language === 'nl'
-                    ? 'text-white'
-                    : 'text-white text-opacity-60 hover:text-opacity-90'
-                }`}
-                style={language === 'nl' ? { background: 'rgba(150, 180, 255, 0.3)' } : {}}
-              >
-                NL
-              </button>
-              <button
-                onClick={() => setLanguage('en')}
-                className={`px-3 py-1 rounded text-sm font-medium transition-colors ${
-                  language === 'en'
-                    ? 'text-white'
-                    : 'text-white text-opacity-60 hover:text-opacity-90'
-                }`}
-                style={language === 'en' ? { background: 'rgba(150, 180, 255, 0.3)' } : {}}
-              >
-                EN
-              </button>
-            </div>
             <button
               onClick={onClose}
               className="p-2 rounded-lg transition-colors hover:bg-white hover:bg-opacity-10"
@@ -107,10 +76,9 @@ const ChangelogModal = ({ isOpen, onClose, currentVersion }) => {
                               color: '#cfe1ff'
                             }}
                           >
-                            HUIDIGE
+                            CURRENT
                           </span>
-                        )}
-                      </div>
+                        )}                      </div>
                       <p className="text-lg font-semibold" style={{ color: '#8fa8ff' }}>
                         {changelog.title}
                       </p>
@@ -132,9 +100,7 @@ const ChangelogModal = ({ isOpen, onClose, currentVersion }) => {
                     </div>
                   ) : (
                     <div className="text-white text-opacity-50 italic text-sm">
-                      {language === 'nl' 
-                        ? 'Deze versie bevat voornamelijk backend wijzigingen.'
-                        : 'This version mainly contains backend changes.'}
+                      This version mainly contains backend changes.
                     </div>
                   )}
                 </div>

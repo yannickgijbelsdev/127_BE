@@ -1,10 +1,8 @@
 import React, { useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { MessageSquare, X } from 'lucide-react';
-import { useLanguage } from '../contexts/LanguageContext';
 
 const FloatingFeedbackButton = ({ hideOnFullscreen = false }) => {
-  const { t } = useLanguage();
   const location = useLocation();
   const [showForm, setShowForm] = useState(false);
   const [rating, setRating] = useState(0);
@@ -80,12 +78,12 @@ const FloatingFeedbackButton = ({ hideOnFullscreen = false }) => {
 
   const handleSubmit = async () => {
     if (rating === 0) {
-      alert(t('Geef alsjeblieft een beoordeling', 'Please give a rating'));
+      alert('Please give a rating');
       return;
     }
 
     if (!feedback.trim()) {
-      alert(t('Geef alsjeblieft feedback', 'Please provide feedback'));
+      alert('Please provide feedback');
       return;
     }
 
@@ -130,7 +128,7 @@ const FloatingFeedbackButton = ({ hideOnFullscreen = false }) => {
       }
     } catch (error) {
       console.error('Failed to submit feedback:', error);
-      alert('Er ging iets mis. Probeer het later opnieuw.');
+      alert('Something went wrong. Please try again later.');
     } finally {
       setIsSubmitting(false);
     }
@@ -160,7 +158,7 @@ const FloatingFeedbackButton = ({ hideOnFullscreen = false }) => {
             border: '1px solid rgba(150, 180, 255, 0.15)',
             color: '#cfe1ff'
           }}
-          title={t('Geef feedback', 'Give feedback')}
+          title={'Give feedback'}
           onMouseEnter={(e) => e.currentTarget.style.background = 'rgba(150, 180, 255, 0.35)'}
           onMouseLeave={(e) => e.currentTarget.style.background = 'rgba(150, 180, 255, 0.25)'}
         >
@@ -190,13 +188,13 @@ const FloatingFeedbackButton = ({ hideOnFullscreen = false }) => {
                     <MessageSquare className="w-8 h-8 text-green-400" />
                   </div>
                 </div>
-                <h3 className="text-2xl font-bold text-white mb-2">{t('Bedankt!', 'Thank you!')}</h3>
-                <p className="text-white text-opacity-70">{t('Je feedback is verzonden.', 'Your feedback has been sent.')}</p>
+                <h3 className="text-2xl font-bold text-white mb-2">{'Thank you!'}</h3>
+                <p className="text-white text-opacity-70">{'Your feedback has been sent.'}</p>
               </div>
             ) : (
               <>
                 <div className="flex items-center justify-between mb-6">
-                  <h2 className="text-2xl font-bold text-white">{t('Geef Feedback', 'Give Feedback')}</h2>
+                  <h2 className="text-2xl font-bold text-white">{'Give Feedback'}</h2>
                   <button
                     onClick={() => setShowForm(false)}
                     className="p-2 rounded-lg transition-colors hover:bg-white hover:bg-opacity-10"
@@ -208,7 +206,7 @@ const FloatingFeedbackButton = ({ hideOnFullscreen = false }) => {
                 {/* Rating */}
                 <div className="mb-6">
                   <label className="block text-sm font-medium text-white mb-3">
-                    {t('Geef een beoordeling (1-10)', 'Give a rating (1-10)')}
+                    {'Give a rating (1-10)'}
                   </label>
                   <div className="flex gap-2 justify-center">
                     {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((num) => (
@@ -244,12 +242,12 @@ const FloatingFeedbackButton = ({ hideOnFullscreen = false }) => {
                 {/* Feedback */}
                 <div className="mb-4">
                   <label className="block text-sm font-medium text-white mb-2">
-                    {t('Wat vind je van deze tool?', 'What do you think of this tool?')}
+                    {'What do you think of this tool?'}
                   </label>
                   <textarea
                     value={feedback}
                     onChange={(e) => setFeedback(e.target.value)}
-                    placeholder={t('Deel je ervaring...', 'Share your experience...')}
+                    placeholder={'Share your experience...'}
                     rows="3"
                     className="w-full text-white px-4 py-3 rounded-lg focus:outline-none resize-none placeholder-white placeholder-opacity-40"
                     style={{
@@ -264,12 +262,12 @@ const FloatingFeedbackButton = ({ hideOnFullscreen = false }) => {
                 {/* Suggestions */}
                 <div className="mb-6">
                   <label className="block text-sm font-medium text-white mb-2">
-                    {t('Suggesties (optioneel)', 'Suggestions (optional)')}
+                    {'Suggestions (optional)'}
                   </label>
                   <textarea
                     value={suggestions}
                     onChange={(e) => setSuggestions(e.target.value)}
-                    placeholder={t('Heb je ideeën voor verbetering?', 'Do you have ideas for improvement?')}
+                    placeholder={'Do you have ideas for improvement?'}
                     rows="2"
                     className="w-full text-white px-4 py-3 rounded-lg focus:outline-none resize-none placeholder-white placeholder-opacity-40"
                     style={{
@@ -293,7 +291,7 @@ const FloatingFeedbackButton = ({ hideOnFullscreen = false }) => {
                     onMouseEnter={(e) => e.target.style.background = 'rgba(255, 255, 255, 0.15)'}
                     onMouseLeave={(e) => e.target.style.background = 'rgba(255, 255, 255, 0.1)'}
                   >
-                    {t('Annuleren', 'Cancel')}
+                    {'Cancel'}
                   </button>
                   <button
                     onClick={handleSubmit}
@@ -309,7 +307,7 @@ const FloatingFeedbackButton = ({ hideOnFullscreen = false }) => {
                     onMouseEnter={(e) => !isSubmitting && (e.target.style.background = 'rgba(150, 180, 255, 0.35)')}
                     onMouseLeave={(e) => e.target.style.background = 'rgba(150, 180, 255, 0.25)'}
                   >
-                    {isSubmitting ? t('Verzenden...', 'Sending...') : t('Verzenden', 'Send')}
+                    {isSubmitting ? 'Sending...' : 'Send'}
                   </button>
                 </div>
               </>

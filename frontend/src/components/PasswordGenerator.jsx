@@ -6,7 +6,6 @@ import AutumnDecoration from './AutumnDecoration';
 import FloatingFeedbackButton from './FloatingFeedbackButton';
 import ChangelogModal from './ChangelogModal';
 import ToolStatusWrapper from './ToolStatusWrapper';
-import LanguageToggle from './LanguageToggle';
 import { logPageVisit, logAction, logButtonClick } from '../utils/analytics';
 
 const BUILD_VERSION = '1.8.3';
@@ -454,7 +453,7 @@ const PasswordGenerator = () => {
                   }}
                   onMouseEnter={(e) => e.target.style.background = 'rgba(150, 180, 255, 0.35)'}
                   onMouseLeave={(e) => e.target.style.background = 'rgba(150, 180, 255, 0.25)'}
-                  title="Genereer nieuw"
+                  title="Generate new"
                 >
                   <RefreshCw className="w-5 h-5" />
                 </button>
@@ -464,8 +463,8 @@ const PasswordGenerator = () => {
             {/* Length Slider */}
             <div className="mb-6">
               <div className="flex justify-between items-center mb-2">
-                <label className="text-sm text-white text-opacity-70">Lengte</label>
-                <span className="text-sm font-semibold text-white">{length} karakters</span>
+                <label className="text-sm text-white text-opacity-70">Length</label>
+                <span className="text-sm font-semibold text-white">{length} characters</span>
               </div>
               <input
                 type="range"
@@ -539,7 +538,7 @@ const PasswordGenerator = () => {
                 type="text"
                 value={customPassword}
                 onChange={(e) => setCustomPassword(e.target.value)}
-                placeholder="Voer je wachtwoord in..."
+                placeholder="Enter your password..."
                 className="w-full text-white px-4 py-3 rounded-full font-mono text-sm placeholder-white placeholder-opacity-40"
                 style={{
                   background: 'rgba(255, 255, 255, 0.05)',

@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { X, Lightbulb, Loader2 } from 'lucide-react';
-import { useLanguage } from '../contexts/LanguageContext';
 
 const ToolSuggestionModal = ({ isOpen, onClose }) => {
-  const { t } = useLanguage();
   const [toolName, setToolName] = useState('');
   const [description, setDescription] = useState('');
   const [useCase, setUseCase] = useState('');
@@ -120,9 +118,9 @@ const ToolSuggestionModal = ({ isOpen, onClose }) => {
         {submitted ? (
           <div className="p-8 text-center">
             <Lightbulb className="w-16 h-16 text-white text-opacity-90 mx-auto mb-4" />
-            <h2 className="text-2xl font-bold text-white mb-2">{t('Bedankt!', 'Thank you!')}</h2>
+            <h2 className="text-2xl font-bold text-white mb-2">{'Thank you!'}</h2>
             <p className="text-white text-opacity-70">
-              {t('Je tool suggestie is ontvangen. We bekijken deze en nemen contact op indien nodig.', 'Your tool suggestion has been received. We will review it and contact you if needed.')}
+              {'Your tool suggestion has been received. We will review it and contact you if needed.'}
             </p>
           </div>
         ) : (
@@ -131,8 +129,8 @@ const ToolSuggestionModal = ({ isOpen, onClose }) => {
               <div className="flex items-center gap-3">
                 <Lightbulb className="w-8 h-8 text-white text-opacity-90" />
                 <div>
-                  <h2 className="text-xl font-bold text-white">{t('Stel een tool voor', 'Suggest a tool')}</h2>
-                  <p className="text-sm text-white text-opacity-70">{t('Mis je een tool? Laat het ons weten!', 'Missing a tool? Let us know!')}</p>
+                  <h2 className="text-xl font-bold text-white">{'Suggest a tool'}</h2>
+                  <p className="text-sm text-white text-opacity-70">{'Missing a tool? Let us know!'}</p>
                 </div>
               </div>
             </div>
@@ -140,13 +138,13 @@ const ToolSuggestionModal = ({ isOpen, onClose }) => {
             <form onSubmit={handleSubmit} className="p-6 space-y-4">
               <div>
                 <label className="block text-sm font-medium text-white text-opacity-70 mb-2">
-                  {t('Tool Naam *', 'Tool Name *')}
+                  {'Tool Name *'}
                 </label>
                 <input
                   type="text"
                   value={toolName}
                   onChange={(e) => setToolName(e.target.value)}
-                  placeholder={t('Bijv. WiFi Speed Tester', 'E.g. WiFi Speed Tester')}
+                  placeholder={'E.g. WiFi Speed Tester'}
                   required
                   className="w-full px-4 py-2 text-white rounded-lg focus:outline-none placeholder-white placeholder-opacity-30"
                   style={{
@@ -160,12 +158,12 @@ const ToolSuggestionModal = ({ isOpen, onClose }) => {
 
               <div>
                 <label className="block text-sm font-medium text-white text-opacity-70 mb-2">
-                  {t('Beschrijving *', 'Description *')}
+                  {'Description *'}
                 </label>
                 <textarea
                   value={description}
                   onChange={(e) => setDescription(e.target.value)}
-                  placeholder={t('Wat moet deze tool doen?', 'What should this tool do?')}
+                  placeholder={'What should this tool do?'}
                   required
                   rows={3}
                   className="w-full px-4 py-2 text-white rounded-lg focus:outline-none resize-none placeholder-white placeholder-opacity-30"
@@ -180,12 +178,12 @@ const ToolSuggestionModal = ({ isOpen, onClose }) => {
 
               <div>
                 <label className="block text-sm font-medium text-white text-opacity-70 mb-2">
-                  {t('Use Case (optioneel)', 'Use Case (optional)')}
+                  {'Use Case (optional)'}
                 </label>
                 <textarea
                   value={useCase}
                   onChange={(e) => setUseCase(e.target.value)}
-                  placeholder={t('Wanneer zou je deze tool gebruiken?', 'When would you use this tool?')}
+                  placeholder={'When would you use this tool?'}
                   rows={2}
                   className="w-full px-4 py-2 text-white rounded-lg focus:outline-none resize-none placeholder-white placeholder-opacity-30"
                   style={{
@@ -211,10 +209,10 @@ const ToolSuggestionModal = ({ isOpen, onClose }) => {
                 {isSubmitting ? (
                   <>
                     <Loader2 className="w-5 h-5 animate-spin" />
-                    {t('Verzenden...', 'Sending...')}
+                    {'Sending...'}
                   </>
                 ) : (
-                  t('Verstuur Suggestie', 'Submit Suggestion')
+                  'Submit Suggestion'
                 )}
               </button>
             </form>

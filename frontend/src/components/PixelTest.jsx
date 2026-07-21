@@ -6,15 +6,12 @@ import AutumnDecoration from './AutumnDecoration';
 import FloatingFeedbackButton from './FloatingFeedbackButton';
 import ChangelogModal from './ChangelogModal';
 import ToolStatusWrapper from './ToolStatusWrapper';
-import LanguageToggle from './LanguageToggle';
-import { useLanguage } from '../contexts/LanguageContext';
 import { logPageVisit, logAction, logButtonClick, logError } from '../utils/analytics';
 
 // Build version - Update this with each change
 const BUILD_VERSION = '1.8.3';
 
 const PixelTest = () => {
-  const { t } = useLanguage();
   const [isLoading, setIsLoading] = useState(false);
   const [loadingProgress, setLoadingProgress] = useState(0);
   const [currentColor, setCurrentColor] = useState('red');
@@ -31,12 +28,12 @@ const PixelTest = () => {
   }, []);
 
   const colors = [
-    { name: t('Rood', 'Red'), value: 'red', hex: '#FF0000' },
-    { name: t('Groen', 'Green'), value: 'green', hex: '#00FF00' },
-    { name: t('Blauw', 'Blue'), value: 'blue', hex: '#0000FF' },
-    { name: t('Zwart', 'Black'), value: 'black', hex: '#000000' },
-    { name: t('Wit', 'White'), value: 'white', hex: '#FFFFFF' },
-    { name: t('Lichtgrijs', 'Light Gray'), value: 'lightgray', hex: '#D3D3D3' },
+    { name: 'Red', value: 'red', hex: '#FF0000' },
+    { name: 'Green', value: 'green', hex: '#00FF00' },
+    { name: 'Blue', value: 'blue', hex: '#0000FF' },
+    { name: 'Black', value: 'black', hex: '#000000' },
+    { name: 'White', value: 'white', hex: '#FFFFFF' },
+    { name: 'Light Gray', value: 'lightgray', hex: '#D3D3D3' },
   ];
 
   // Loading animation (1 second)
@@ -155,7 +152,7 @@ const PixelTest = () => {
         await elem.msRequestFullscreen();
       }
     } catch (error) {
-      console.warn('Fullscreen niet beschikbaar:', error.message);
+      console.warn('Fullscreen not available:', error.message);
       logError('dpd', 'Dead Pixel Detector', 'fullscreen_failed', {
         error_message: error.message,
         error_name: error.name
@@ -320,7 +317,7 @@ const PixelTest = () => {
                 className="w-32 h-auto mb-4 brightness-110"
                draggable="false"/>
               <h2 className="text-2xl font-bold text-white mb-2">Dead Pixel Detector</h2>
-              <p className="text-white text-opacity-70">{t('Test je scherm op dode of hangende pixels', 'Test your screen for dead or stuck pixels')}</p>
+              <p className="text-white text-opacity-70">{'Test your screen for dead or stuck pixels'}</p>
             </div>
             <div 
               className="rounded-2xl p-4 text-left"
@@ -329,13 +326,13 @@ const PixelTest = () => {
                 border: '1px solid rgba(255, 255, 255, 0.1)'
               }}
             >
-              <h3 className="font-semibold text-white text-lg mb-2">{t('Instructies:', 'Instructions:')}</h3>
+              <h3 className="font-semibold text-white text-lg mb-2">{'Instructions:'}</h3>
               <ul className="text-sm text-white text-opacity-80 space-y-1">
-                <li>• {t('Klik op "Start Test" om fullscreen te gaan', 'Click "Start Test" to go fullscreen')}</li>
-                <li>• {t('Gebruik pijltjestoetsen (← →) om van kleur te wisselen', 'Use arrow keys (← →) to switch colors')}</li>
-                <li>• {t('De muis verdwijnt automatisch in fullscreen', 'Mouse disappears automatically in fullscreen')}</li>
-                <li>• {t('Druk op ESC om fullscreen te verlaten', 'Press ESC to exit fullscreen')}</li>
-                <li>• {t('Zoek naar pixels die niet mee veranderen', 'Look for pixels that don\'t change')}</li>
+                <li>• {'Click "Start Test" to go fullscreen'}</li>
+                <li>• {'Use arrow keys (← →) to switch colors'}</li>
+                <li>• {'Mouse disappears automatically in fullscreen'}</li>
+                <li>• {'Press ESC to exit fullscreen'}</li>
+                <li>• {'Look for pixels that don\'t change'}</li>
               </ul>
             </div>
             <div 
@@ -345,21 +342,21 @@ const PixelTest = () => {
                 border: '1px solid rgba(255, 255, 255, 0.1)'
               }}
             >
-              <h3 className="font-semibold text-white text-lg mb-2">{t('GPU Informatie:', 'GPU Information:')}</h3>
+              <h3 className="font-semibold text-white text-lg mb-2">{'GPU Information:'}</h3>
               <div className="text-sm text-white text-opacity-80 space-y-2">
                 <div>
-                  <span className="text-white text-opacity-60">{t('Vendor:', 'Vendor:')}</span>
+                  <span className="text-white text-opacity-60">{'Vendor:'}</span>
                   <span className="ml-2 text-white font-medium break-words">{gpuInfo.vendor}</span>
                 </div>
                 <div>
-                  <span className="text-white text-opacity-60">{t('Renderer:', 'Renderer:')}</span>
+                  <span className="text-white text-opacity-60">{'Renderer:'}</span>
                   <span className="ml-2 text-white font-medium break-words">{gpuInfo.renderer}</span>
                 </div>
               </div>
             </div>
             <div className="mt-6">
               <p className="text-sm text-white text-opacity-70">
-                {t('Huidige kleur:', 'Current color:')} <span className="font-bold text-white">{currentColorObj.name}</span>
+                {'Current color:'} <span className="font-bold text-white">{currentColorObj.name}</span>
               </p>
             </div>
             <div className="mt-6 space-y-3">
@@ -369,7 +366,7 @@ const PixelTest = () => {
                 className="w-full px-4 py-3 rounded-full font-semibold text-white transition-transform duration-150 hover:scale-[1.02]"
                 style={{ background: 'linear-gradient(135deg, #3291FF 0%, #1e6fd6 100%)' }}
               >
-                {t('Start Test', 'Start Test')}
+                {'Start Test'}
               </button>
               <Link to="/">
                 <button 
@@ -381,7 +378,7 @@ const PixelTest = () => {
                   }}
                 >
                   <ArrowLeft className="w-4 h-4" />
-                  {t('Bekijk ook andere tools', 'Check out other tools')}
+                  {'Check out other tools'}
                 </button>
               </Link>
             </div>

@@ -10,15 +10,12 @@ import AutumnDecoration from './AutumnDecoration';
 import FloatingFeedbackButton from './FloatingFeedbackButton';
 import ChangelogModal from './ChangelogModal';
 import ToolStatusWrapper from './ToolStatusWrapper';
-import LanguageToggle from './LanguageToggle';
-import { useLanguage } from '../contexts/LanguageContext';
 import { logPageVisit, logAction, logButtonClick } from '../utils/analytics';
 
 // Build version - Update this with each change
 const BUILD_VERSION = '1.8.3';
 
 const PrinterTest = () => {
-  const { t } = useLanguage();
   const [isLoading, setIsLoading] = useState(false);
   const [loadingProgress, setLoadingProgress] = useState(0);
   const [showInstructions, setShowInstructions] = useState(false);
@@ -70,7 +67,7 @@ const PrinterTest = () => {
 
   const handlePrint = () => {
     if (!includeText && !includeColorBars && !includeLines && !includeAlignment) {
-      alert(t('Selecteer minimaal één testoptie', 'Select at least one test option'));
+      alert('Select at least one test option');
       return;
     }
 
@@ -80,7 +77,7 @@ const PrinterTest = () => {
       <!DOCTYPE html>
       <html>
       <head>
-        <title>Printer Kwaliteitstest</title>
+        <title>Printer Quality Test</title>
         <style>
           @media print {
             @page { 
@@ -205,8 +202,8 @@ const PrinterTest = () => {
       content += `
         <div class="header">
           <img src="https://customer-assets.emergentagent.com/job_tool-metrics/artifacts/w5126i9x_127_2025_Official_Logo.png" alt="127 Logo"  draggable="false"/>
-          <h1>Printer Kwaliteitstest</h1>
-          <p><strong>Pagina ${i} van ${numPages}</strong></p>
+          <h1>Printer Quality Test</h1>
+          <p><strong>Page ${i} of ${numPages}</strong></p>
         </div>
       `;
 
@@ -214,14 +211,14 @@ const PrinterTest = () => {
       if (includeText) {
         content += `
           <div class="test-section">
-            <h2>Tekstkwaliteitstest</h2>
+            <h2>Text Quality Test</h2>
             <div class="text-sample">
-              <p style="font-size: 8px;"><strong>Extra Klein (8px):</strong> The quick brown fox jumps over the lazy dog. 0123456789</p>
-              <p style="font-size: 10px;"><strong>Klein (10px):</strong> The quick brown fox jumps over the lazy dog. 0123456789</p>
-              <p style="font-size: 12px;"><strong>Normaal (12px):</strong> The quick brown fox jumps over the lazy dog. 0123456789</p>
+              <p style="font-size: 8px;"><strong>Extra Small (8px):</strong> The quick brown fox jumps over the lazy dog. 0123456789</p>
+              <p style="font-size: 10px;"><strong>Small (10px):</strong> The quick brown fox jumps over the lazy dog. 0123456789</p>
+              <p style="font-size: 12px;"><strong>Normal (12px):</strong> The quick brown fox jumps over the lazy dog. 0123456789</p>
               <p style="font-size: 14px;"><strong>Medium (14px):</strong> The quick brown fox jumps over the lazy dog. 0123456789</p>
-              <p style="font-size: 16px;"><strong>Groot (16px):</strong> The quick brown fox jumps over the lazy dog. 0123456789</p>
-              <p style="font-size: 18px;"><strong>Extra Groot (18px):</strong> The quick brown fox jumps over the lazy dog. 0123456789</p>
+              <p style="font-size: 16px;"><strong>Large (16px):</strong> The quick brown fox jumps over the lazy dog. 0123456789</p>
+              <p style="font-size: 18px;"><strong>Extra Large (18px):</strong> The quick brown fox jumps over the lazy dog. 0123456789</p>
             </div>
           </div>
         `;
@@ -231,26 +228,26 @@ const PrinterTest = () => {
       if (includeColorBars) {
         content += `
           <div class="test-section">
-            <h2>Kleurenkwaliteitstest</h2>
+            <h2>Color Quality Test</h2>
             <div class="color-label">Rood (RGB: 255, 0, 0)</div>
             <div class="color-bar" style="background: rgb(255, 0, 0);"></div>
             
-            <div class="color-label">Groen (RGB: 0, 255, 0)</div>
+            <div class="color-label">Green (RGB: 0, 255, 0)</div>
             <div class="color-bar" style="background: rgb(0, 255, 0);"></div>
             
-            <div class="color-label">Blauw (RGB: 0, 0, 255)</div>
+            <div class="color-label">Blue (RGB: 0, 0, 255)</div>
             <div class="color-bar" style="background: rgb(0, 0, 255);"></div>
             
-            <div class="color-label">Geel (RGB: 255, 255, 0)</div>
+            <div class="color-label">Yellow (RGB: 255, 255, 0)</div>
             <div class="color-bar" style="background: rgb(255, 255, 0);"></div>
             
             <div class="color-label">Magenta (RGB: 255, 0, 255)</div>
             <div class="color-bar" style="background: rgb(255, 0, 255);"></div>
             
-            <div class="color-label">Cyaan (RGB: 0, 255, 255)</div>
+            <div class="color-label">Cyan (RGB: 0, 255, 255)</div>
             <div class="color-bar" style="background: rgb(0, 255, 255);"></div>
             
-            <div class="color-label">Zwart naar Wit Gradiënt</div>
+            <div class="color-label">Black to White Gradient</div>
             <div class="color-bar" style="background: linear-gradient(to right, rgb(0,0,0), rgb(255,255,255));"></div>
           </div>
         `;
@@ -260,21 +257,21 @@ const PrinterTest = () => {
       if (includeLines) {
         content += `
           <div class="test-section">
-            <h2>Lijn- en Rechtuidheidstest</h2>
+            <h2>Line and Straightness Test</h2>
             <div class="test-lines">
-              <div class="line-label">Dunne lijn (1px)</div>
+              <div class="line-label">Thin line (1px)</div>
               <div class="line" style="height: 1px;"></div>
               
-              <div class="line-label">Standaard lijn (2px)</div>
+              <div class="line-label">Standard line (2px)</div>
               <div class="line" style="height: 2px;"></div>
               
-              <div class="line-label">Medium lijn (3px)</div>
+              <div class="line-label">Medium line (3px)</div>
               <div class="line" style="height: 3px;"></div>
               
-              <div class="line-label">Dikke lijn (5px)</div>
+              <div class="line-label">Thick line (5px)</div>
               <div class="line" style="height: 5px;"></div>
               
-              <div class="line-label">Extra dikke lijn (8px)</div>
+              <div class="line-label">Extra thick line (8px)</div>
               <div class="line" style="height: 8px;"></div>
             </div>
           </div>
@@ -285,8 +282,8 @@ const PrinterTest = () => {
       if (includeAlignment) {
         content += `
           <div class="test-section">
-            <h2>Uitlijnings- en Margetest</h2>
-            <p style="font-size: 12px; margin-bottom: 10px;">Test de uitlijning en marges van uw printer. Alle cellen moeten gelijk zijn.</p>
+            <h2>Alignment and Margin Test</h2>
+            <p style="font-size: 12px; margin-bottom: 10px;">Test your printer's alignment and margins. All cells should be equal.</p>
             <div class="alignment-grid">
               <div class="grid-lines">
                 <div class="grid-cell">LB</div>
@@ -482,7 +479,7 @@ const PrinterTest = () => {
             <div className="space-y-6">
               <div className="text-center">
                 <h2 className="text-3xl font-bold text-white mb-2">Printer Tester</h2>
-                <p className="text-white text-opacity-70">{t('Klik om te starten', 'Click to start')}</p>
+                <p className="text-white text-opacity-70">{'Click to start'}</p>
               </div>
               
               <div 
@@ -492,13 +489,13 @@ const PrinterTest = () => {
                   border: '1px solid rgba(255, 255, 255, 0.05)'
                 }}
               >
-                <h3 className="font-semibold text-white text-lg mb-3">{t('Instructies:', 'Instructions:')}</h3>
+                <h3 className="font-semibold text-white text-lg mb-3">{'Instructions:'}</h3>
                 <ul className="text-white text-opacity-80 space-y-2">
-                  <li>• {t('Klik om de configuratie te openen', 'Click to open configuration')}</li>
-                  <li>• {t('Kies het aantal pagina\'s (1-10)', 'Choose number of pages (1-10)')}</li>
-                  <li>• {t('Selecteer de gewenste testen', 'Select desired tests')}</li>
-                  <li>• {t('Klik op "Genereer en Print"', 'Click "Generate and Print"')}</li>
-                  <li>• {t('Controleer de afdruk op kwaliteit', 'Check print quality')}</li>
+                  <li>• {'Click to open configuration'}</li>
+                  <li>• {'Choose number of pages (1-10)'}</li>
+                  <li>• {'Select desired tests'}</li>
+                  <li>• {'Click "Generate and Print"'}</li>
+                  <li>• {'Check print quality'}</li>
                 </ul>
               </div>
 
@@ -520,7 +517,7 @@ const PrinterTest = () => {
                   }}
                 >
                   <ArrowLeft className="w-4 h-4" />
-                  {t('Bekijk ook andere tools', 'Check out other tools')}
+                  {'Check out other tools'}
                 </button>
               </Link>
 
@@ -583,12 +580,12 @@ const PrinterTest = () => {
             <div className="space-y-8">
               <div className="text-center">
                 <h2 className="text-3xl font-bold text-white mb-2">Printer Tester</h2>
-                <p className="text-white text-opacity-70">{t('Test uw printer op kwaliteit', 'Test your printer quality')}</p>
+                <p className="text-white text-opacity-70">{'Test your printer quality'}</p>
               </div>
 
               {/* Number of pages */}
               <div>
-                <Label htmlFor="pages" className="text-white mb-2 block text-lg">{t('Aantal pagina\'s', 'Number of pages')}</Label>
+                <Label htmlFor="pages" className="text-white mb-2 block text-lg">{'Number of pages'}</Label>
                 <Input
                   id="pages"
                   type="number"
@@ -616,7 +613,7 @@ const PrinterTest = () => {
                   border: '1px solid rgba(255, 255, 255, 0.05)'
                 }}
               >
-                <h3 className="font-semibold text-white text-lg mb-4">{t('Selecteer testen:', 'Select tests:')}</h3>
+                <h3 className="font-semibold text-white text-lg mb-4">{'Select tests:'}</h3>
                 <div className="space-y-4">
                   <div className="flex items-center space-x-3">
                     <Checkbox 
@@ -632,7 +629,7 @@ const PrinterTest = () => {
                       className="border-white border-opacity-30"
                     />
                     <label htmlFor="text" className="text-white text-opacity-80 cursor-pointer">
-                      {t('Teksttest (verschillende groottes)', 'Text test (different sizes)')}
+                      {'Text test (different sizes)'}
                     </label>
                   </div>
                   <div className="flex items-center space-x-3">
@@ -649,7 +646,7 @@ const PrinterTest = () => {
                       className="border-white border-opacity-30"
                     />
                     <label htmlFor="colors" className="text-white text-opacity-80 cursor-pointer">
-                      {t('Kleurenbalken (RGB, CMY, gradiënt)', 'Color bars (RGB, CMY, gradient)')}
+                      {'Color bars (RGB, CMY, gradient)'}
                     </label>
                   </div>
                   <div className="flex items-center space-x-3">
@@ -666,7 +663,7 @@ const PrinterTest = () => {
                       className="border-white border-opacity-30"
                     />
                     <label htmlFor="lines" className="text-white text-opacity-80 cursor-pointer">
-                      {t('Lijntest (rechtheid en dikte)', 'Line test (straightness and thickness)')}
+                      {'Line test (straightness and thickness)'}
                     </label>
                   </div>
                   <div className="flex items-center space-x-3">
@@ -683,7 +680,7 @@ const PrinterTest = () => {
                       className="border-white border-opacity-30"
                     />
                     <label htmlFor="alignment" className="text-white text-opacity-80 cursor-pointer">
-                      {t('Uitlijningsraster (marges en centering)', 'Alignment grid (margins and centering)')}
+                      {'Alignment grid (margins and centering)'}
                     </label>
                   </div>
                 </div>
@@ -709,7 +706,7 @@ const PrinterTest = () => {
                   }}
                 >
                   <Printer className="w-4 h-4" />
-                  {t('Genereer en Print', 'Generate and Print')}
+                  {'Generate and Print'}
                 </button>
                 
                 <Link to="/">
@@ -730,7 +727,7 @@ const PrinterTest = () => {
                     }}
                   >
                     <ArrowLeft className="w-4 h-4" />
-                    {t('Bekijk ook andere tools', 'Check out other tools')}
+                    {'Check out other tools'}
                   </button>
                 </Link>
               </div>

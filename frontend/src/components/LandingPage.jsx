@@ -4,15 +4,12 @@ import { Search, Monitor, Printer, Video, Lock, Plus, Wrench } from 'lucide-reac
 import FloatingFeedbackButton from './FloatingFeedbackButton';
 import ChangelogModal from './ChangelogModal';
 import ToolSuggestionModal from './ToolSuggestionModal';
-import LanguageToggle from './LanguageToggle';
-import { useLanguage } from '../contexts/LanguageContext';
 import { logPageVisit, logAction, logButtonClick } from '../utils/analytics';
 
 // Build version - Update this with each change
 const BUILD_VERSION = '1.8.3';
 
 const LandingPage = () => {
-  const { t } = useLanguage();
   const [searchQuery, setSearchQuery] = useState('');
   const [showChangelog, setShowChangelog] = useState(false);
   const [showToolSuggestion, setShowToolSuggestion] = useState(false);
@@ -33,32 +30,32 @@ const LandingPage = () => {
   const allToolsMetadata = [
     {
       id: 'dpd',
-      name: t('Dead Pixel Detector', 'Dead Pixel Detector'),
-      description: t('Test je scherm op dode pixels', 'Test your screen for dead pixels'),
+      name: 'Dead Pixel Detector',
+      description: 'Test your screen for dead pixels',
       icon: Monitor,
       path: '/dpd',
       keywords: ['pixel', 'scherm', 'test', 'dead', 'monitor', 'display', 'screen']
     },
     {
       id: 'printer',
-      name: t('Printer Tester', 'Printer Tester'),
-      description: t('Test je printer met verschillende patronen', 'Test your printer with different patterns'),
+      name: 'Printer Tester',
+      description: 'Test your printer with different patterns',
       icon: Printer,
       path: '/printer',
       keywords: ['print', 'printer', 'test', 'papier', 'paper', 'kleur', 'color', 'pattern']
     },
     {
       id: 'wea',
-      name: t('Webcam & Audio Tester', 'Webcam & Audio Tester'),
-      description: t('Test je webcam en microfoon', 'Test your webcam and microphone'),
+      name: 'Webcam & Audio Tester',
+      description: 'Test your webcam and microphone',
       icon: Video,
       path: '/wea',
       keywords: ['webcam', 'camera', 'audio', 'microfoon', 'microphone', 'test']
     },
     {
       id: 'password',
-      name: t('Wachtwoord Generator', 'Password Generator'),
-      description: t('Genereer veilige wachtwoorden', 'Generate secure passwords'),
+      name: 'Password Generator',
+      description: 'Generate secure passwords',
       icon: Lock,
       path: '/password',
       keywords: ['password', 'wachtwoord', 'generator', 'veilig', 'security', 'secure']
@@ -194,7 +191,7 @@ const LandingPage = () => {
                   <Search className="w-5 h-5 text-white opacity-70" />
                   <input
                     type="text"
-                    placeholder={t('Zoek een tool...', 'Search for a tool...')}
+                    placeholder={'Search for a tool...'}
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
                     onFocus={() => searchQuery && setShowResults(true)}
@@ -267,10 +264,10 @@ const LandingPage = () => {
                               </div>
                               <div className="flex-1">
                                 <div className="text-base font-medium text-white">
-                                  {t('Mis je nog een tool?', 'Missing a tool?')}
+                                  {'Missing a tool?'}
                                 </div>
                                 <div className="text-sm text-white text-opacity-70 mt-0.5">
-                                  {t('Laat het ons weten en we kijken wat we kunnen doen!', 'Let us know and we\'ll see what we can do!')}
+                                  {'Let us know and we\'ll see what we can do!'}
                                 </div>
                               </div>
                             </div>
@@ -280,7 +277,7 @@ const LandingPage = () => {
                     ) : (
                       <>
                         <div className="px-6 py-8 text-center text-white text-opacity-70">
-                          {t('Geen tools gevonden', 'No tools found')}
+                          {'No tools found'}
                         </div>
                         
                         {/* Tool suggestion for no results */}
@@ -301,10 +298,10 @@ const LandingPage = () => {
                               </div>
                               <div className="flex-1">
                                 <div className="text-base font-medium text-white">
-                                  {t('Mis je nog een tool?', 'Missing a tool?')}
+                                  {'Missing a tool?'}
                                 </div>
                                 <div className="text-sm text-white text-opacity-70 mt-0.5">
-                                  {t('Laat het ons weten en we kijken wat we kunnen doen!', 'Let us know and we\'ll see what we can do!')}
+                                  {'Let us know and we\'ll see what we can do!'}
                                 </div>
                               </div>
                             </div>
@@ -371,7 +368,7 @@ const LandingPage = () => {
                     }}
                   >
                     <Plus className="w-4 h-4" />
-                    {t('Tool Voorstellen', 'Suggest Tool')}
+                    {'Suggest Tool'}
                   </button>
 
                   {/* Developer Toolbox entry */}

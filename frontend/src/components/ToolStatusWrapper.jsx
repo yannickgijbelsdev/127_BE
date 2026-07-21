@@ -48,16 +48,16 @@ const ToolStatusWrapper = ({ toolId, children }) => {
             </svg>
           </div>
           <h1 className="text-3xl font-bold text-[#e8eaed] mb-4">
-            Sorry, deze tool is offline
+            Sorry, this tool is offline
           </h1>
           <p className="text-[#9aa0a6] text-lg mb-8">
-            Deze tool is momenteel niet beschikbaar. Probeer het later opnieuw.
+            This tool is currently unavailable. Please try again later.
           </p>
           <button
             onClick={() => navigate('/')}
             className="px-6 py-3 bg-[#8ab4f8] hover:bg-[#aac8f9] text-[#202124] rounded-lg font-medium transition-colors"
           >
-            Terug naar Home
+            Back to Home
           </button>
         </div>
       </div>
