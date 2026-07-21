@@ -172,11 +172,11 @@ const LandingPage = () => {
         <LanguageToggle />
 
         {/* 127 Logo Top Left */}
-        <div className="absolute top-8 left-8 z-30">
+        <div className="absolute top-4 left-4 sm:top-8 sm:left-8 z-30">
           <img 
             src="https://customer-assets.emergentagent.com/job_tool-metrics/artifacts/w5126i9x_127_2025_Official_Logo.png" 
             alt="127 Logo" 
-            className="h-12 w-auto brightness-110"
+            className="h-8 sm:h-12 w-auto brightness-110"
             draggable="false"
           />
         </div>
@@ -391,8 +391,8 @@ const LandingPage = () => {
                     <button
                       className="group w-full px-6 py-4 rounded-full font-semibold text-base text-white flex items-center justify-center gap-2.5 transition-transform duration-150 hover:scale-[1.02]"
                       style={{
-                        background: 'linear-gradient(135deg, #3291FF 0%, #7928CA 100%)',
-                        boxShadow: '0 8px 30px rgba(50, 145, 255, 0.45)',
+                        background: '#000000',
+                        border: '1px solid rgba(255, 255, 255, 0.18)',
                         fontFamily: 'Inter, sans-serif'
                       }}
                     >
