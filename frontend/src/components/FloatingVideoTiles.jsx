@@ -2,15 +2,15 @@ import React, { useEffect, useRef, useState } from 'react';
 
 // Scattered tile layout around (behind) the central card. `depth` = mouse-parallax strength (px).
 const TILES = [
-  { top: '7%',  left: '5%',   w: 210, depth: 26, dur: 9,  delay: 0,   mobile: true },
-  { top: '12%', left: '70%',  w: 240, depth: 34, dur: 11, delay: 0.6, mobile: true },
-  { top: '4%',  left: '39%',  w: 170, depth: 16, dur: 8,  delay: 1.2, mobile: false },
-  { top: '33%', left: '81%',  w: 160, depth: 38, dur: 10, delay: 0.3, mobile: false },
-  { top: '36%', left: '1%',   w: 165, depth: 30, dur: 12, delay: 0.9, mobile: false },
-  { top: '24%', left: '21%',  w: 180, depth: 18, dur: 9.5,delay: 1.6, mobile: false },
-  { top: '62%', left: '4%',   w: 195, depth: 22, dur: 10.5,delay: 0.2, mobile: true },
-  { top: '67%', left: '73%',  w: 220, depth: 28, dur: 8.5, delay: 1.1, mobile: true },
-  { top: '79%', left: '43%',  w: 200, depth: 20, dur: 11.5,delay: 0.5, mobile: false },
+  { top: '6%',  left: '4%',   w: 285, depth: 26, dur: 9,  delay: 0,   mobile: true },
+  { top: '11%', left: '68%',  w: 320, depth: 34, dur: 11, delay: 0.6, mobile: true },
+  { top: '3%',  left: '38%',  w: 230, depth: 16, dur: 8,  delay: 1.2, mobile: false },
+  { top: '32%', left: '80%',  w: 220, depth: 38, dur: 10, delay: 0.3, mobile: false },
+  { top: '35%', left: '0%',   w: 225, depth: 30, dur: 12, delay: 0.9, mobile: false },
+  { top: '22%', left: '20%',  w: 240, depth: 18, dur: 9.5,delay: 1.6, mobile: false },
+  { top: '61%', left: '3%',   w: 260, depth: 22, dur: 10.5,delay: 0.2, mobile: true },
+  { top: '66%', left: '71%',  w: 290, depth: 28, dur: 8.5, delay: 1.1, mobile: true },
+  { top: '78%', left: '41%',  w: 270, depth: 20, dur: 11.5,delay: 0.5, mobile: false },
 ];
 
 function pickSrc(v) {
@@ -38,15 +38,16 @@ const FloatingVideoTiles = () => {
     (async () => {
       try {
         const results = await Promise.all(
-          QUERIES.map((q) =>
-            fetch(
+          QUERIES.map((q) => {
+            const page = 1 + Math.floor(Math.random() * 5);
+            return fetch(
               `${process.env.REACT_APP_BACKEND_URL}/api/pexels/videos?query=${encodeURIComponent(
                 q
-              )}&per_page=6&orientation=landscape`
+              )}&per_page=8&page=${page}&orientation=landscape`
             )
               .then((r) => r.json())
-              .catch(() => ({ videos: [] }))
-          )
+              .catch(() => ({ videos: [] }));
+          })
         );
         const seen = new Set();
         const vids = [];
@@ -124,7 +125,7 @@ const FloatingVideoTiles = () => {
               top: t.top,
               left: t.left,
               width: `${t.w}px`,
-              maxWidth: '42vw',
+              maxWidth: '46vw',
               transform: `translate3d(calc(var(--mx, 0) * ${t.depth}px), calc(var(--my, 0) * ${t.depth}px), 0)`,
               transition: 'transform 0.6s cubic-bezier(0.22, 1, 0.36, 1)',
               willChange: 'transform',
