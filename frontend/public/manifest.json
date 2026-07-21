@@ -10,8 +10,8 @@
   "lang": "en",
   "icons": [
     {
-      "src": "https://customer-assets.emergentagent.com/job_tool-metrics/artifacts/w5126i9x_127_2025_Official_Logo.png",
-      "sizes": "512x512",
+      "src": "/favicon.png",
+      "sizes": "256x256",
       "type": "image/png",
       "purpose": "any"
     }
