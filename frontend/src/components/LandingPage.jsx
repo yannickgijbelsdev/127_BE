@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import { Link } from 'react-router-dom';
-import { Search, Monitor, Printer, Activity, Video, Lock, Plus, Wrench } from 'lucide-react';
+import { Search, Monitor, Printer, Video, Lock, Plus, Wrench } from 'lucide-react';
 import FloatingFeedbackButton from './FloatingFeedbackButton';
 import ChangelogModal from './ChangelogModal';
 import ToolSuggestionModal from './ToolSuggestionModal';
@@ -18,14 +18,13 @@ const LandingPage = () => {
   const [showToolSuggestion, setShowToolSuggestion] = useState(false);
   const [showResults, setShowResults] = useState(false);
   // Optimistic default: show all known tools instantly, then reconcile with backend.
-  const [enabledToolIds, setEnabledToolIds] = useState(['dpd', 'printer', 'sscreen', 'wea', 'password']);
+  const [enabledToolIds, setEnabledToolIds] = useState(['dpd', 'printer', 'wea', 'password']);
   const [loadingTools, setLoadingTools] = useState(false);
 
   // Icon mapping for tools
   const iconMap = {
     'dpd': Monitor,
     'printer': Printer,
-    'sscreen': Activity,
     'wea': Video,
     'password': Lock
   };
@@ -47,14 +46,6 @@ const LandingPage = () => {
       icon: Printer,
       path: '/printer',
       keywords: ['print', 'printer', 'test', 'papier', 'paper', 'kleur', 'color', 'pattern']
-    },
-    {
-      id: 'sscreen',
-      name: t('Screen Refresh Tester', 'Screen Refresh Tester'),
-      description: t('Meet de refresh rate van je scherm', 'Measure your screen refresh rate'),
-      icon: Activity,
-      path: '/sscreen',
-      keywords: ['refresh', 'rate', 'fps', 'hz', 'scherm', 'screen', 'speed']
     },
     {
       id: 'wea',

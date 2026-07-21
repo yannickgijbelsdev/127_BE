@@ -5,7 +5,7 @@ import { LanguageProvider } from './contexts/LanguageContext';
 import LandingPage from './components/LandingPage';
 import PixelTest from './components/PixelTest';
 import PrinterTest from './components/PrinterTest';
-import ScreenTest from './components/ScreenTest';
+
 import WebcamAudioTest from './components/WebcamAudioTest';
 import PasswordGenerator from './components/PasswordGenerator';
 import AdminLogin from './components/admin/AdminLogin';
@@ -157,7 +157,6 @@ function AppContent() {
         <Route path="/" element={<LandingPage />} />
         <Route path="/dpd" element={<PixelTest />} />
         <Route path="/printer" element={<PrinterTest />} />
-        <Route path="/sscreen" element={<ScreenTest />} />
         <Route path="/wea" element={<WebcamAudioTest />} />
         <Route path="/password" element={<PasswordGenerator />} />
 
