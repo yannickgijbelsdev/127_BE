@@ -35,28 +35,28 @@ const ToolPage = () => {
 
   return (
     <div className="mx-auto max-w-5xl space-y-6" data-testid="tool-page">
-      <Link to="/tools" className="inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground" data-testid="tool-back">
+      <Link to="/tools" className="inline-flex items-center gap-1.5 text-sm text-white/60 transition-colors duration-150 hover:text-white" data-testid="tool-back">
         <ArrowLeft className="h-4 w-4" /> All tools
       </Link>
 
-      <div className="flex items-start justify-between gap-4 border-b border-border pb-5">
+      <div className="flex items-start justify-between gap-4 border-b border-white/10 pb-5">
         <div className="flex items-start gap-3">
-          <div className="rounded-lg border border-border bg-muted/40 p-2.5">
-            <tool.icon className="h-6 w-6 text-primary" strokeWidth={1.75} />
+          <div className="rounded-lg border border-white/15 bg-white/10 p-2.5 backdrop-blur">
+            <tool.icon className="h-6 w-6 text-white" strokeWidth={1.75} />
           </div>
           <div>
-            <div className="text-xs font-semibold uppercase tracking-[0.1em] text-muted-foreground">{category?.name}</div>
-            <h1 className="text-2xl font-semibold tracking-tight">{tool.name}</h1>
-            <p className="mt-0.5 text-sm text-muted-foreground">{tool.description}</p>
+            <div className="text-xs font-semibold uppercase tracking-[0.1em] text-white/50">{category?.name}</div>
+            <h1 className="text-2xl font-semibold tracking-tight text-white">{tool.name}</h1>
+            <p className="mt-0.5 text-sm text-white/60">{tool.description}</p>
           </div>
         </div>
         <button
           onClick={() => toggleFavorite(tool.id)}
           data-testid="tool-favorite"
           aria-label="Toggle favorite"
-          className="inline-flex h-9 items-center gap-1.5 rounded-md border border-border px-3 text-sm hover:bg-muted"
+          className="inline-flex h-9 items-center gap-1.5 rounded-md border border-white/15 bg-white/5 px-3 text-sm text-white hover:bg-white/10"
         >
-          <Star className={cn('h-4 w-4', fav && 'fill-yellow-500 text-yellow-500')} />
+          <Star className={cn('h-4 w-4', fav && 'fill-yellow-400 text-yellow-400')} />
           <span className="hidden sm:inline">{fav ? 'Favorited' : 'Favorite'}</span>
         </button>
       </div>
@@ -66,11 +66,11 @@ const ToolPage = () => {
       </div>
 
       {related.length > 0 && (
-        <div className="border-t border-border pt-5">
-          <div className="mb-2 text-xs font-semibold uppercase tracking-[0.1em] text-muted-foreground">More in {category?.name}</div>
+        <div className="border-t border-white/10 pt-5">
+          <div className="mb-2 text-xs font-semibold uppercase tracking-[0.1em] text-white/50">More in {category?.name}</div>
           <div className="flex flex-wrap gap-2">
             {related.map((t) => (
-              <Link key={t.id} to={`/tools/${t.id}`} className="rounded-full border border-border px-3 py-1 text-xs text-muted-foreground hover:bg-muted hover:text-foreground" data-testid={`related-${t.id}`}>
+              <Link key={t.id} to={`/tools/${t.id}`} className="rounded-full border border-white/15 px-3 py-1 text-xs text-white/60 transition-colors duration-150 hover:bg-white/10 hover:text-white" data-testid={`related-${t.id}`}>
                 {t.name}
               </Link>
             ))}

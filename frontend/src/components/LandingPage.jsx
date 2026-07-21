@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import { Link } from 'react-router-dom';
-import { Search, Monitor, Printer, Activity, Video, Lock, Plus } from 'lucide-react';
+import { Search, Monitor, Printer, Activity, Video, Lock, Plus, Wrench } from 'lucide-react';
 import FloatingFeedbackButton from './FloatingFeedbackButton';
 import ChangelogModal from './ChangelogModal';
 import ToolSuggestionModal from './ToolSuggestionModal';
@@ -386,20 +386,19 @@ const LandingPage = () => {
                     {t('Tool Voorstellen', 'Suggest Tool')}
                   </button>
 
-                  {/* Developer Toolbox entry */}
-                  <Link to="/tools" data-testid="open-toolbox-link">
+                  {/* Developer Toolbox entry - prominent */}
+                  <Link to="/tools" data-testid="open-toolbox-link" className="block">
                     <button
-                      className="w-full px-6 py-4 rounded-full font-medium text-sm transition-all flex items-center justify-center gap-2"
+                      className="group w-full px-6 py-4 rounded-full font-semibold text-base text-white flex items-center justify-center gap-2.5 transition-transform duration-150 hover:scale-[1.02]"
                       style={{
-                        background: 'rgba(255, 255, 255, 0.08)',
-                        backdropFilter: 'blur(8px)',
-                        WebkitBackdropFilter: 'blur(8px)',
-                        border: '1px solid rgba(255, 255, 255, 0.12)',
-                        color: '#ffffff',
+                        background: 'linear-gradient(135deg, #3291FF 0%, #7928CA 100%)',
+                        boxShadow: '0 8px 30px rgba(50, 145, 255, 0.45)',
                         fontFamily: 'Inter, sans-serif'
                       }}
                     >
-                      {t('Developer Toolbox openen', 'Open Developer Toolbox')} →
+                      <Wrench className="w-5 h-5" />
+                      {t('Open de Developer Toolbox', 'Open the Developer Toolbox')}
+                      <span className="transition-transform duration-150 group-hover:translate-x-1">→</span>
                     </button>
                   </Link>
                 </div>
